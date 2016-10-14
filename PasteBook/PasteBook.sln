@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBook", "PasteBook\PasteBook.csproj", "{19383BB7-18C5-4A2C-8551-BC124427C91B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBookDataAccess", "PasteBookDataAccess\PasteBookDataAccess.csproj", "{51924D38-E736-45C9-A90A-E7FD9BA80502}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBookEF", "PasteBookModel\PasteBookEF.csproj", "{3824A428-073F-4569-AE06-7E947DE91373}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{19383BB7-18C5-4A2C-8551-BC124427C91B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19383BB7-18C5-4A2C-8551-BC124427C91B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19383BB7-18C5-4A2C-8551-BC124427C91B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51924D38-E736-45C9-A90A-E7FD9BA80502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51924D38-E736-45C9-A90A-E7FD9BA80502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51924D38-E736-45C9-A90A-E7FD9BA80502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51924D38-E736-45C9-A90A-E7FD9BA80502}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3824A428-073F-4569-AE06-7E947DE91373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3824A428-073F-4569-AE06-7E947DE91373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3824A428-073F-4569-AE06-7E947DE91373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3824A428-073F-4569-AE06-7E947DE91373}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
