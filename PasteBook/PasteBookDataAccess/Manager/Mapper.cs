@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PasteBookDataAccess.Entities;
 using PasteBookModel;
-namespace PasteBookDataAccess.Manager
+namespace PasteBookDataAccess
 {
     public class Mapper
     {
@@ -17,7 +17,13 @@ namespace PasteBookDataAccess.Manager
                 FIRST_NAME =user.FirstName,
                 LAST_NAME = user.LastName,
                 BIRTHDATE = user.Birthdate,
-               
+                COUNTRY_ID = user.CountryID,
+                MOBILE_NO = user.MobileNumber,
+                GENDER = user.Gender,
+                PROFILE_PIC = user.ProfilePic,
+                DATE_CREATED = user.DateCreated,
+                ABOUT_ME = user.AboutMe,
+                EMAIL_ADDRESS = user.EmailAddress
                 
             };
         }

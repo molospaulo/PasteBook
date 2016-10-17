@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PasteBookModelStoreContainer" CdmEntityContainer="PasteBookEntities">
+    <EntitySetMapping Name="PB_COMMENTS">
+      <EntityTypeMapping TypeName="PasteBookModel.PB_COMMENTS">
+        <MappingFragment StoreEntitySet="PB_COMMENTS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+          <ScalarProperty Name="POSTER_ID" ColumnName="POSTER_ID" />
+          <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PB_FRIENDS">
+      <EntityTypeMapping TypeName="PasteBookModel.PB_FRIENDS">
+        <MappingFragment StoreEntitySet="PB_FRIENDS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="FRIEND_ID" ColumnName="FRIEND_ID" />
+          <ScalarProperty Name="REQUEST" ColumnName="REQUEST" />
+          <ScalarProperty Name="IsBLOCKED" ColumnName="IsBLOCKED" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PB_LIKES">
+      <EntityTypeMapping TypeName="PasteBookModel.PB_LIKES">
+        <MappingFragment StoreEntitySet="PB_LIKES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+          <ScalarProperty Name="LIKED_BY" ColumnName="LIKED_BY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PB_NOTIFICATION">
+      <EntityTypeMapping TypeName="PasteBookModel.PB_NOTIFICATION">
+        <MappingFragment StoreEntitySet="PB_NOTIFICATION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RECEIVER_ID" ColumnName="RECEIVER_ID" />
+          <ScalarProperty Name="NOTIF_TYPE" ColumnName="NOTIF_TYPE" />
+          <ScalarProperty Name="SENDER_ID" ColumnName="SENDER_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="COMMENT_ID" ColumnName="COMMENT_ID" />
+          <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+          <ScalarProperty Name="SEEN" ColumnName="SEEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PB_POSTS">
+      <EntityTypeMapping TypeName="PasteBookModel.PB_POSTS">
+        <MappingFragment StoreEntitySet="PB_POSTS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="PROFILE_OWNER_ID" ColumnName="PROFILE_OWNER_ID" />
+          <ScalarProperty Name="POSTER_ID" ColumnName="POSTER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PB_REF_COUNTRY">
+      <EntityTypeMapping TypeName="PasteBookModel.PB_REF_COUNTRY">
+        <MappingFragment StoreEntitySet="PB_REF_COUNTRY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PB_USER">
+      <EntityTypeMapping TypeName="PasteBookModel.PB_USER">
+        <MappingFragment StoreEntitySet="PB_USER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="SALT" ColumnName="SALT" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+          <ScalarProperty Name="COUNTRY_ID" ColumnName="COUNTRY_ID" />
+          <ScalarProperty Name="MOBILE_NO" ColumnName="MOBILE_NO" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="PROFILE_PIC" ColumnName="PROFILE_PIC" />
+          <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+          <ScalarProperty Name="ABOUT_ME" ColumnName="ABOUT_ME" />
+          <ScalarProperty Name="EMAIL_ADDRESS" ColumnName="EMAIL_ADDRESS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PasteBookDataAccess.Entities
+namespace PasteBookDataAccess
 {
     public class UserDetails
     {
@@ -15,9 +15,9 @@ namespace PasteBookDataAccess.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime Birthdate { get; set; }
-        public string CountryID { get; set; }
+        public int CountryID { get; set; }
         public string MobileNumber { get; set; }
-        public char Gender { get; set; }
+        public string Gender { get; set; }
         public byte[] ProfilePic { get; set; }
         public DateTime DateCreated { get; set; }
         public string AboutMe { get; set; }
