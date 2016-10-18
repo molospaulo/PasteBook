@@ -21,7 +21,7 @@ $(document).ready(function () {
         }
 
         $.ajax({
-            url : checkEmailUrl,
+            url : CheckEmailUrl,
             data: data,
             type: 'GET',
             success: function (data) {
@@ -45,7 +45,7 @@ $(document).ready(function () {
         }
 
         $.ajax({
-            url: checkUserNameUrl,
+            url: CheckUserNameUrl,
             data: data,
             type: 'GET',
             success: function (data) {

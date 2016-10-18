@@ -27,5 +27,38 @@ namespace PasteBookDataAccess
                 
             };
         }
+
+        public UserDetails MapUserToUI(PB_USER user)
+        {
+            return new UserDetails
+            {
+                UserName = user.USER_NAME,
+                Password= user.PASSWORD,
+                Salt = user.SALT,
+                FirstName = user.FIRST_NAME,
+                LastName = user.LAST_NAME,
+                Birthdate = user.BIRTHDATE,
+                CountryID = user.COUNTRY_ID.Value,
+                MobileNumber= user.MOBILE_NO,
+                Gender = user.GENDER,
+                ProfilePic= user.PROFILE_PIC,
+                DateCreated= user.DATE_CREATED,
+                AboutMe = user.ABOUT_ME,
+                EmailAddress = user.EMAIL_ADDRESS
+
+            };
+        }
+
+        public Post MapPost(PB_POSTS post)
+        {
+            return new Post
+            {
+                ID = post.ID,
+                DateCreated = post.CREATED_DATE,
+                Content = post.CONTENT,
+                ProfileOwnerID = post.PROFILE_OWNER_ID,
+                Poster = MapUserToUI(post.PB_USER1)
+            };
+        }
     }
 }

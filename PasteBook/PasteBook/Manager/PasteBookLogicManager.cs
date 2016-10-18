@@ -49,24 +49,57 @@ namespace PasteBook
 
         public bool LoginUser(UserCredentialModel user)
         {
-            var currentUser = manager.Login(user.EmailAddress);
-            if (currentUser != null)
+            if (user != null)
             {
-                bool result = pManager.IsPasswordMatch(user.Password, currentUser.Salt, currentUser.PasswordHash);
-                return result;
+                var currentUser = manager.Login(user.EmailAddress);
+                if (currentUser != null)
+                {
+                    bool result = pManager.IsPasswordMatch(user.Password, currentUser.Salt, currentUser.PasswordHash);
+                    return result;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else {
-                return false;
-            }
+            return false;
         }
 
-        public bool checkEmail(string email)
+        public int GetUserID(string emailAddress)
+        {
+            return manager.GetUserID(emailAddress);
+        }
+
+
+
+        public bool CheckEmail(string email)
         {
             return manager.CheckEmailIfExisting(email);
         }
-        public bool checkUserName(string userName)
+        public bool CheckUserName(string userName)
         {
             return manager.CheckUsernameIfExisting(userName);
+        }
+
+        public List<PostsModel> GetListOfPosts(int id)
+        {
+            List<PostsModel> listOfPosts = new List<PostsModel>();
+            var result  = manager.GetListOfPost(id);
+
+            foreach (var item in result)
+            {
+                listOfPosts.Add(map.MapPosts(item));
+            }
+
+            return listOfPosts;
+        }
+        public bool AddLike(int ID, int PostID)
+        {
+            return manager.AddLike(PostID, ID);
+        }
+        public bool AddPost(int ID, string post, int profileOwnerID)
+        {
+            return manager.AddPost(ID, post, profileOwnerID);
         }
     }
 }		

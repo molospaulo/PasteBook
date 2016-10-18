@@ -10,6 +10,7 @@ namespace PasteBookDataAccess
 {
    public class PasteBookManager
     {
+        Mapper map = new Mapper();
         /// <summary>
         /// Retrieve the list of countries in the database
         /// </summary>
@@ -51,24 +52,8 @@ namespace PasteBookDataAccess
             {
                 using (var context = new PasteBookEntities())
                 {
-                    byte[] array = new byte[4];
-                     context.PB_USER.Add(new PB_USER
-                    {
-                        FIRST_NAME = user.FirstName,
-                        LAST_NAME = user.LastName,
-                        USER_NAME = user.UserName,
-                        PASSWORD = user.Password,
-                        SALT = user.Salt,
-                        BIRTHDATE = user.Birthdate,
-                        COUNTRY_ID = user.CountryID,
-                        MOBILE_NO = user.MobileNumber,
-                        GENDER = user.Gender,
-                        PROFILE_PIC = array,
-                        DATE_CREATED = user.DateCreated,
-                        ABOUT_ME = user.AboutMe,
-                        EMAIL_ADDRESS = user.EmailAddress
-
-                    });
+                   
+                     context.PB_USER.Add(map.MapUser(user));
                     var result = context.SaveChanges();
                     returnValue = result != 0 ? true : false;
                   
@@ -133,6 +118,94 @@ namespace PasteBookDataAccess
             {
                 return null;
             }
+        }
+        
+        public int GetUserID(string emailAddress)
+        {
+
+            try
+            {
+                    using(var context = new PasteBookEntities())
+                    {
+                        var result = context.PB_USER.Where(x => x.EMAIL_ADDRESS == emailAddress).Select(x => x.ID).Single();
+                        return result;
+                    }
+            
+            }catch(Exception e)
+            {
+                return 0;
+            }
+
+        }
+
+        public List<Post> GetListOfPost(int UserID)
+        {
+            List<Post> listOfPosts = new List<Post>();
+            try
+            {
+                using(var context = new PasteBookEntities())
+                {
+                    var result = context.PB_POSTS.Where(x => x.PROFILE_OWNER_ID == UserID).ToList();
+                    foreach (var item in result)
+                    {
+                        listOfPosts.Add(map.MapPost(item));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            return listOfPosts;
+        }
+
+        public bool AddLike(int postID, int userLikeID)
+        {
+            bool output = false;
+            try
+            {
+                using (var context = new PasteBookEntities())
+                {
+                    PB_LIKES like = new PB_LIKES();
+                    like.POST_ID = postID;
+                    like.LIKED_BY = userLikeID;
+                    context.PB_LIKES.Add(like);
+                    var result = context.SaveChanges();
+                    output = result != 0 ? true : false;
+
+                }
+            }catch(Exception e)
+            {
+                return false;
+            }
+            return output;
+        }
+
+        public bool AddPost(int posterID,string post, int profileOwnerID)
+        {
+            bool output = false;
+
+            try
+            {
+                using(var context = new PasteBookEntities())
+                {
+                    PB_POSTS newPost = new PB_POSTS();
+                    newPost.CONTENT = post;
+                    newPost.POSTER_ID = posterID;
+                    newPost.PROFILE_OWNER_ID = profileOwnerID;
+                    newPost.CREATED_DATE = DateTime.Today;
+
+                    context.PB_POSTS.Add(newPost);
+                    var result = context.SaveChanges();
+                    output = result != 0 ? true : false;
+                }
+            }catch(Exception e)
+            {
+                return false;
+
+            }
+
+            return output;
         }
 
     }

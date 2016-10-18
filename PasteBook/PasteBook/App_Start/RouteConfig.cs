@@ -21,9 +21,9 @@ namespace PasteBook
             );
             routes.MapRoute(
             "PasteBook",
-            "PasteBook/{model.LoginUser.EmailAddress}",
-            new { controller = "PasteBook", action = "Login" }
-);
+            "PasteBook/{EmailAddress}",
+            new { controller = "PasteBook", action = "Index" , EmailAddress=""}
+            );
         }
     }
 }

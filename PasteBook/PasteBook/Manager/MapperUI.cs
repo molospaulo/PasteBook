@@ -8,7 +8,7 @@ namespace PasteBook
 {
     public class MapperUI
     {
-        public UserDetails MapUserDetails( UserDetailsModel model)
+        public UserDetails MapUserDetails(UserDetailsModel model)
         {
             return new UserDetails()
             {
@@ -27,6 +27,43 @@ namespace PasteBook
                 EmailAddress = model.EmailAddress
 
             };
+        }
+        public UserDetailsModel MapUserDetailsToUI(UserDetails model)
+        {
+            return new UserDetailsModel()
+            {
+                UserName = model.UserName,
+                Password = model.Password,
+                Salt = model.Salt,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Birthday = model.Birthdate,
+                Country = model.CountryID,
+                MobileNumber = model.MobileNumber,
+                Gender = model.Gender,
+                ProfilePic = model.ProfilePic,
+                DateCreated = model.DateCreated,
+                AboutMe = model.AboutMe,
+                EmailAddress = model.EmailAddress
+
+            };
+        }
+        public PostsModel MapPosts(Post posts)
+        {
+            return new PostsModel
+            {
+                ID = posts.ID,
+                CreatedDate = posts.DateCreated,
+                Content = posts.Content,
+                Poster = MapUserDetailsToUI(posts.Poster)
+
+
+
+            };
+
+
+
+
         }
     }
 }

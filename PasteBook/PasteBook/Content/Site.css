@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color:#E8E9E9;
     
 }
 
@@ -18,11 +19,11 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
-}
+}*/
 .navbar{
     background-color: #3b5998;
     border-color: #3b5998;
@@ -40,4 +41,5 @@ textarea {
 .navbar-inverse .navbar-nav > li > a {
     color: #ffffff;
     background-color: transparent;
+
 }

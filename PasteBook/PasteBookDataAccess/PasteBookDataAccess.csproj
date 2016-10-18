@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\UserCredentials.cs" />
     <Compile Include="Entities\UserDetails.cs" />
     <Compile Include="Manager\ConversionManager.cs" />

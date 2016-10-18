@@ -1,0 +1,84 @@
+﻿@model IEnumerable<PasteBook.PostsModel>
+
+<link rel="stylesheet" type="text/css" href="~/Content/HomePage.css">
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="txtAreaPost"></label>
+                    <textarea id="txtAreaPost" class="form-control" rows="5" placeholder="What is on you mind?"></textarea>
+                    <button type="button" class="btn btn-default" id="postBtn">Post</button>
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="row">
+                    <div id="contents">
+                        <div class="row" id="postHeader">
+                            @Html.DisplayFor(modelItem => item.CreatedDate)
+                        </div>
+                        <div class="row" id="postBody">
+                            @Html.DisplayFor(modelItem => item.Content)
+                        </div>
+                        <div class="row" id="postFooter">
+                            <button type="button" class="btn btn-default" id="likeBtn" onclick="AddLike(@(item.ID))">
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Like
+                            </button>
+                            <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#commentField_@(item.ID)" id="commentBtn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Comment</button>
+                        </div>
+                        <div id="commentField_@(item.ID)" class="collapse">
+                            <div class="row" id="commentHeader">
+
+                            </div>
+                            <div class="row" id="commentBody">
+                                <textarea id="txtAreaPost" class="form-control" rows="2" placeholder="Comment"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                </div>
+            }
+        </div>
+
+        <div class="col-md-3">
+
+        </div>
+    </div>
+</div>
+<input type="hidden" id="EmailAddress" value="@Session["User"]" />
+<input type="hidden" id="UserID" />
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        var UrlGetUserID = '@Url.Action("GetUserID","PasteBook")';
+        var UrlAddLike = '@Url.Action("AddLike","PasteBook")'
+        var UrlAddPost = '@Url.Action("AddPost","PasteBook")'
+
+    </script>
+    <script src="~/Scripts/PasteBook/Home.js" type="text/javascript"> </script>
+}
+@section navbarRight{
+    <button id="notificationBtn" class="homeNavbarRight btn btn-default"><span class="glyphicon glyphicon-globe"></span></button>
+    <button id="friendRequestBtn" class="homeNavbarRight btn btn-default"><span class="glyphicon glyphicon-user"></span></button>
+    <button id="homeButton" class="homeNavbarRight btn btn-default">Home</button>
+    <button id="profileButton" class="homeNavbarRight btn btn-default">Profile</button>
+}
+@section navbarLeft{
+   <div class="col-md-4">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for...">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+    </div>
+</div>
+}
