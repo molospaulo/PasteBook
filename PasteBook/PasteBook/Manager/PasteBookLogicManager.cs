@@ -93,9 +93,17 @@ namespace PasteBook
 
             return listOfPosts;
         }
-        public bool AddLike(int ID, int PostID)
+        public bool AddOrDeleteLike(int ID, int PostID, out string status)
         {
-            return manager.AddLike(PostID, ID);
+            if (manager.checkLikeIfExist(PostID, ID))
+            {
+                status = "deletelike";
+                return manager.DeleteLike(PostID, ID);
+            }else
+            {
+                status = "addlike";
+                return manager.AddLike(PostID, ID);
+            }
         }
         public bool AddPost(int ID, string post, int profileOwnerID)
         {

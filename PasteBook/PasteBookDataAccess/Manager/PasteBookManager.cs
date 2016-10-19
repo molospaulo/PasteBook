@@ -2,6 +2,7 @@
 using PasteBookModel;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -145,20 +146,54 @@ namespace PasteBookDataAccess
             {
                 using(var context = new PasteBookEntities())
                 {
-                    var result = context.PB_POSTS.Where(x => x.PROFILE_OWNER_ID == UserID).ToList();
+                    //var result = context.PB_POSTS.Where(x => x.PROFILE_OWNER_ID == UserID).OrderByDescending(x => x.CREATED_DATE).ToList();
+                    //foreach (var item in result)
+                    //{
+                    //    listOfPosts.Add(map.MapPost(item));
+                    //}
+                    SqlParameter[] parameters = new SqlParameter[]
+                     {
+                        new SqlParameter("@ID", UserID)
+                     };
+                    var result = context.Database.SqlQuery<GetNewsFeedPost_Result>("GetNewsFeedPost @UserID = @ID", parameters);
                     foreach (var item in result)
                     {
-                        listOfPosts.Add(map.MapPost(item));
+                        listOfPosts.Add(new Post {
+                              ID = item.ID,
+                              Poster = item.POSTER_ID,
+                              Content =item.CONTENT,
+                              ProfileOwnerID = item.PROFILE_OWNER_ID,
+                              countOfLikes =item.countOfLikes.Value,
+                              DateCreated =item.CREATED_DATE,
+                          });
                     }
+
+
                 }
             }
             catch (Exception e)
             {
-                return null;
+                return new List<Post> (){ };
             }
             return listOfPosts;
         }
+        public bool checkLikeIfExist(int postID, int userLikeID)
+        {
+            bool output = false;
+            try
+            {
+              using( var context = new PasteBookEntities())
+                {
+                    output = context.PB_LIKES.Any(x => x.POST_ID == postID && x.LIKED_BY == userLikeID);
+                }
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
 
+            return output;
+        }
         public bool AddLike(int postID, int userLikeID)
         {
             bool output = false;
@@ -175,6 +210,32 @@ namespace PasteBookDataAccess
 
                 }
             }catch(Exception e)
+            {
+                return false;
+            }
+            return output;
+        }
+
+        public bool DeleteLike(int postID,int userLikeID)
+        {
+            bool output = false;
+            try
+            {
+                using(var context = new PasteBookEntities())
+                {
+                    var entry = context.PB_LIKES.Where(x => x.POST_ID == postID && x.LIKED_BY == userLikeID).Select(x => x).Single();
+
+                    if (entry != null)
+                    {
+                        context.PB_LIKES.Remove(entry);
+                        var result = context.SaveChanges();
+                        output = result != 0 ? true : false;
+
+                    }
+
+                }
+            }
+            catch (Exception e)
             {
                 return false;
             }

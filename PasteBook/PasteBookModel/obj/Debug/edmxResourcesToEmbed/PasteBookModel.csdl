@@ -320,5 +320,16 @@
       <End Role="PB_REF_COUNTRY" EntitySet="PB_REF_COUNTRY" />
       <End Role="PB_USER" EntitySet="PB_USER" />
     </AssociationSet>
+    <FunctionImport Name="GetNewsFeedPost" ReturnType="Collection(PasteBookModel.GetNewsFeedPost_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="GetNewsFeedPost_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" Precision="23" />
+    <Property Type="String" Name="CONTENT" Nullable="false" MaxLength="1000" />
+    <Property Type="Int32" Name="PROFILE_OWNER_ID" Nullable="false" />
+    <Property Type="Int32" Name="POSTER_ID" Nullable="false" />
+    <Property Type="Int32" Name="countOfLikes" Nullable="true" />
+  </ComplexType>
 </Schema>

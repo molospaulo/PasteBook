@@ -29,7 +29,10 @@ namespace PasteBook.Controllers
         {
             if (manager.LoginUser(model.LoginUser))
             {
-                Session["User"] = model.LoginUser.EmailAddress;
+                var user =manager.GetUserID(model.LoginUser.EmailAddress);
+
+                Session["User"] = user;
+
                 return RedirectToAction("Home");
             }
             else
@@ -43,8 +46,9 @@ namespace PasteBook.Controllers
         {
             if (Session["User"] != null)
             {
-                var user = Session["User"].ToString();
-                var result = manager.GetListOfPosts(manager.GetUserID(user));
+                int user;
+                int.TryParse(Session["User"].ToString(), out user);
+                var result = manager.GetListOfPosts(user);
                 return View(result);
             }else
             {
@@ -71,15 +75,27 @@ namespace PasteBook.Controllers
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult AddLike(int postID,int ID)
-        {
-            var result = manager.AddLike(ID,postID);
-            return Json(new { result = result }, JsonRequestBehavior.AllowGet);
+        public JsonResult AddOrDeleteLike(int postID,int ID)
+        { string status = "";
+            var result = manager.AddOrDeleteLike(ID,postID,out status);
+            return Json(new { result = result ,status =status }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult AddPost(int userId , string post , int ProfileOwnerID)
         {
             var result = manager.AddPost(userId, post, ProfileOwnerID);
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
+        }
+        public PartialViewResult RefreshNewsfeed()
+        {
+            int user;
+            int.TryParse(Session["User"].ToString(), out user);
+            var result = manager.GetListOfPosts(user);
+            return this.PartialView("PartialViewNewsFeed",result);
+        }
+        public ActionResult UserProfile()
+        {
+            
+            return View();
         }
     }
 }

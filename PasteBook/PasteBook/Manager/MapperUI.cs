@@ -55,7 +55,8 @@ namespace PasteBook
                 ID = posts.ID,
                 CreatedDate = posts.DateCreated,
                 Content = posts.Content,
-                Poster = MapUserDetailsToUI(posts.Poster)
+                Poster = posts.Poster,
+                countOfLikes =posts.countOfLikes
 
 
 

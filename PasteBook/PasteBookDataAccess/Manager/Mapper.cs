@@ -57,7 +57,7 @@ namespace PasteBookDataAccess
                 DateCreated = post.CREATED_DATE,
                 Content = post.CONTENT,
                 ProfileOwnerID = post.PROFILE_OWNER_ID,
-                Poster = MapUserToUI(post.PB_USER1)
+                Poster = post.POSTER_ID
             };
         }
     }

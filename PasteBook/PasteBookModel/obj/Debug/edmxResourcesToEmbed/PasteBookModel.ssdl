@@ -234,6 +234,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="GetNewsFeedPost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="PasteBookModelStoreContainer">
     <EntitySet Name="PB_COMMENTS" EntityType="Self.PB_COMMENTS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PB_FRIENDS" EntityType="Self.PB_FRIENDS" Schema="dbo" store:Type="Tables" />

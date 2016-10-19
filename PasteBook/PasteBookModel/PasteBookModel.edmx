@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PasteBookModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PasteBookModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="PB_COMMENTS">
           <Key>
             <PropertyRef Name="ID" />
@@ -239,6 +239,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetNewsFeedPost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="PasteBookModelStoreContainer">
           <EntitySet Name="PB_COMMENTS" EntityType="Self.PB_COMMENTS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PB_FRIENDS" EntityType="Self.PB_FRIENDS" Schema="dbo" store:Type="Tables" />
@@ -300,8 +303,7 @@
             <End Role="PB_USER" EntitySet="PB_USER" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PasteBookModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -625,7 +627,18 @@
             <End Role="PB_REF_COUNTRY" EntitySet="PB_REF_COUNTRY" />
             <End Role="PB_USER" EntitySet="PB_USER" />
           </AssociationSet>
+          <FunctionImport Name="GetNewsFeedPost" ReturnType="Collection(PasteBookModel.GetNewsFeedPost_Result)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="GetNewsFeedPost_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" Precision="23" />
+          <Property Type="String" Name="CONTENT" Nullable="false" MaxLength="1000" />
+          <Property Type="Int32" Name="PROFILE_OWNER_ID" Nullable="false" />
+          <Property Type="Int32" Name="POSTER_ID" Nullable="false" />
+          <Property Type="Int32" Name="countOfLikes" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -717,6 +730,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetNewsFeedPost" FunctionName="PasteBookModel.Store.GetNewsFeedPost">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PasteBookModel.GetNewsFeedPost_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                <ScalarProperty Name="PROFILE_OWNER_ID" ColumnName="PROFILE_OWNER_ID" />
+                <ScalarProperty Name="POSTER_ID" ColumnName="POSTER_ID" />
+                <ScalarProperty Name="countOfLikes" ColumnName="countOfLikes" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

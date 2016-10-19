@@ -12,6 +12,8 @@ namespace PasteBookModel
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class PasteBookEntities : DbContext
     {
@@ -32,5 +34,14 @@ namespace PasteBookModel
         public virtual DbSet<PB_POSTS> PB_POSTS { get; set; }
         public virtual DbSet<PB_REF_COUNTRY> PB_REF_COUNTRY { get; set; }
         public virtual DbSet<PB_USER> PB_USER { get; set; }
+    
+        public virtual ObjectResult<GetNewsFeedPost_Result> GetNewsFeedPost(Nullable<int> userID)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetNewsFeedPost_Result>("GetNewsFeedPost", userIDParameter);
+        }
     }
 }

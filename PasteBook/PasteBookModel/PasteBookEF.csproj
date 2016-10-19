@@ -52,6 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="GetNewsFeedPost_Result.cs">
+      <DependentUpon>PasteBookModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PasteBookModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

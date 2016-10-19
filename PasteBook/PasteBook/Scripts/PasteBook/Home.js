@@ -2,27 +2,15 @@
 
 
 $("#postBtn").click(function () {
+    //alert('lol');
     AddPost();
 });
+$("#btnRefresh").click(function () {
+    //alert('refresh');
+    RefreshNewsFeed();
 
-getUser();
-function getUser() {
-    var data = {
-        emailAddress: $('#EmailAddress').val()
-    };
-        $.ajax({
-            url: UrlGetUserID,
-            data : data,
-            type: 'GET',
-            success: function (data) {
-                $("#UserID").val(data.result);
-            },
-            error: function(data){
-                alert('error');
-            }
-        })
-    }
-    function AddLike(id) {
+})
+function AddOrDeleteLike(id) {
         var data = {
             postID: id,
             ID : $("#UserID").val()
@@ -32,8 +20,15 @@ function getUser() {
             data: data,
             type: 'GET',
             success: function (data) {
-              
-            },
+                if (data.status == "deletelike") {
+                    $(this).css("color","")
+                    $(this).css("color","")
+                } else if (data.status == "addlike") {
+                    $(this).css("color","blue")
+                    $(this).css("color","blue")
+                }
+            }
+                ,
             error: function (data) {
                 alert(data)
             }
@@ -58,10 +53,18 @@ function getUser() {
             error: function(data){
 
             }
-
-
-
         })
-
-
+}
+    function RefreshNewsFeed() {
+        $.ajax({
+            url: UrlRefreshNewsFeed,
+            type: 'GET',
+            success: function (data) {
+                //alert('success')
+                $("#newsFeed").html(data)
+            },
+            error: function (data) {
+                alert('error')
+            }
+        })
     }

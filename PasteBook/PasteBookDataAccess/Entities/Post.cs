@@ -12,6 +12,7 @@ namespace PasteBookDataAccess
         public string Content { get; set; }
         public int ProfileOwnerID { get; set; }
         public DateTime DateCreated { get; set; }
-        public UserDetails Poster { get; set; }
+        public int countOfLikes { get; set; }
+        public int Poster { get; set; }
     }
 }

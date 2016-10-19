@@ -11,6 +11,7 @@ namespace PasteBook
         public DateTime CreatedDate { get; set; }
         public string Content { get; set; }
         public string PosterID { get; set; }
-        public UserDetailsModel Poster { get; set; }
+        public int Poster { get; set; }
+        public int countOfLikes { get; set; }
     }
 }
