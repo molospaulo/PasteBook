@@ -12,25 +12,46 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                </button>
-                @Html.ActionLink("PasteBook", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })           
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button>
+                @Html.ActionLink("PasteBook", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            @RenderSection("navbarLeft", required: false)
+            @{ if (@Session["User"] != null)
+                {
+                    <div class="col-md-4" id="searchField">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                }
+            }
             <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        @RenderSection("navbarRight", required: false)
-                    </ul>
-                
+                <div class="nav navbar-nav navbar-right">
+                    @{ if (@Session["User"] != null)
+                        {
+                            <button id="notificationBtn" class="homeNavbarRight btn btn-default"><span class="glyphicon glyphicon-globe icon"></span></button>
+                            <button id="friendRequestBtn" class="homeNavbarRight btn btn-default"><span class="glyphicon glyphicon-user icon"></span></button>
+                            @Html.ActionLink("Home", "Home", "Home", null, new { @class = "homeNavbarRight" })
+                            @Html.ActionLink("Timeline", "Timeline", "Home", new {id=Session["User"]}, new { @class = "homeNavbarRight" })
+                        }
+                        else
+                        {
+                            @RenderSection("navbarRight", required: false)
+                        }
+                    }
                 </div>
+
+            </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         @*<hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>*@
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")

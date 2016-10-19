@@ -1,7 +1,30 @@
 ﻿#txtAreaPost{
     resize:none;
+   
 }
+#userFullName{
+font-size: 20px;
+margin:20px 0px 0px 45px;
 
+}
+#profilePic{
+    height:200px;
+    margin:10px;
+}
+#searchField{
+    margin-top:10px;
+}
+.homeNavbarRight{
+    color:#fff;
+    margin-top:10px;
+    background-color:#3b5998;
+    border-radius:0px;
+    border-color:#3b5998;
+    height:40px;
+}
+.icon{
+    height: 60px;
+}
 #contents{
    
     width:100%;

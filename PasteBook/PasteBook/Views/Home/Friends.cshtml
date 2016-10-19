@@ -1,0 +1,23 @@
+﻿@model IEnumerable<PasteBook.UsersPartialDetailsUI>
+<link rel="stylesheet" type="text/css" href="~/Content/Friends.css">
+<div class="container">
+
+    @foreach (var item in Model)
+    {
+        
+         <div class="row" id="divFriendList">
+             <div class="col-md-4">
+                 <div class="divProfilePic">
+                     <img src="~/Content/Images/MaleDefaultImage.jpg" id="profilePicFriends" class="img-responsive" />
+                 </div>
+             </div>
+             <div class="col-md-4" id="divFriendName" >
+                 @Html.DisplayFor(modelItem => item.FirstName) &nbsp;
+                 @Html.DisplayFor(modelItem => item.LastName)&nbsp;
+                 @Html.ActionLink("Go to friend","Timeline","Home", new { id = item.ID},null)
+             </div>
+        </div>
+ }
+
+</div>
+

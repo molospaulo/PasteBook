@@ -1,0 +1,41 @@
+﻿@model PasteBook.HomeViewModel
+<link rel="stylesheet" type="text/css" href="~/Content/HomePage.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Timeline.css">
+<div class="container">
+    <div class="row" id="divProfileBanner">
+      
+            <div class="row">
+                <div id="profilePicProfile">
+                    <img src="~/Content/Images/MaleDefaultImage.jpg" class="img-responsive" id="profilePic" />
+                </div>
+                <div id="userFullNameProfile">
+                    @Model.UserPartial.FirstName &nbsp; @Model.UserPartial.LastName
+                </div>
+            </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+            <div class="row" id="txtAreaProfilePost">
+                @Html.Partial("PartialViewAddPost")
+            </div>
+            @{
+                Html.RenderAction("TimelineFeed", "Home",new { id = Model.UserPartial.ID});
+            }
+        </div>
+        <div class="col-md-3">
+
+        </div>
+
+
+    </div>
+</div>
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+}

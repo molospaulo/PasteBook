@@ -66,6 +66,31 @@ namespace PasteBookDataAccess
             }
             return returnValue;
         }
+        public UserPartialDetails GetUserPartialDetails(int id)
+        {
+            try
+            {
+                using(var context = new PasteBookEntities())
+                {
+                    var result = context.PB_USER.Where(x => x.ID == id).Select(x => x).Single();
+                    return new UserPartialDetails
+                    {
+                        ID=result.ID,
+                        UserName = result.USER_NAME,
+                        FirstName = result.FIRST_NAME,
+                        LastName =result.LAST_NAME,
+                        ProfilePic =result.PROFILE_PIC
+                    };
+                }
+            }
+            catch (Exception e)
+            {
+                return new UserPartialDetails { };
+            }
+        }
+
+
+
 
         public bool CheckUsernameIfExisting(string username)
         {
@@ -155,7 +180,7 @@ namespace PasteBookDataAccess
                      {
                         new SqlParameter("@ID", UserID)
                      };
-                    var result = context.Database.SqlQuery<GetNewsFeedPost_Result>("GetNewsFeedPost @UserID = @ID", parameters);
+                    var result = context.Database.SqlQuery<GetNewsFeed_Result>("GetNewsFeed @UserID = @ID", parameters).OrderByDescending(x=>x.CREATED_DATE);
                     foreach (var item in result)
                     {
                         listOfPosts.Add(new Post {
@@ -165,6 +190,9 @@ namespace PasteBookDataAccess
                               ProfileOwnerID = item.PROFILE_OWNER_ID,
                               countOfLikes =item.countOfLikes.Value,
                               DateCreated =item.CREATED_DATE,
+                              FirstName = item.FIRST_NAME,
+                              LastName = item.LAST_NAME
+                              
                           });
                     }
 
@@ -174,6 +202,27 @@ namespace PasteBookDataAccess
             catch (Exception e)
             {
                 return new List<Post> (){ };
+            }
+            return listOfPosts;
+        }
+        public List<Post> GetListOfPostTimeline(int UserID)
+        {
+            List<Post> listOfPosts = new List<Post>();
+            try
+            {
+                using (var context = new PasteBookEntities())
+                {
+                    var result = context.PB_POSTS.Where(x => x.PROFILE_OWNER_ID == UserID).OrderByDescending(x => x.CREATED_DATE).ToList();
+                    foreach (var item in result)
+                    {
+                        listOfPosts.Add(map.MapPost(item));
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                return new List<Post>() { };
             }
             return listOfPosts;
         }
@@ -254,7 +303,7 @@ namespace PasteBookDataAccess
                     newPost.CONTENT = post;
                     newPost.POSTER_ID = posterID;
                     newPost.PROFILE_OWNER_ID = profileOwnerID;
-                    newPost.CREATED_DATE = DateTime.Today;
+                    newPost.CREATED_DATE = DateTime.Now;
 
                     context.PB_POSTS.Add(newPost);
                     var result = context.SaveChanges();
@@ -267,6 +316,33 @@ namespace PasteBookDataAccess
             }
 
             return output;
+        }
+        public List<UserPartialDetails> GetListOfFriends(int userID)
+        {
+            List<UserPartialDetails> listOfFriends = new List<UserPartialDetails>();
+            try
+            {
+                using(var context = new PasteBookEntities())
+                {
+                    var result = context.PB_FRIENDS.Where(x => x.USER_ID == userID && x.REQUEST == "N").ToList();
+
+                    foreach (var item in result)
+                    {
+                        listOfFriends.Add(new UserPartialDetails
+                        {
+                            ID = item.PB_USER.ID,
+                            FirstName =item.PB_USER.FIRST_NAME,
+                            LastName=item.PB_USER.LAST_NAME,
+                            UserName=item.PB_USER.USER_NAME,
+                            ProfilePic=item.PB_USER.PROFILE_PIC
+                        });
+                    }
+                }
+            }catch(Exception e)
+            {
+                return new List<UserPartialDetails>() { };
+            }
+            return listOfFriends;
         }
 
     }

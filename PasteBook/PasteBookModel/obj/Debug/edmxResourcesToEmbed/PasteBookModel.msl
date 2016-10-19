@@ -86,14 +86,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="GetNewsFeedPost" FunctionName="PasteBookModel.Store.GetNewsFeedPost">
+    <FunctionImportMapping FunctionImportName="GetNewsFeed" FunctionName="PasteBookModel.Store.GetNewsFeed">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="PasteBookModel.GetNewsFeedPost_Result">
+        <ComplexTypeMapping TypeName="PasteBookModel.GetNewsFeed_Result">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
           <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
           <ScalarProperty Name="PROFILE_OWNER_ID" ColumnName="PROFILE_OWNER_ID" />
           <ScalarProperty Name="POSTER_ID" ColumnName="POSTER_ID" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
           <ScalarProperty Name="countOfLikes" ColumnName="countOfLikes" />
         </ComplexTypeMapping>
       </ResultMapping>

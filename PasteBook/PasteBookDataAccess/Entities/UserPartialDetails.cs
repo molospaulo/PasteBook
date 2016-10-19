@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 
 namespace PasteBookDataAccess
 {
-    public class Post
+   public class UserPartialDetails
     {
         public int ID { get; set; }
-        public string Content { get; set; }
-        public int ProfileOwnerID { get; set; }
-        public DateTime DateCreated { get; set; }
-        public int countOfLikes { get; set; }
-        public int Poster { get; set; }
+        public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public byte[] ProfilePic { get; set; }
     }
 }

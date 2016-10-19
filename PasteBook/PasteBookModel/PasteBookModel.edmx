@@ -239,7 +239,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="GetNewsFeedPost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="GetNewsFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="PasteBookModelStoreContainer">
@@ -628,6 +628,9 @@
             <End Role="PB_USER" EntitySet="PB_USER" />
           </AssociationSet>
           <FunctionImport Name="GetNewsFeedPost" ReturnType="Collection(PasteBookModel.GetNewsFeedPost_Result)">
+          <Parameter Name="UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetNewsFeed" ReturnType="Collection(PasteBookModel.GetNewsFeed_Result)">
             <Parameter Name="UserID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -637,6 +640,16 @@
           <Property Type="String" Name="CONTENT" Nullable="false" MaxLength="1000" />
           <Property Type="Int32" Name="PROFILE_OWNER_ID" Nullable="false" />
           <Property Type="Int32" Name="POSTER_ID" Nullable="false" />
+          <Property Type="Int32" Name="countOfLikes" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetNewsFeed_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" Precision="23" />
+          <Property Type="String" Name="CONTENT" Nullable="false" MaxLength="1000" />
+          <Property Type="Int32" Name="PROFILE_OWNER_ID" Nullable="false" />
+          <Property Type="Int32" Name="POSTER_ID" Nullable="false" />
+          <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="countOfLikes" Nullable="true" />
         </ComplexType>
       </Schema>
@@ -730,14 +743,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetNewsFeedPost" FunctionName="PasteBookModel.Store.GetNewsFeedPost">
+          <FunctionImportMapping FunctionImportName="GetNewsFeed" FunctionName="PasteBookModel.Store.GetNewsFeed">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PasteBookModel.GetNewsFeedPost_Result">
+              <ComplexTypeMapping TypeName="PasteBookModel.GetNewsFeed_Result">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
                 <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
                 <ScalarProperty Name="PROFILE_OWNER_ID" ColumnName="PROFILE_OWNER_ID" />
                 <ScalarProperty Name="POSTER_ID" ColumnName="POSTER_ID" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
                 <ScalarProperty Name="countOfLikes" ColumnName="countOfLikes" />
               </ComplexTypeMapping>
             </ResultMapping>

@@ -56,13 +56,21 @@ namespace PasteBook
                 CreatedDate = posts.DateCreated,
                 Content = posts.Content,
                 Poster = posts.Poster,
-                countOfLikes =posts.countOfLikes
-
-
-
+                countOfLikes =posts.countOfLikes,
+                FirstName = posts.FirstName,
+                LastName =posts.LastName
+                 };
+        }
+        public UsersPartialDetailsUI MapUserPartialDetails(UserPartialDetails user)
+        {
+            return new UsersPartialDetailsUI
+            {
+                ID= user.ID,
+                FirstName= user.FirstName,
+                LastName= user.LastName,
+                ProfilePic=user.ProfilePic,
+                UserName=user.UserName,
             };
-
-
 
 
         }

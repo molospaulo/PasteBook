@@ -55,6 +55,7 @@
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\UserCredentials.cs" />
     <Compile Include="Entities\UserDetails.cs" />
+    <Compile Include="Entities\UserPartialDetails.cs" />
     <Compile Include="Manager\ConversionManager.cs" />
     <Compile Include="Manager\HashGenerator.cs" />
     <Compile Include="Manager\ImageManager.cs" />

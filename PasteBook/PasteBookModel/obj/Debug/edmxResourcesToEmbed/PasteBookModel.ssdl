@@ -234,7 +234,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="GetNewsFeedPost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="GetNewsFeed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="UserID" Type="int" Mode="In" />
   </Function>
   <EntityContainer Name="PasteBookModelStoreContainer">

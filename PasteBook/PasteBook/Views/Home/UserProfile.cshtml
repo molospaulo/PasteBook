@@ -1,0 +1,27 @@
+﻿<link rel="stylesheet" type="text/css" href="~/Content/HomePage.css">
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+        <div class="row" id="txtAreaProfilePost">
+            @Html.Partial("PartialViewAddPost")
+        </div>
+            @{ 
+                Html.RenderAction("TimelineFeed", "Home");
+            }
+        </div>
+        <div class="col-md-3">
+
+        </div>
+
+
+    </div>
+</div>
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+}

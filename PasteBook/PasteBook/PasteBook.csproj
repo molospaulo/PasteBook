@@ -133,6 +133,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Manager\HomeManager.cs" />
     <Compile Include="Manager\MapperUI.cs" />
     <Compile Include="Manager\PasteBookLogicManager.cs" />
     <Compile Include="Models\CountryModel.cs" />
@@ -141,13 +142,18 @@
     <Compile Include="Models\PostsModel.cs" />
     <Compile Include="Models\UserCredentialModel.cs" />
     <Compile Include="Models\UserDetailsModel.cs" />
+    <Compile Include="Models\UsersPartialDetailsUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Friends.css" />
     <Content Include="Content\HomePage.css" />
+    <Content Include="Content\Images\femaleDefaultImage.jpg" />
+    <Content Include="Content\Images\MaleDefaultImage.jpg" />
     <Content Include="Content\LoginSignUp.css" />
+    <Content Include="Content\Timeline.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -179,12 +185,13 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\PasteBook\Index.cshtml" />
-    <Content Include="Views\PasteBook\Home.cshtml" />
-    <Content Include="Views\PasteBook\PartialViewNewsFeed.cshtml" />
-    <Content Include="Views\PasteBook\UserProfile.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Home\PartialViewNewsFeed.cshtml" />
+    <Content Include="Views\Home\UserProfile.cshtml" />
+    <Content Include="Views\Home\PartialViewAddPost.cshtml" />
+    <Content Include="Views\Home\Timeline.cshtml" />
+    <Content Include="Views\Home\Friends.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

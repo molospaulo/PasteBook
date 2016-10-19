@@ -5,15 +5,12 @@ using System.Web;
 
 namespace PasteBook
 {
-    public class PostsModel
+    public class UsersPartialDetailsUI
     {
         public int ID { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public string Content { get; set; }
-        public string PosterID { get; set; }
-        public int Poster { get; set; }
-        public int countOfLikes { get; set; }
+        public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public byte[] ProfilePic { get; set; }
     }
 }

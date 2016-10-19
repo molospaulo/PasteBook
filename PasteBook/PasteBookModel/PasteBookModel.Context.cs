@@ -43,5 +43,14 @@ namespace PasteBookModel
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetNewsFeedPost_Result>("GetNewsFeedPost", userIDParameter);
         }
+    
+        public virtual ObjectResult<GetNewsFeed_Result> GetNewsFeed(Nullable<int> userID)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetNewsFeed_Result>("GetNewsFeed", userIDParameter);
+        }
     }
 }

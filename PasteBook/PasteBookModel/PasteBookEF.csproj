@@ -55,6 +55,9 @@
     <Compile Include="GetNewsFeedPost_Result.cs">
       <DependentUpon>PasteBookModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetNewsFeed_Result.cs">
+      <DependentUpon>PasteBookModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PasteBookModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

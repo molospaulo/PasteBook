@@ -323,6 +323,9 @@
     <FunctionImport Name="GetNewsFeedPost" ReturnType="Collection(PasteBookModel.GetNewsFeedPost_Result)">
       <Parameter Name="UserID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="GetNewsFeed" ReturnType="Collection(PasteBookModel.GetNewsFeed_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetNewsFeedPost_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
@@ -330,6 +333,16 @@
     <Property Type="String" Name="CONTENT" Nullable="false" MaxLength="1000" />
     <Property Type="Int32" Name="PROFILE_OWNER_ID" Nullable="false" />
     <Property Type="Int32" Name="POSTER_ID" Nullable="false" />
+    <Property Type="Int32" Name="countOfLikes" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetNewsFeed_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" Precision="23" />
+    <Property Type="String" Name="CONTENT" Nullable="false" MaxLength="1000" />
+    <Property Type="Int32" Name="PROFILE_OWNER_ID" Nullable="false" />
+    <Property Type="Int32" Name="POSTER_ID" Nullable="false" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="countOfLikes" Nullable="true" />
   </ComplexType>
 </Schema>

@@ -1,12 +1,12 @@
-﻿@model IEnumerable<PasteBook.PostsModel>
+﻿@model PasteBook.HomeViewModel
 
 
-@foreach (var item in Model)
+@foreach (var item in Model.listOfPosts)
 {
     <div class="row">
         <div id="contents">
             <div class="row" id="postHeader">
-                @Html.DisplayFor(modelItem => item.CreatedDate)
+                @Html.DisplayFor(modelItem => item.FirstName) &nbsp; @Html.DisplayFor(modelItem => item.LastName)
             </div>
             <div class="row" id="postBody">
                 @Html.DisplayFor(modelItem => item.Content)

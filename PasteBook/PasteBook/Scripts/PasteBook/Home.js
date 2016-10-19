@@ -2,11 +2,9 @@
 
 
 $("#postBtn").click(function () {
-    //alert('lol');
     AddPost();
 });
 $("#btnRefresh").click(function () {
-    //alert('refresh');
     RefreshNewsFeed();
 
 })
@@ -20,13 +18,7 @@ function AddOrDeleteLike(id) {
             data: data,
             type: 'GET',
             success: function (data) {
-                if (data.status == "deletelike") {
-                    $(this).css("color","")
-                    $(this).css("color","")
-                } else if (data.status == "addlike") {
-                    $(this).css("color","blue")
-                    $(this).css("color","blue")
-                }
+                RefreshNewsFeed()
             }
                 ,
             error: function (data) {
@@ -56,15 +48,6 @@ function AddOrDeleteLike(id) {
         })
 }
     function RefreshNewsFeed() {
-        $.ajax({
-            url: UrlRefreshNewsFeed,
-            type: 'GET',
-            success: function (data) {
-                //alert('success')
-                $("#newsFeed").html(data)
-            },
-            error: function (data) {
-                alert('error')
-            }
-        })
+                $("#newsFeed").load(UrlRefreshNewsFeed)
+         
     }
