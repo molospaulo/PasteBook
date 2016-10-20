@@ -1,15 +1,15 @@
-﻿@model PasteBook.HomeViewModel
+﻿@model PasteBook.Newsfeed
 
 
-@foreach (var item in Model.listOfPosts)
+@foreach (var item in Model.ListOfPosts)
 {
     <div class="row">
         <div id="contents">
             <div class="row" id="postHeader">
-                @Html.DisplayFor(modelItem => item.FirstName) &nbsp; @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.FIRST_NAME) &nbsp; @Html.DisplayFor(modelItem => item.LAST_NAME)
             </div>
             <div class="row" id="postBody">
-                @Html.DisplayFor(modelItem => item.Content)
+                @Html.DisplayFor(modelItem => item.CONTENT)
             </div>
             <div class="row" id="postFooter">
                 @{ if (item.countOfLikes != 1)

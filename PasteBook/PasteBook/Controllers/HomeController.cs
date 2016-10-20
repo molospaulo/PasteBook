@@ -1,8 +1,10 @@
-﻿using System;
+﻿using PasteBookBusinessLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PasteBookModel;
 
 namespace PasteBook.Controllers
 {
@@ -10,7 +12,7 @@ namespace PasteBook.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        HomeManager manager = new HomeManager();
+        HomeBL manager = new HomeBL();
         
         [HttpGet]
         public ActionResult Home()
@@ -21,7 +23,7 @@ namespace PasteBook.Controllers
                 int.TryParse(Session["User"].ToString(), out user);
                 var result = manager.GetUserPartialDetails(user);
                 HomeViewModel model = new HomeViewModel();
-                model.UserPartial = result;
+                model.User = result;
                 return View(model);
             }
             else
@@ -41,18 +43,11 @@ namespace PasteBook.Controllers
             var result = manager.AddOrDeleteLike(ID, postID, out status);
             return Json(new { result = result, status = status }, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult AddPost(int userId, string post, int ProfileOwnerID)
+        public ActionResult AddPost(int userId, string post, int ProfileOwnerID)
         {
             var result = manager.AddPost(userId, post, ProfileOwnerID);
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
-        //public PartialViewResult RefreshNewsfeed()
-        //{
-        //    int user;
-        //    int.TryParse(Session["User"].ToString(), out user);
-        //    var result = manager.GetListOfPosts(user);
-        //    return this.PartialView("PartialViewNewsFeed",result);
-        //}
         public ActionResult Newsfeed(int id)
         {
             if (Session["User"] != null)
@@ -60,8 +55,8 @@ namespace PasteBook.Controllers
                 int user;
                 int.TryParse(Session["User"].ToString(), out user);
                 var result = manager.GetListOfPosts(user);
-                HomeViewModel model = new HomeViewModel();
-                model.listOfPosts = result;
+                Newsfeed model = new Newsfeed();
+                model.ListOfPosts = result;
                 return PartialView("PartialViewNewsFeed", model);
             }
             else
@@ -75,9 +70,9 @@ namespace PasteBook.Controllers
          if (Session["User"] != null)
             {
                 
-                var result = manager.GetListOfPosts(id);
-                HomeViewModel model = new HomeViewModel();
-                model.listOfPosts = result;
+                var result = manager.GetlistOfPostsTimeline(id);
+                Newsfeed model = new Newsfeed();
+                model.ListOfPostsTimeline= result;
                 return PartialView("PartialViewNewsFeed", model);
             }
             else
@@ -95,11 +90,20 @@ namespace PasteBook.Controllers
         {
             if (Session["User"] != null)
             {
-            
-                var result = manager.GetUserPartialDetails(id);
+                int user;
+                int.TryParse(Session["User"].ToString(), out user);
+                if (user != id)
+                {
+                    ViewBag.isFriend = manager.IsFriend(user, id);
+                }
+                else
+                {
+                    ViewBag.isFriend = "me";
+                }
+                var result = manager.GetUserProfileDetails(id);
                 HomeViewModel model = new HomeViewModel();
-                model.UserPartial = result;
-                return View(model);
+                model.User = result;
+                return View(result);
             }
             else
             {
@@ -114,13 +118,15 @@ namespace PasteBook.Controllers
                 int user;
                 int.TryParse(Session["User"].ToString(), out user);
                 var result = manager.GetUserFriends(user);
-                
-                return View(result);
+                HomeViewModel model = new HomeViewModel();
+                model.Users = result;
+                return View(model);
             }
             else
             {
                 return RedirectToAction("Index", "PasteBook");
             }
         }
+
     }
 }

@@ -1,28 +1,31 @@
 ﻿@model PasteBook.IndexViewModel
 
-@using (Html.BeginForm("Index", "PasteBook", FormMethod.Post, new { }))
+@using (Html.BeginForm("Index", "PasteBook", FormMethod.Post, new { @id = "signUpForm"}))
 {
-    <br />
-    <br />
-    <br />
-    <div class="row" >
+
+    <div class="row">
         <div class="col-md-6"></div>
         <div class="col-md-6" id="signUpDiv">
+            <div class="row" id="signUpTitleDiv">
+                <p id="signUpTitle">Sign Up now for free...</p>
+            </div>
         <div class="row">
             <div class="form-group col-md-6">
                 @*@Html.LabelFor(model => model.User.UserName, htmlAttributes: new { @class = "control-label col-md-2" })*@
                 
-                    @Html.EditorFor(model => model.User.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "User name", @id = "txtUserName"} })
-                    @Html.ValidationMessageFor(model => model.User.UserName, "", new { @class = "text-danger" })
-                    <span aria-hidden="true" id="userNameChecker"></span>
+                    @Html.EditorFor(model => model.User.USER_NAME, new { htmlAttributes = new { @class = "form-control", @placeholder = "User name", @id = "txtUserName"} })
+                    @Html.ValidationMessageFor(model => model.User.USER_NAME, "", new { @class = "text-danger" })
+                <span aria-hidden="true" id="userNameCheckerFail" class="glyphicon glyphicon-align-remove">User name is already taken</span>
+                <span aria-hidden="true" id="userNameCheckerSuccess" class="glyphicon glyphicon-align-ok"> User name is available</span>
+
                
             </div>
 
             <div class="form-group col-md-6">
                 @*@Html.LabelFor(model => model.User.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })*@
            
-                    @Html.EditorFor(model => model.User.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First name", @id = "txtFirstName" } })
-                    @Html.ValidationMessageFor(model => model.User.FirstName, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.User.FIRST_NAME, new { htmlAttributes = new { @class = "form-control", @placeholder = "First name", @id = "txtFirstName" } })
+                    @Html.ValidationMessageFor(model => model.User.FIRST_NAME, "", new { @class = "text-danger" })
 
             </div>
         </div>
@@ -30,17 +33,19 @@
                 <div class="form-group col-md-6">
                     @*@Html.LabelFor(model => model.User.LastName, htmlAttributes: new { @class = "control-label col-md-2" })*@
 
-                    @Html.EditorFor(model => model.User.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last name", @id = "txtLastName" } })
-                    @Html.ValidationMessageFor(model => model.User.LastName, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.User.LAST_NAME, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last name", @id = "txtLastName" } })
+                    @Html.ValidationMessageFor(model => model.User.LAST_NAME, "", new { @class = "text-danger" })
 
                 </div>
 
                 <div class="form-group col-md-6">
                     @*@Html.LabelFor(model => model.User.EmailAddress, htmlAttributes: new { @class = "control-label col-md-2" })*@
 
-                    @Html.EditorFor(model => model.User.EmailAddress, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email address", @id = "txtEmailAddress" } })
-                    @Html.ValidationMessageFor(model => model.User.EmailAddress, "", new { @class = "text-danger" })
-                    <span aria-hidden="true" id="emailChecker"></span>
+                    @Html.EditorFor(model => model.User.EMAIL_ADDRESS, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email address", @id = "txtEmailAddress" } })
+                    @Html.ValidationMessageFor(model => model.User.EMAIL_ADDRESS, "", new { @class = "text-danger" })
+                    <span aria-hidden="true" id="emailCheckerFail" class="glyphicon glyphicon-align-remove">Email address is already taken</span>
+                    <span aria-hidden="true" id="emailCheckerSuccess" class="glyphicon glyphicon-align-ok">Email address is available</span>
+
 
                 </div>
             </div>
@@ -48,16 +53,16 @@
                 <div class="form-group col-md-6">
                     @*@Html.LabelFor(model => model.User.Password, htmlAttributes: new { @class = "control-label col-md-2" })*@
 
-                    @Html.EditorFor(model => model.User.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @id = "txtPassword" } })
-                    @Html.ValidationMessageFor(model => model.User.Password, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.User.PASSWORD, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @id = "txtPassword" } })
+                    @Html.ValidationMessageFor(model => model.User.PASSWORD, "", new { @class = "text-danger" })
 
                 </div>
 
                 <div class="form-group col-md-6">
                     @*@Html.LabelFor(model => model.User.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })*@
-
-                    @Html.EditorFor(model => model.User.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Confirm password", @id = "txtConfirmPassword" } })
-                    @Html.ValidationMessageFor(model => model.User.ConfirmPassword, "", new { @class = "text-danger" })
+                    <input type="password" class="form-control" placeholder="Confirm Password" />
+                    @*@Html.EditorFor(model => model.User.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Confirm password", @id = "txtConfirmPassword" } })
+                    @Html.ValidationMessageFor(model => model.User.ConfirmPassword, "", new { @class = "text-danger" })*@
 
                 </div>
             </div>
@@ -67,14 +72,14 @@
                 <div class="form-group col-md-6">
                     @*@Html.LabelFor(model => model.User.Country, htmlAttributes: new { @class = "control-label col-md-2" })*@
 
-                    @Html.DropDownListFor(x => x.User.Country, new SelectList(Model.listOfCountries, "CountryID", "Name"), "Select Country", new { @class = "form-control", @id = "selectCountry" })
-                    @Html.ValidationMessageFor(model => model.User.Country, "", new { @class = "text-danger" })
+                    @Html.DropDownListFor(x => x.User.PB_REF_COUNTRY.COUNTRY, new SelectList(Model.listOfCountries, "Country", "ID"), "Select Country", new { @class = "form-control", @id = "selectCountry" })
+                    @Html.ValidationMessageFor(model => model.User.PB_REF_COUNTRY.COUNTRY, "", new { @class = "text-danger" })
 
                 </div>
                 <div class="form-group col-md-6">
                    
 
-                    @Html.DropDownListFor(x => x.User.Gender, new SelectList(
+                    @Html.DropDownListFor(x => x.User.GENDER, new SelectList(
                                new List<Object>{
                                            new { value = "M" , text = "Male"  },
                                            new { value = "F" , text = "Female" }
@@ -82,25 +87,25 @@
                                "value",
                                "text",
                                2), "Select Gender", new { @id = "selectGender", @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.User.Gender, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.User.GENDER, "", new { @class = "text-danger" })
 
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
                     <div class="col-md-3">
-                        @Html.LabelFor(model => model.User.Birthday, htmlAttributes: new { @class = "control-label col-md-2" ,@id = "lblBirthdate"})
+                        @Html.LabelFor(model => model.User.BIRTHDATE, htmlAttributes: new { @class = "control-label col-md-2" ,@id = "lblBirthdate"})
                     </div>
                     <div class="col-md-9">
-                    @Html.EditorFor(model => model.User.Birthday, new { htmlAttributes = new { @class = "form-control", @type = "date", @id = "dateBirthdate" } })
-                    @Html.ValidationMessageFor(model => model.User.Birthday, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.User.BIRTHDATE, new { htmlAttributes = new { @class = "form-control", @type = "date", @id = "dateBirthdate" } })
+                    @Html.ValidationMessageFor(model => model.User.BIRTHDATE, "", new { @class = "text-danger" })
                 </div>
                 </div>
                 <div class="form-group col-md-6">
                     @*@Html.LabelFor(model => model.User.MobileNumber, htmlAttributes: new { @class = "control-label col-md-2" })*@
                    
-                        @Html.EditorFor(model => model.User.MobileNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Mobile number", @id = "txtMobileNumber" } })
-                        @Html.ValidationMessageFor(model => model.User.MobileNumber, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.User.MOBILE_NO, new { htmlAttributes = new { @class = "form-control", @placeholder = "Mobile number", @id = "txtMobileNumber" } })
+                        @Html.ValidationMessageFor(model => model.User.MOBILE_NO, "", new { @class = "text-danger" })
                    
                 </div>
             </div>
@@ -114,15 +119,18 @@
             </div>
         </div>
    </div>
-}
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script>
+
+}
+<script>
         var checkUserNameUrl = '@Url.Action("CheckUsername", "PasteBook")';
         var checkEmailUrl = '@Url.Action("CheckEmail", "PasteBook")';
-    </script>
-    <script src="~/Scripts/PasteBook/SignUpAndLoginScripts.js"> </script>
+</script>
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/PasteBook/SignUpAndLoginScripts.js"> </script>
+   
 
 
 }
@@ -132,11 +140,11 @@
     {
 
         <link rel="stylesheet" type="text/css" href="~/Content/LoginSignUp.css">
-        <div class="pull-left"> @Html.EditorFor(model => model.LoginUser.EmailAddress, new { htmlAttributes = new { @class = "loginFields form-control", @id = "txtloginEmailAddress", @placeholder = "E-mail Address", @name = "username" } })</div>
-        <div class="pull-left"> @Html.EditorFor(model => model.LoginUser.Password, new { htmlAttributes = new { @class = "loginFields form-control", @id = "txtloginPassword", @placeholder = "Password" } })</div>
+        <div class="pull-left"> @Html.EditorFor(model => model.LoginUser.EMAIL_ADDRESS, new { htmlAttributes = new { @class = "loginFields form-control", @id = "txtloginEmailAddress", @placeholder = "E-mail Address", @name = "username" } })</div>
+        <div class="pull-left"> @Html.EditorFor(model => model.LoginUser.PASSWORD, new { htmlAttributes = new { @class = "loginFields form-control", @id = "txtloginPassword", @placeholder = "Password" } })</div>
         <div class="pull-left"><input type="submit" value="Login" class="btn btn-default" id="btnLogin" /></div>
 
-        @Html.ValidationMessageFor(model => model.LoginUser.Password, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(model => model.LoginUser.PASSWORD, "", new { @class = "text-danger" })
         
     }
 }

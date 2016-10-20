@@ -9,3 +9,23 @@
     margin-left: 90px;
     font-size: 20px;
 }
+#btnAddFriend{
+
+}
+.timelineFriendBtn{
+    float:right;
+    margin-bottom: 50px;
+    margin-right: 50px;
+    border-radius:0px;
+}
+#profileDetailsDiv{
+    margin-top:20px;
+    margin-right:10px;
+    padding:20px;
+    box-sizing: border-box;
+    background-color:#fff;
+}
+.profileDetailsRow{
+    padding :10px;
+    word-wrap:break-word;
+}

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PasteBookBusinessLogic;
 namespace PasteBook.Controllers
 {
     public class PasteBookController : Controller
     {
-        PasteBookLogicManager manager = new PasteBookLogicManager();
-        HomeManager hManager = new HomeManager();
+        SignUpLoginBL manager = new SignUpLoginBL();
+        HomeBL hManager = new HomeBL();
         static IndexViewModel modelForCountry = new IndexViewModel();
         // GET: PasteBook
         [HttpGet]
@@ -30,7 +31,7 @@ namespace PasteBook.Controllers
         {
             if (manager.LoginUser(model.LoginUser))
             {
-                var user =hManager.GetUserID(model.LoginUser.EmailAddress);
+                var user =hManager.GetUserID(model.LoginUser.EMAIL_ADDRESS);
 
                 Session["User"] = user;
 

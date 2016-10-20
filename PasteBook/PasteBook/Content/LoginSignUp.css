@@ -25,11 +25,29 @@
     padding:0px;
 }
 #signUpDiv{
-    margin-top:40px;
+    margin-top:100px;
 }
 .navbar{
     background-color: #3b5998;
     border-color: #3b5998;
     padding-top:40px;
     padding-bottom:10px;
+}
+#signUpTitle{
+    font-size:40px;
+}
+#signUpTitleDiv{
+    padding :10px;
+}
+#emailCheckerFail{
+    color:red;
+}
+#emailCheckerSuccess{
+    color: green;
+}
+#userNameCheckerFail{
+    color:red;
+}
+#userNameCheckerFail{
+    color: green;
 }

@@ -1,8 +1,8 @@
-﻿@model IEnumerable<PasteBook.UsersPartialDetailsUI>
+﻿@model PasteBook.HomeViewModel
 <link rel="stylesheet" type="text/css" href="~/Content/Friends.css">
 <div class="container">
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Users)
     {
         
          <div class="row" id="divFriendList">
@@ -12,12 +12,11 @@
                  </div>
              </div>
              <div class="col-md-4" id="divFriendName" >
-                 @Html.DisplayFor(modelItem => item.FirstName) &nbsp;
-                 @Html.DisplayFor(modelItem => item.LastName)&nbsp;
+                 @Html.DisplayFor(modelItem => item.FIRST_NAME) &nbsp;
+                 @Html.DisplayFor(modelItem => item.LAST_NAME)&nbsp;
                  @Html.ActionLink("Go to friend","Timeline","Home", new { id = item.ID},null)
              </div>
         </div>
  }
 
 </div>
-

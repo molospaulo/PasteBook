@@ -1,3 +1,4 @@
+C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\obj\Debug\PasteBook.csprojResolveAssemblyReference.cache
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\roslyn\csc.exe
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -19,7 +20,9 @@ C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\EntityFramework
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\Newtonsoft.Json.dll
+C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\PasteBookBusinessLogic.dll
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\PasteBookDataAccess.dll
+C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\PasteBookModel.dll
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\System.Web.Helpers.dll
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\System.Web.Mvc.dll
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\System.Web.Optimization.dll
@@ -28,8 +31,9 @@ C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\System.Web.WebP
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\System.Web.WebPages.dll
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\System.Web.WebPages.Razor.dll
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\WebGrease.dll
-C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\PasteBookModel.dll
+C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\PasteBookBusinessLogic.pdb
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\PasteBookDataAccess.pdb
+C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\PasteBookModel.pdb
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\EntityFramework.xml
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\EntityFramework.SqlServer.xml
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
@@ -42,7 +46,5 @@ C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\System.Web.WebP
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\System.Web.WebPages.Razor.xml
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\Antlr3.Runtime.pdb
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\Newtonsoft.Json.xml
-C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\PasteBookModel.pdb
-C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\obj\Debug\PasteBook.csprojResolveAssemblyReference.cache
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\obj\Debug\PasteBook.dll
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\obj\Debug\PasteBook.pdb

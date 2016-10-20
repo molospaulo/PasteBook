@@ -8,7 +8,7 @@
                     <img src="~/Content/Images/MaleDefaultImage.jpg" id="profilePic" class="img-responsive"  />
                 </div>
                 <div id="userFullName">
-                    @Model.UserPartial.FirstName &nbsp; @Model.UserPartial.LastName
+                    @Model.User.FIRST_NAME &nbsp; @Model.User.LAST_NAME
                 </div>
             </div>
             <div class="row" id="friendsDiv">
@@ -20,7 +20,7 @@
         <div class="col-md-6">
             
             <div class="row">
-                @Html.Partial("PartialViewAddPost")
+                @Html.Partial("PartialViewAddPost",Model)
             </div>
             
          <div id="newsFeed">
@@ -38,10 +38,9 @@
 <input type="hidden" id="UserID" value="@Session["User"]" />
 
 <script>
-        var UrlGetUserID = '@Url.Action("GetUserID","Home")'
         var UrlAddLike = '@Url.Action("AddOrDeleteLike","Home")'
         var UrlAddPost = '@Url.Action("AddPost","Home")'
-        var UrlRefreshNewsFeed = '@Url.Action("NewsFeed", "Home")'
+        var UrlRefreshNewsFeed = '@Url.Action("NewsFeed", "Home", new { id = Session["User"] })'
 </script>
 @section Scripts {
 

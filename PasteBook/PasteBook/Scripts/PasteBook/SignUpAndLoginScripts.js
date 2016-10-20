@@ -1,7 +1,10 @@
 ﻿
-$(document).ready(function () {
+//$(document).ready(function () {
    
-
+    $('#userNameCheckerFail').hide();
+    $('#userNameCheckerSuccess').hide();
+    $('#emailCheckerSuccess').hide();
+    $('#emailCheckerFail').hide();
     $('#txtEmailAddress').blur(function () {
 
         CheckEmail();
@@ -9,12 +12,11 @@ $(document).ready(function () {
     $('#txtUserName').blur(function () {
         CheckUserName();
     })
+    $('#SignUpForm').submit(function () {
+        ('#SignUpForm')[0].reset();
+    })
 
-
-
-
-
-    function CheckEmail(){
+function CheckEmail(){
     
         var data = {
             email: $('#txtEmailAddress').val()
@@ -26,11 +28,11 @@ $(document).ready(function () {
             type: 'GET',
             success: function (data) {
                 if (data.result == true) {
-                    $('#emailChecker').addClass('glyphicon glyphicon-align-remove');
-                    $('#emailChecker').text("E-mail is already taken");
+                    $('#emailCheckerFail').show();
+                    $('#emailCheckerSuccess').hide();
                 } else {
-                    $('#emailChecker').addClass('glyphicon glyphicon-align-ok');
-                    $('#emailChecker').text("E-mail is available");
+                    $('#emailCheckerFail').hide();
+                    $('#emailCheckerSuccess').show();
                 }
             },
             error: function () {
@@ -50,11 +52,11 @@ $(document).ready(function () {
             type: 'GET',
             success: function (data) {
                 if (data.result == true) {
-                    $('#userNameChecker').addClass('glyphicon glyphicon-align-remove');
-                    $('#userNameChecker').text("User name is already taken");
+                    $('#userNameCheckerFail').show();
+                    $('#userNameCheckerSuccess').hide()
                 } else {
-                    $('#userNameChecker').addClass('glyphicon glyphicon-align-ok');
-                    $('#userNameChecker').text("User name is available");
+                    $('#userNameCheckerFail').hide();
+                    $('#userNameCheckerSuccess').show()
                 }
             },
             error: function () {
@@ -63,5 +65,5 @@ $(document).ready(function () {
         })
     }
 
-    });
+    //});
 

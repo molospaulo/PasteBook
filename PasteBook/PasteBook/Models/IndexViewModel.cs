@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasteBookModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,13 +8,13 @@ namespace PasteBook
 {
     public class IndexViewModel
     {
-        public UserDetailsModel User { get; set; }
-        public List<CountryModel> listOfCountries { get; set; }
-        public UserCredentialModel LoginUser { get; set; }
+        public PB_USER User { get; set; }
+        public List<PB_REF_COUNTRY> listOfCountries { get; set; }
+        public PB_USER LoginUser { get; set; }
 
         public IndexViewModel()
         {
-            listOfCountries = new List<CountryModel>();
+            listOfCountries = new List<PB_REF_COUNTRY>();
         }
     }
 }

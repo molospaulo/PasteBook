@@ -1,7 +1,4 @@
-﻿
-
-
-$("#postBtn").click(function () {
+﻿$("#postBtn").click(function () {
     AddPost();
 });
 $("#btnRefresh").click(function () {
@@ -27,11 +24,11 @@ function AddOrDeleteLike(id) {
 
         })
     }
-    function AddPost() {
+    function AddPost(profileID,userID) {
         var data = {
-            userId : $("#UserID").val(),
+            userId : userID,
             post: $("#txtAreaPost").val(),
-            profileOwnerID: $("#UserID").val(),
+            ProfileOwnerID: profileID,
         }
 
         $.ajax({

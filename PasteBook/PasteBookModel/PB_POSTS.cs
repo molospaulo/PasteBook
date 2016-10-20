@@ -11,7 +11,8 @@ namespace PasteBookModel
 {
     using System;
     using System.Collections.Generic;
-    
+   
+
     public partial class PB_POSTS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,7 @@ namespace PasteBookModel
             this.PB_LIKES = new HashSet<PB_LIKES>();
             this.PB_NOTIFICATION = new HashSet<PB_NOTIFICATION>();
         }
-    
+
         public int ID { get; set; }
         public System.DateTime CREATED_DATE { get; set; }
         public string CONTENT { get; set; }

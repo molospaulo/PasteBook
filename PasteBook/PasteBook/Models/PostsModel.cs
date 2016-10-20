@@ -12,7 +12,7 @@ namespace PasteBook
         public string Content { get; set; }
         public string PosterID { get; set; }
         public int Poster { get; set; }
-        public int countOfLikes { get; set; }
+        public int isLiked { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
     }

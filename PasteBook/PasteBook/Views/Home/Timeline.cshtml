@@ -9,33 +9,91 @@
                     <img src="~/Content/Images/MaleDefaultImage.jpg" class="img-responsive" id="profilePic" />
                 </div>
                 <div id="userFullNameProfile">
-                    @Model.UserPartial.FirstName &nbsp; @Model.UserPartial.LastName
+                    @Model.User.FIRST_NAME &nbsp; @Model.User.LAST_NAME
                 </div>
+                @{ 
+                    if (ViewBag.isFriend == "friend")
+                    {
+                        <button type="button" class="btn btn-success timelineFriendBtn" id="btnAddFriend" ><span class="glyphicon glyphicon-check"></span>Friend</button>
+                    }
+                    else if (ViewBag.isFriend == "notfriend")
+                    {
+                        <button type="button" class="btn btn-info timelineFriendBtn" id="btnAddFriend" onclick=""><span class="glyphicon glyphicon-user"></span> Add Friend</button>
+                    }
+                    else if (ViewBag.isFriend == "request")
+                    {
+                        <button type="button" class="btn btn-info timelineFriendBtn" id="btnAddFriend" onclick=""><span class="glyphicon glyphicon-check"></span> Friend request sent</button>
+                    }
+                }
             </div>
-        
     </div>
     <div class="row">
-        <div class="col-md-3">
-
+        <div class="col-md-3" id="profileDetailsDiv">
+            <div class="row ">
+                <div class="col-md-6 profileDetailsRow">
+                    @Html.Label("User name ", htmlAttributes: new { @class = "control-label " })
+                </div>
+                <div class="col-md-6 profileDetailsRow">
+                    @Html.DisplayFor(model => model.User.USER_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 profileDetailsRow">
+                    @Html.Label("Email Address ", htmlAttributes: new { @class = "control-label " })
+                </div>
+                <div class="col-md-6 profileDetailsRow">
+                    @Html.DisplayFor(model => model.User.EMAIL_ADDRESS, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 profileDetailsRow">
+                    @Html.Label("Birthday ", htmlAttributes: new { @class = "control-label " })
+                </div>
+                <div class="col-md-6 profileDetailsRow">
+                    @Html.DisplayFor(model => model.User.BIRTHDATE, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 profileDetailsRow">
+                    @Html.Label("Mobile Number", htmlAttributes: new { @class = "control-label " })
+                </div>
+                <div class="col-md-6 profileDetailsRow">
+                    @Html.DisplayFor(model => model.User.MOBILE_NO, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.Label("Country", htmlAttributes: new { @class = "control-label " })
+                </div>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.User.PB_REF_COUNTRY.COUNTRY, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
         </div>
         <div class="col-md-6">
             <div class="row" id="txtAreaProfilePost">
-                @Html.Partial("PartialViewAddPost")
+                @Html.Partial("PartialViewAddPost",Model)
             </div>
             @{
-                Html.RenderAction("TimelineFeed", "Home",new { id = Model.UserPartial.ID});
+                Html.RenderAction("TimelineFeed", "Home",new { id = Model.User.ID});
             }
         </div>
         <div class="col-md-3">
 
         </div>
 
-
+        <input type="hidden" id="UserID" value="@Session["User"]" />
+        <input type="hidden" id="UserProfileID" value="@Model.User.ID" />
     </div>
 </div>
+<script>
+        var UrlAddLike = '@Url.Action("AddOrDeleteLike","Home")'
+    var UrlAddPost = '@Url.Action("AddPost","Home")'
+    var UrlRefreshNewsFeed = '@Url.Action("NewsFeed", "Home")'
+</script>
 @section Scripts {
 
     @Scripts.Render("~/bundles/jqueryval")
 
-
+    <script src="~/Scripts/PasteBook/Home.js" type="text/javascript"></script>
 }

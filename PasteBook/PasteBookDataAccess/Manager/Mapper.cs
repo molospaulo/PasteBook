@@ -57,8 +57,43 @@ namespace PasteBookDataAccess
                 DateCreated = post.CREATED_DATE,
                 Content = post.CONTENT,
                 ProfileOwnerID = post.PROFILE_OWNER_ID,
-                Poster = post.POSTER_ID
+                Poster = post.POSTER_ID,
+                FirstName = post.PB_USER.FIRST_NAME,
+                LastName = post.PB_USER.LAST_NAME
+                
             };
         }
+
+
+        public UserPartialDetails MapPartialDetails(PB_USER user)
+        {
+            return new UserPartialDetails
+            {
+                ID = user.ID,
+                FirstName = user.FIRST_NAME,
+                LastName = user.LAST_NAME,
+                UserName = user.EMAIL_ADDRESS,
+                ProfilePic = user.PROFILE_PIC
+            };
+        }
+
+
+        public UserProfileDetails MapProfileDetails(PB_USER user)
+        {
+            return new UserProfileDetails
+            {
+                ID = user.ID,
+                FirstName = user.FIRST_NAME,
+                LastName= user.LAST_NAME,
+                UserName = user.USER_NAME,
+                EmailAddress =user.EMAIL_ADDRESS,
+                Birthday = user.BIRTHDATE,
+                Country = user.PB_REF_COUNTRY.COUNTRY,
+                MobileNumber =user.MOBILE_NO,
+                ProfilePic = user.PROFILE_PIC
+            };
+
+        }
+        
     }
 }
