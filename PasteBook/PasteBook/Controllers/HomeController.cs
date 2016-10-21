@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PasteBookModel;
+using PasteBookDataAccess;
 
 namespace PasteBook.Controllers
 {
@@ -13,6 +14,7 @@ namespace PasteBook.Controllers
     {
         // GET: Home
         HomeBL manager = new HomeBL();
+        HomeDataAccess dManager = new HomeDataAccess();
         
         [HttpGet]
         public ActionResult Home()
@@ -54,10 +56,8 @@ namespace PasteBook.Controllers
             {
                 int user;
                 int.TryParse(Session["User"].ToString(), out user);
-                var result = manager.GetListOfPosts(user);
-                Newsfeed model = new Newsfeed();
-                model.ListOfPosts = result;
-                return PartialView("PartialViewNewsFeed", model);
+                var result = manager.NewsFeedPostsWithComments(user,dManager.GetListOfPost(id));
+                return PartialView("PartialViewNewsFeed", result);
             }
             else
             {
@@ -70,10 +70,8 @@ namespace PasteBook.Controllers
          if (Session["User"] != null)
             {
                 
-                var result = manager.GetlistOfPostsTimeline(id);
-                Newsfeed model = new Newsfeed();
-                model.ListOfPostsTimeline= result;
-                return PartialView("PartialViewNewsFeed", model);
+                var result = manager.NewsFeedPostsWithComments(id, dManager.GetListOfPostTimeline(id));
+                return PartialView("PartialViewNewsFeed", result);
             }
             else
             {
@@ -103,7 +101,7 @@ namespace PasteBook.Controllers
                 var result = manager.GetUserProfileDetails(id);
                 HomeViewModel model = new HomeViewModel();
                 model.User = result;
-                return View(result);
+                return View(model);
             }
             else
             {
@@ -126,6 +124,11 @@ namespace PasteBook.Controllers
             {
                 return RedirectToAction("Index", "PasteBook");
             }
+        }
+        public JsonResult AddComment(int postID, int posterID,string content)
+        {
+            var result = manager.AddComment(postID, posterID, content);
+            return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
 
     }

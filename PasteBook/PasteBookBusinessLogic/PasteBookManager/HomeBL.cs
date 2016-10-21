@@ -1,6 +1,5 @@
 ﻿
 using PasteBookDataAccess;
-using PasteBookDataAccess.Manager;
 using PasteBookModel;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ namespace PasteBookBusinessLogic
         HomeDataAccess manager = new HomeDataAccess();
         public PB_USER GetUserPartialDetails(int id)
         {
-            var output = manager.GetUserPartialDetails(id);
+            var output = manager.GetUserProfileDetails(id);
             return output;
 
         }
@@ -25,13 +24,23 @@ namespace PasteBookBusinessLogic
             var output = manager.GetListOfFriends(id);
             foreach (var item in output)
             {
-                listOfFriends.Add(item);
+
+                if(item.PB_USER.ID == id)
+                {
+                    listOfFriends.Add(item.PB_USER1);
+                }else
+                {
+                    listOfFriends.Add(item.PB_USER);
+                }
+               
             }
             return listOfFriends;
         }
 
         public PB_USER GetUserProfileDetails(int id)
         {
+            var result = manager.GetUserProfileDetails(id);
+             var country =result.PB_REF_COUNTRY.COUNTRY ;
             return manager.GetUserProfileDetails(id);
         }
 
@@ -40,30 +49,6 @@ namespace PasteBookBusinessLogic
         public int GetUserID(string emailAddress)
         {
             return manager.GetUserID(emailAddress);
-        }
-        public List<GetNewsFeed_Result> GetListOfPosts(int id)
-        {
-            List<GetNewsFeed_Result> listOfPosts = new List<GetNewsFeed_Result>();
-            var result = manager.GetListOfPost(id);
-
-            foreach (var item in result)
-            {
-                listOfPosts.Add(item);
-            }
-
-            return listOfPosts;
-        }
-        public List<PB_POSTS> GetlistOfPostsTimeline(int id)
-        {
-            List<PB_POSTS> listOfPosts = new List<PB_POSTS>();
-            var result = manager.GetListOfPostTimeline(id);
-
-            foreach (var item in result)
-            {
-                listOfPosts.Add(item);
-            }
-
-            return listOfPosts;
         }
 
         public bool AddOrDeleteLike(int ID, int PostID, out string status)
@@ -116,5 +101,39 @@ namespace PasteBookBusinessLogic
             return users;
         }
 
+        public List<NewsFeedViewModel> NewsFeedPostsWithComments(int userID,List<PB_POSTS> result)
+        {
+            List<NewsFeedViewModel> listOfNewsFeed = new List<NewsFeedViewModel>() { };
+            
+            foreach (var item in result)
+            {
+                listOfNewsFeed.Add(new NewsFeedViewModel()
+                {
+                    ID = item.ID,
+                    CREATED_DATE = item.CREATED_DATE,
+                    CONTENT = item.CONTENT,
+                    PROFILE_OWNER_ID = item.PROFILE_OWNER_ID,
+                    POSTER_ID = item.POSTER_ID,
+                    PB_USER = manager.GetUserProfileDetails(item.POSTER_ID),
+                    IsLike = manager.IsLiked(userID, item.ID),
+                    CountOfLikes = manager.Likers(item.ID),
+                    ListOfComments = manager.GetListOfComments(item.ID)
+
+                });
+            }
+            return listOfNewsFeed;
+        }
+        
+       public bool AddComment(int postID, int posterID, string content)
+        {
+            return manager.AddComment(new PB_COMMENTS
+            {
+                POST_ID = postID,
+                POSTER_ID = posterID,
+                CONTENT = content,
+                DATE_CREATED = DateTime.Now
+
+            });
+        }
     }
 }

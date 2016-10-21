@@ -51,7 +51,10 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="PasteBookManager\HomeBL.cs" />
-    <Compile Include="PasteBookManager\ProfileBL.cs" />
+    <Compile Include="PasteBookManager\Like.cs" />
+    <Compile Include="PasteBookManager\NewsFeedViewModel.cs" />
+    <Compile Include="PasteBookManager\Post.cs" />
+    <Compile Include="PasteBookManager\User.cs" />
     <Compile Include="PasteBookManager\SignUpLoginBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

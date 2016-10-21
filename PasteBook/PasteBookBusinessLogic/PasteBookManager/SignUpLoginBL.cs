@@ -12,22 +12,17 @@ namespace PasteBookBusinessLogic
     public class SignUpLoginBL
     {
         SignUpLoginDataAccess manager = new SignUpLoginDataAccess();
+        
         PasswordManager pManager = new PasswordManager();
         public List<PB_REF_COUNTRY> GetCountries()
         {
-            List<PB_REF_COUNTRY> listOfCountries = new List<PB_REF_COUNTRY>();
-            var result = manager.GetListOfcountry();
-            foreach (var item in result)
-            {
-                listOfCountries.Add(new PB_REF_COUNTRY { ID = item.ID, COUNTRY = item.COUNTRY });
-
-            }
-            return listOfCountries;
+            var dataAccessGeneric = new GenericDataAccess<PB_REF_COUNTRY>();
+            return dataAccessGeneric.RetrieveAllList();
         }
 
         public bool SaveUser(PB_USER model)
         {
-
+            var genericDataAccess = new GenericDataAccess<PB_USER>();
             if (model.PASSWORD == model.PASSWORD)
             {
                 if (model.GENDER == null)
@@ -41,7 +36,7 @@ namespace PasteBookBusinessLogic
                 model.SALT = salt;
 
 
-                return manager.SaveUser(model);
+                return genericDataAccess.AddRow(model);
 
             }
             else
@@ -55,7 +50,8 @@ namespace PasteBookBusinessLogic
         {
             if (user != null)
             {
-                var currentUser = manager.Login(user.EMAIL_ADDRESS);
+                var genericDataAccess = new GenericDataAccess<PB_USER>();
+                var currentUser = genericDataAccess.GetOneRecord(x => x.EMAIL_ADDRESS == user.EMAIL_ADDRESS);
                 if (currentUser != null)
                 {
                     bool result = pManager.IsPasswordMatch(user.PASSWORD, currentUser.SALT, currentUser.PASSWORD);
@@ -73,11 +69,13 @@ namespace PasteBookBusinessLogic
 
         public bool CheckEmail(string email)
         {
-            return manager.CheckEmailIfExisting(email);
+            var genericDataAccess = new GenericDataAccess<PB_USER>();
+            return genericDataAccess.CheckIfExist(x => x.EMAIL_ADDRESS == email);
         }
         public bool CheckUserName(string userName)
         {
-            return manager.CheckUsernameIfExisting(userName);
+            var genericDataAccess = new GenericDataAccess<PB_USER>();
+            return genericDataAccess.CheckIfExist(x => x.USER_NAME == userName);
         }
 
     }

@@ -12,14 +12,14 @@
                 </div>
             </div>
             <div class="row" id="friendsDiv">
-                @Html.ActionLink("Friends", "Friends", "Home")
+                @Html.ActionLink("Friends", "Friends", "Home", null, new { @id = "friends" })
             </div>
         </div>
       
 
-        <div class="col-md-6">
+        <div class="col-md-7">
             
-            <div class="row">
+            <div class="row" id="AddPostDiv">
                 @Html.Partial("PartialViewAddPost",Model)
             </div>
             
@@ -30,7 +30,7 @@
          </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-2">
 
         </div>
     </div>
@@ -38,9 +38,10 @@
 <input type="hidden" id="UserID" value="@Session["User"]" />
 
 <script>
-        var UrlAddLike = '@Url.Action("AddOrDeleteLike","Home")'
-        var UrlAddPost = '@Url.Action("AddPost","Home")'
-        var UrlRefreshNewsFeed = '@Url.Action("NewsFeed", "Home", new { id = Session["User"] })'
+    var UrlAddLike = '@Url.Action("AddOrDeleteLike","Home")'
+    var UrlAddPost = '@Url.Action("AddPost","Home")'
+    var UrlRefreshNewsFeed = '@Url.Action("NewsFeed", "Home", new { id = Session["User"] })'
+    var UrlAddComment = '@Url.Action("AddComment", "Home")'
 </script>
 @section Scripts {
 

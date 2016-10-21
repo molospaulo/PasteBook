@@ -10,12 +10,15 @@ namespace PasteBook.Controllers
     {
         SignUpLoginBL manager = new SignUpLoginBL();
         HomeBL hManager = new HomeBL();
+        ProfileBL prof = new ProfileBL();
         static IndexViewModel modelForCountry = new IndexViewModel();
         // GET: PasteBook
         [HttpGet]
         public ActionResult Index()
         {
-
+            var user = prof.GetListOfUser(9);
+            var user1 = prof.GetUser(9);
+            bool isExist = prof.checkIfExist(9);
             modelForCountry.listOfCountries = manager.GetCountries();
             return View(modelForCountry);
         }

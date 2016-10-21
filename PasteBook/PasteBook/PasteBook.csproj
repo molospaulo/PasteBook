@@ -133,15 +133,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CountryModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\Newsfeed.cs" />
-    <Compile Include="Models\PostsModel.cs" />
-    <Compile Include="Models\UserCredentialModel.cs" />
     <Compile Include="Models\UserDetailsModel.cs" />
-    <Compile Include="Models\UserProfileDetailsUI.cs" />
-    <Compile Include="Models\UsersPartialDetailsUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

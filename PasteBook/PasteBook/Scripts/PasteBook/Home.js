@@ -5,6 +5,7 @@ $("#btnRefresh").click(function () {
     RefreshNewsFeed();
 
 })
+
 function AddOrDeleteLike(id) {
         var data = {
             postID: id,
@@ -43,7 +44,31 @@ function AddOrDeleteLike(id) {
 
             }
         })
-}
+    }
+
+    function AddComment(postID, posterID,button) {
+       
+        alert();
+        var data = {
+            postID: postID,
+            posterID: posterID,
+            content: $("#txtAreaComment_".concat(button.value)).val()
+        }
+        $.ajax({
+            url: UrlAddComment,
+            data: data,
+            type: 'GET',
+            success: function (data) {
+                alert(data.result)
+            },
+            error: function (data) {
+                alert('lol')
+            }
+
+
+
+        });
+    }
     function RefreshNewsFeed() {
                 $("#newsFeed").load(UrlRefreshNewsFeed)
          

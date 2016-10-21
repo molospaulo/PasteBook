@@ -6,33 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PasteBookDataAccess.Manager
+namespace PasteBookDataAccess
 {
     public class HomeDataAccess
     {
         Mapper map = new Mapper();
-        public PB_USER GetUserPartialDetails(int id)
-        {
-            try
-            {
-                using (var context = new PasteBookEntities())
-                {
-                    var result = context.PB_USER.Where(x => x.ID == id).Select(x => x).Single();
-                    return result;
-                }
-            }
-            catch (Exception e)
-            {
-                return new PB_USER() { };
-            }
-        }
         public PB_USER GetUserProfileDetails(int id)
         {
             try
             {
                 using (var context = new PasteBookEntities())
                 {
-                    var result = context.PB_USER.Where(x => x.ID == id).Select(x => x).Single();
+                    var result = context.PB_USER.Where(x => x.ID == id).Select(x => x).SingleOrDefault();
+                    var country = result.PB_REF_COUNTRY.COUNTRY;
                     return result;
                 }
             }
@@ -65,52 +51,8 @@ namespace PasteBookDataAccess.Manager
 
         }
 
-        public List<GetNewsFeed_Result> GetListOfPost(int UserID)
-        {
-            List<GetNewsFeed_Result> listOfPosts = new List<GetNewsFeed_Result>();
-            try
-            {
-                using (var context = new PasteBookEntities())
-                {
-                    SqlParameter[] parameters = new SqlParameter[]
-                     {
-                        new SqlParameter("@ID", UserID)
-                     };
-                    var result = context.Database.SqlQuery<GetNewsFeed_Result>("GetNewsFeed @UserID = @ID", parameters).OrderByDescending(x => x.CREATED_DATE);
-                    foreach (var item in result)
-                    {
-                        listOfPosts.Add(item);
-                    }
-                }
-
-            }
-            catch (Exception e)
-            {
-                return new List<GetNewsFeed_Result>() { };
-            }
-            return listOfPosts;
-        }
-        public List<PB_POSTS> GetListOfPostTimeline(int UserID)
-        {
-            List<PB_POSTS> listOfPosts = new List<PB_POSTS>();
-            try
-            {
-                using (var context = new PasteBookEntities())
-                {
-                    var result = context.PB_POSTS.Where(x => (x.PROFILE_OWNER_ID == UserID && x.POSTER_ID == UserID) || (x.PROFILE_OWNER_ID == UserID)).OrderByDescending(x => x.CREATED_DATE).ToList();
-                    foreach (var item in result)
-                    {
-                        listOfPosts.Add(item);
-                    }
-
-                }
-            }
-            catch (Exception e)
-            {
-                return new List<PB_POSTS>() { };
-            }
-            return listOfPosts;
-        }
+     
+       
         public bool checkLikeIfExist(int postID, int userLikeID)
         {
             bool output = false;
@@ -223,24 +165,24 @@ namespace PasteBookDataAccess.Manager
 
             return output;
         }
-        public List<PB_USER> GetListOfFriends(int userID)
+        public List<PB_FRIENDS> GetListOfFriends(int userID)
         {
-            List<PB_USER> listOfFriends = new List<PB_USER>();
+            List<PB_FRIENDS> listOfFriends = new List<PB_FRIENDS>();
             try
             {
                 using (var context = new PasteBookEntities())
                 {
-                    var result = context.PB_FRIENDS.Where(x => x.USER_ID == userID && x.REQUEST == "N").ToList();
-
+                    var result = context.PB_FRIENDS.Include("PB_USER").Include("PB_USER1").Where(x => (x.USER_ID == userID || x.FRIEND_ID == userID) && x.REQUEST == "N").ToList();
+                    
                     foreach (var item in result)
                     {
-                        listOfFriends.Add(item.PB_USER);
+                        listOfFriends.Add(item);
                     }
                 }
             }
             catch (Exception e)
             {
-                return new List<PB_USER>() { };
+                return new List<PB_FRIENDS>() { };
             }
             return listOfFriends;
         }
@@ -252,7 +194,7 @@ namespace PasteBookDataAccess.Manager
             {
                 using (var context = new PasteBookEntities())
                 {
-                    var output = context.PB_FRIENDS.Where(x => x.FRIEND_ID == ProfileOwnerID && x.USER_ID == userID && x.IsBLOCKED == "N").Select(x => x).Single();
+                    var output = context.PB_FRIENDS.Where(x => ((x.FRIEND_ID == ProfileOwnerID && x.USER_ID == userID)|| (x.FRIEND_ID == ProfileOwnerID && x.USER_ID == userID)) && x.IsBLOCKED == "N").Select(x => x).Single();
                     return output;
                 }
 
@@ -264,23 +206,84 @@ namespace PasteBookDataAccess.Manager
         }
         public List<PB_USER> GetlistOfUsers(string keyword)
         {
-            List<PB_USER> listOfUsers = new List<PB_USER>();
+
             try
             {
                 using (var context = new PasteBookEntities())
                 {
                     var result = context.PB_USER.Where(x => x.FIRST_NAME == keyword || x.LAST_NAME == keyword).Select(x => x).ToList();
-                    foreach (var item in result)
-                    {
-                        listOfUsers.Add(item);
-                    }
+                    return result;
                 }
             }
             catch (Exception e)
             {
-                return listOfUsers;
+                return new List<PB_USER>() { };
             }
-            return listOfUsers;
+          
+        }
+        public List<PB_COMMENTS> GetListOfComments(int postID)
+        {
+            try
+            {
+                using(var context = new PasteBookEntities())
+                {
+                    var result = context.PB_COMMENTS.Include("PB_USER").Where(x => x.POST_ID == postID).Select(x => x).ToList();
+                    return result;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public bool IsUserLiked(int userID, int postID)
+        {
+            try
+            {
+                using (var context = new PasteBookEntities())
+                {
+                    var result = context.PB_LIKES.Any(x => x.LIKED_BY == userID && x.POST_ID == postID);
+                    return result;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public List<PB_LIKES> Likers(int postID)
+        {
+            try
+            {
+                using (var context = new PasteBookEntities())
+                {
+                    var result = context.PB_LIKES.Where(x => x.POST_ID == postID).ToList();
+                    return result;
+                }
+            }
+            catch
+            {
+                return new List<PB_LIKES>() { } ;
+            }
+        }
+        public bool AddComment(PB_COMMENTS comment)
+        {
+            bool output = false;
+            try
+            {
+                using (var context = new PasteBookEntities())
+                {
+                    context.PB_COMMENTS.Add(comment);
+                    var result = context.SaveChanges();
+                    output = result != 0 ? true : false;
+                   
+                }
+            }
+            catch (Exception e)
+            {
+                return output;
+            }
+            return output;
         }
     }
 }
