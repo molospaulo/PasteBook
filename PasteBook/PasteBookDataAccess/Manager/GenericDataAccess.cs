@@ -46,7 +46,7 @@ namespace PasteBookDataAccess
                         dbQuery = dbQuery.Include<T, object>(foreignKey);
                     }
 
-                    ret = dbQuery.Where(condition).ToList<T>();
+                    ret = dbQuery.Where(condition).ToList();
                 }
                 return ret;
             }catch(Exception e)
@@ -122,10 +122,10 @@ namespace PasteBookDataAccess
             {
                 using(var context = new PasteBookEntities())
                 {
-                    IQueryable <T> dbQuery = context.Set<T>();
-                    var result = dbQuery.Where(condition);
-                    context.Entry(result).State = EntityState.Deleted;
+                    T result = (T)context.Set<T>().Where<T>(condition).Single();
+                    context.Set<T>().Remove(result);
                     var output = context.SaveChanges();
+
                     returnValue = output != 0 ? true : false;
                 }
                 

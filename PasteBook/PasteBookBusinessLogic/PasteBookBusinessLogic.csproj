@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,12 +51,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="PasteBookManager\HomeBL.cs" />
-    <Compile Include="PasteBookManager\Like.cs" />
-    <Compile Include="PasteBookManager\NewsFeedViewModel.cs" />
-    <Compile Include="PasteBookManager\Post.cs" />
-    <Compile Include="PasteBookManager\User.cs" />
-    <Compile Include="PasteBookManager\SignUpLoginBL.cs" />
+    <Compile Include="manager\ConversionManager.cs" />
+    <Compile Include="manager\HashGenerator.cs" />
+    <Compile Include="manager\ImageManager.cs" />
+    <Compile Include="manager\PasswordManager.cs" />
+    <Compile Include="manager\SaltGenerator.cs" />
+    <Compile Include="PasteBookLogic\Comment.cs" />
+    <Compile Include="PasteBookLogic\Friend.cs" />
+    <Compile Include="PasteBookLogic\Like.cs" />
+    <Compile Include="PasteBookLogic\NewsFeedViewModel.cs" />
+    <Compile Include="PasteBookLogic\Post.cs" />
+    <Compile Include="PasteBookLogic\User.cs" />
+    <Compile Include="PasteBookLogic\SignUpLoginBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,16 +9,12 @@ namespace PasteBook.Controllers
     public class PasteBookController : Controller
     {
         SignUpLoginBL manager = new SignUpLoginBL();
-        HomeBL hManager = new HomeBL();
-        ProfileBL prof = new ProfileBL();
+        User user = new User();
         static IndexViewModel modelForCountry = new IndexViewModel();
         // GET: PasteBook
         [HttpGet]
         public ActionResult Index()
         {
-            var user = prof.GetListOfUser(9);
-            var user1 = prof.GetUser(9);
-            bool isExist = prof.checkIfExist(9);
             modelForCountry.listOfCountries = manager.GetCountries();
             return View(modelForCountry);
         }
@@ -34,7 +30,7 @@ namespace PasteBook.Controllers
         {
             if (manager.LoginUser(model.LoginUser))
             {
-                var user =hManager.GetUserID(model.LoginUser.EMAIL_ADDRESS);
+                var user =this.user.GetUserID(model.LoginUser.EMAIL_ADDRESS);
 
                 Session["User"] = user;
 

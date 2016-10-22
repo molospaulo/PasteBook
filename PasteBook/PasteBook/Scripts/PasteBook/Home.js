@@ -48,7 +48,7 @@ function AddOrDeleteLike(id) {
 
     function AddComment(postID, posterID,button) {
        
-        alert();
+
         var data = {
             postID: postID,
             posterID: posterID,
@@ -59,14 +59,12 @@ function AddOrDeleteLike(id) {
             data: data,
             type: 'GET',
             success: function (data) {
-                alert(data.result)
+                $("#txtAreaComment_".concat(button.value)).val("")
+                RefreshNewsFeed();
             },
             error: function (data) {
                 alert('lol')
             }
-
-
-
         });
     }
     function RefreshNewsFeed() {

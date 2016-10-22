@@ -53,21 +53,13 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\Post.cs" />
+    <Compile Include="Entities\PB_Post.cs" />
     <Compile Include="Entities\UserCredentials.cs" />
     <Compile Include="Entities\UserDetails.cs" />
     <Compile Include="Entities\UserPartialDetails.cs" />
     <Compile Include="Entities\UserProfileDetails.cs" />
-    <Compile Include="Manager\ConversionManager.cs" />
     <Compile Include="Manager\GenericDataAccess.cs" />
-    <Compile Include="Manager\HashGenerator.cs" />
-    <Compile Include="Manager\HomeDataAccess.cs" />
-    <Compile Include="Manager\ImageManager.cs" />
-    <Compile Include="Manager\Mapper.cs" />
-    <Compile Include="Manager\PasswordManager.cs" />
-    <Compile Include="Manager\PasteBookManager.cs" />
     <Compile Include="Manager\PostDataAccess.cs" />
-    <Compile Include="Manager\SaltGenerator.cs" />
-    <Compile Include="Manager\SignUpLoginDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
-﻿@model PasteBook.HomeViewModel
+﻿@model PasteBookModel.PB_USER
 <div class="form-group">
     <label for="txtAreaPost"></label>
     <textarea id="txtAreaPost" class="form-control" rows="5" placeholder="What is on you mind?"></textarea>
-    <button type="button" class="btn btn-default" onclick="AddPost(@(Model.User.ID),@Session["User"])" id="btnAddPost">Post</button>
+    <button type="button" class="btn btn-default" onclick="AddPost(@(Model.ID),@Session["User"])" id="btnAddPost">Post</button>
 </div>

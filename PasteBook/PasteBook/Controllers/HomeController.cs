@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PasteBookModel;
-using PasteBookDataAccess;
+
 
 namespace PasteBook.Controllers
 {
@@ -13,9 +12,14 @@ namespace PasteBook.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        HomeBL manager = new HomeBL();
-        HomeDataAccess dManager = new HomeDataAccess();
-        
+
+        Post post = new Post();
+        Comment comment = new Comment();
+        Friend friend = new Friend();
+        Like like = new Like();
+        User user = new User();
+
+
         [HttpGet]
         public ActionResult Home()
         {
@@ -23,10 +27,8 @@ namespace PasteBook.Controllers
             {
                 int user;
                 int.TryParse(Session["User"].ToString(), out user);
-                var result = manager.GetUserPartialDetails(user);
-                HomeViewModel model = new HomeViewModel();
-                model.User = result;
-                return View(model);
+                var result = this.user.GetUser(user);
+                return View(result);
             }
             else
             {
@@ -35,19 +37,19 @@ namespace PasteBook.Controllers
         }
         public JsonResult GetUserID(string emailAddress)
         {
-            var result = manager.GetUserID(emailAddress);
+            var result = user.GetUserID(emailAddress);
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult AddOrDeleteLike(int postID, int ID)
         {
             string status = "";
-            var result = manager.AddOrDeleteLike(ID, postID, out status);
+            var result = like.AddOrDeleteLike(ID, postID, out status);
             return Json(new { result = result, status = status }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult AddPost(int userId, string post, int ProfileOwnerID)
         {
-            var result = manager.AddPost(userId, post, ProfileOwnerID);
+            var result = this.post.AddPost(userId, post, ProfileOwnerID);
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Newsfeed(int id)
@@ -56,7 +58,7 @@ namespace PasteBook.Controllers
             {
                 int user;
                 int.TryParse(Session["User"].ToString(), out user);
-                var result = manager.NewsFeedPostsWithComments(user,dManager.GetListOfPost(id));
+                var result = post.GetListOfPostNewsFeed(user);
                 return PartialView("PartialViewNewsFeed", result);
             }
             else
@@ -70,7 +72,7 @@ namespace PasteBook.Controllers
          if (Session["User"] != null)
             {
                 
-                var result = manager.NewsFeedPostsWithComments(id, dManager.GetListOfPostTimeline(id));
+                var result = post.GetListOfPostTimeline(id);
                 return PartialView("PartialViewNewsFeed", result);
             }
             else
@@ -88,37 +90,42 @@ namespace PasteBook.Controllers
         {
             if (Session["User"] != null)
             {
-                int user;
-                int.TryParse(Session["User"].ToString(), out user);
-                if (user != id)
-                {
-                    ViewBag.isFriend = manager.IsFriend(user, id);
-                }
-                else
-                {
-                    ViewBag.isFriend = "me";
-                }
-                var result = manager.GetUserProfileDetails(id);
-                HomeViewModel model = new HomeViewModel();
-                model.User = result;
-                return View(model);
+              
+                var result = this.user.GetUser(id);
+
+                return View(result);
             }
             else
             {
                 return RedirectToAction("Index", "PasteBook");
             }
         }
-       
+        public ActionResult AddFriendView(int id)
+        {
+            if (Session["User"] != null)
+            {
+                int user;
+                int.TryParse(Session["User"].ToString(), out user);
+                ViewBag.isFriend = "me";
+                if (user != id)
+                    ViewBag.isFriend = friend.IsFriend(user, id);
+                    ViewBag.id = id;
+                return PartialView("PartialViewFriendRequest",new { id = id });
+            }
+            else
+            {
+                return RedirectToAction("Index", "PasteBook");
+            }
+        }
+
         public ActionResult Friends()
         {
             if (Session["User"] != null)
             {
                 int user;
                 int.TryParse(Session["User"].ToString(), out user);
-                var result = manager.GetUserFriends(user);
-                HomeViewModel model = new HomeViewModel();
-                model.Users = result;
-                return View(model);
+                var result = friend.GetUserFriends(user);
+                return View(user);
             }
             else
             {
@@ -127,9 +134,19 @@ namespace PasteBook.Controllers
         }
         public JsonResult AddComment(int postID, int posterID,string content)
         {
-            var result = manager.AddComment(postID, posterID, content);
+            var result = comment.AddComment(postID, posterID, content);
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
-
+        public JsonResult AddFriend(int userID, int friendID)
+        {
+            var result = friend.AddFriend(userID, friendID);
+            return Json(new { result = result }, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult AcceptFriend(int userID,int friendID)
+        {
+            var result = friend.AcceptFriend(userID, friendID);
+            return Json(new { result = result }, JsonRequestBehavior.AllowGet);
+        }
+        
     }
 }

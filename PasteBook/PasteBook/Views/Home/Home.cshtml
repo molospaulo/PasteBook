@@ -1,4 +1,4 @@
-﻿@model PasteBook.HomeViewModel
+﻿@model PasteBookModel.PB_USER
 <link rel="stylesheet" type="text/css" href="~/Content/HomePage.css">
 <div class="container">
     <div class="row">
@@ -8,7 +8,7 @@
                     <img src="~/Content/Images/MaleDefaultImage.jpg" id="profilePic" class="img-responsive"  />
                 </div>
                 <div id="userFullName">
-                    @Model.User.FIRST_NAME &nbsp; @Model.User.LAST_NAME
+                    @Model.FIRST_NAME &nbsp; @Model.LAST_NAME
                 </div>
             </div>
             <div class="row" id="friendsDiv">

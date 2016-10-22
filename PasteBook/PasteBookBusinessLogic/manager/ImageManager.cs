@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
-namespace PasteBookDataAccess
+namespace PasteBookBusinessLogic
 {
     //http://www.codeproject.com/Articles/15460/C-Image-to-Byte-Array-and-Byte-Array-to-Image-Conv
     public static class ImageManager

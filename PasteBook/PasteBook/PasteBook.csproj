@@ -135,7 +135,7 @@
     </Compile>
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
-    <Compile Include="Models\Newsfeed.cs" />
+    <Compile Include="Models\NewsFeedViewModel.cs" />
     <Compile Include="Models\UserDetailsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -164,6 +164,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\PasteBook\Home.js" />
+    <Content Include="Scripts\PasteBook\Profile.js" />
     <Content Include="Scripts\PasteBook\SignUpAndLoginScripts.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -186,6 +187,7 @@
     <Content Include="Views\Home\PartialViewAddPost.cshtml" />
     <Content Include="Views\Home\Timeline.cshtml" />
     <Content Include="Views\Home\Friends.cshtml" />
+    <Content Include="Views\Home\PartialViewFriendRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -202,10 +204,6 @@
     <ProjectReference Include="..\PasteBookBusinessLogic\PasteBookBusinessLogic.csproj">
       <Project>{6326991c-651f-4478-a45e-f04928b006a7}</Project>
       <Name>PasteBookBusinessLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PasteBookDataAccess\PasteBookDataAccess.csproj">
-      <Project>{51924d38-e736-45c9-a90a-e7fd9ba80502}</Project>
-      <Name>PasteBookDataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\PasteBookModel\PasteBookEF.csproj">
       <Project>{3824a428-073f-4569-ae06-7e947de91373}</Project>

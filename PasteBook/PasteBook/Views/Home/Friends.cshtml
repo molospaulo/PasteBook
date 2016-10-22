@@ -1,8 +1,8 @@
-﻿@model PasteBook.HomeViewModel
+﻿@model IEnumerable<PasteBookModel.PB_USER>
 <link rel="stylesheet" type="text/css" href="~/Content/Friends.css">
 <div class="container">
 
-    @foreach (var item in Model.Users)
+    @foreach (var item in Model)
     {
         
          <div class="row" id="divFriendList">

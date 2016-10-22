@@ -11,7 +11,6 @@ namespace PasteBookBusinessLogic
 {
     public class SignUpLoginBL
     {
-        SignUpLoginDataAccess manager = new SignUpLoginDataAccess();
         
         PasswordManager pManager = new PasswordManager();
         public List<PB_REF_COUNTRY> GetCountries()

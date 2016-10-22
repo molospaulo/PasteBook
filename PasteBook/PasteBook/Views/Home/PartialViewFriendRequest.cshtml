@@ -1,0 +1,20 @@
+﻿
+@{
+    var id = ViewBag.id;
+    if (ViewBag.isFriend == "friend")
+    {
+        <button type="button" class="btn btn-success timelineFriendBtn" id="Friend"><span class="glyphicon glyphicon-check"></span>Friend</button>
+    }
+    else if (ViewBag.isFriend == "notfriend")
+    {
+        <button type="button" class="btn btn-info timelineFriendBtn" id="btnAddFriend" onclick="AddFriend(@Session["User"],@(id))"><span class="glyphicon glyphicon-user"></span> Add Friend</button>
+    }
+    else if (ViewBag.isFriend == "request")
+    {
+        <button type="button" class="btn btn-info timelineFriendBtn" id="btnfriendRequest"><span class="glyphicon glyphicon-check"></span> Friend request sent</button>
+    }
+    else if (ViewBag.isFriend == "accept")
+    {
+        <button type="button" class="btn btn-info timelineFriendBtn" id="btnfriendRequest"onclick="AcceptFriend(@Session["User"],@(id))"><span class="glyphicon glyphicon-plus-sign"></span> Accept Friend Request</button>
+    }
+}
