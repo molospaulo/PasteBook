@@ -143,7 +143,8 @@ namespace PasteBookDataAccess
                 using(var context = new PasteBookEntities())
                 {
                     context.Entry(data).State = EntityState.Modified;
-                    var result = context.SaveChanges();
+                    var output = context.SaveChanges();
+                    returnValue = output != 0 ? true : false;
                 }
             }catch(Exception e)
             {

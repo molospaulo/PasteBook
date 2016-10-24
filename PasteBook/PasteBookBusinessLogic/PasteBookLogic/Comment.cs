@@ -10,16 +10,26 @@ namespace PasteBookBusinessLogic {
     public class Comment
     {
     GenericDataAccess<PB_COMMENTS> genericDataAccess = new GenericDataAccess<PB_COMMENTS>();
-        public bool AddComment(int postID, int posterID, string content)
+        public bool AddComment(PB_COMMENTS comment)
         {
-            return genericDataAccess.AddRow(new PB_COMMENTS
+            var result = genericDataAccess.AddRow(comment);
+            if (result)
             {
-                POST_ID = postID,
-                POSTER_ID = posterID,
-                CONTENT = content,
-                DATE_CREATED = DateTime.Now
-
-            });
+                Notification notif = new Notification();
+                var newComment = genericDataAccess.GetOneRecord(x => x.ID == comment.ID, x => x.PB_USER);
+               var notification = notif.AddNotification(new PB_NOTIFICATION
+                {
+                    RECEIVER_ID = newComment.PB_USER.ID,
+                    NOTIF_TYPE = "C",
+                    SENDER_ID = newComment.POSTER_ID,
+                    CREATED_DATE = newComment.DATE_CREATED,
+                    POST_ID = newComment.POST_ID,
+                    COMMENT_ID = newComment.ID,
+                    SEEN ="N"
+                    
+                });
+            }
+            return result;
         }
     }
 }

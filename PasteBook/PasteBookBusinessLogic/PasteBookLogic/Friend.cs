@@ -34,56 +34,79 @@ namespace PasteBookBusinessLogic
         }
         public string IsFriend(int userID, int profileOwnerID)
         {
-            PB_FRIENDS friend = new PB_FRIENDS();
-            friend = genericDataAccess.GetOneRecord(x => (x.FRIEND_ID == profileOwnerID && x.USER_ID == userID) || (x.FRIEND_ID == profileOwnerID && x.USER_ID == userID),x=>x.PB_USER,x=>x.PB_USER1);
-            if (friend != null)
+            if (userID != profileOwnerID)
             {
-                if (friend.PB_USER.ID == userID && friend.PB_USER1.ID == profileOwnerID && friend.REQUEST =="N")
+                PB_FRIENDS friend = new PB_FRIENDS();
+                friend = genericDataAccess.GetOneRecord(x => (x.FRIEND_ID == profileOwnerID && x.USER_ID == userID) || (x.FRIEND_ID ==userID  && x.USER_ID == profileOwnerID), x => x.PB_USER, x => x.PB_USER1);
+                if (friend != null)
                 {
-                    return "friend";
+                    if (friend.PB_USER.ID == userID && friend.PB_USER1.ID == profileOwnerID && friend.REQUEST == "N")
+                    {
+                        return "friend";
+                    }
+                    else if (friend.PB_USER.ID == profileOwnerID && friend.PB_USER1.ID == userID && friend.REQUEST == "Y")
+                    {
+                        return "request";
+                    }
+                    else if (friend.PB_USER.ID == profileOwnerID && friend.PB_USER1.ID == userID && friend.REQUEST == "N")
+                    {
+                        return "friend";
+                    }
+                    else if (friend.PB_USER.ID == userID && friend.PB_USER1.ID == profileOwnerID && friend.REQUEST == "Y")
+                    {
+                        return "accept";
+                    }else
+                    {
+                        return "notfriend";
+                    }
+
                 }
-                else if (friend.PB_USER.ID == profileOwnerID && friend.PB_USER1.ID == userID && friend.REQUEST == "Y")
-                {
-                    return "request";
-                }
-                else if (friend.PB_USER.ID == profileOwnerID && friend.PB_USER1.ID == userID && friend.REQUEST == "N")
-                {
-                    return "friend";
-                }
-                else if (friend.PB_USER.ID == userID && friend.PB_USER1.ID == profileOwnerID && friend.REQUEST == "Y") 
-                {
-                    return "accept";
-                }else
+                else
                 {
                     return "notfriend";
                 }
-            }
+             }
             else
             {
-                return "notfriend";
+                return "me";
             }
 
         }
-        public bool AddFriend(int userID, int friendID)
+        public bool AddFriend(int userID, int profileOwnerID)
         {
-            return genericDataAccess.AddRow(new PB_FRIENDS {
+            var result = genericDataAccess.AddRow(new PB_FRIENDS {
                 USER_ID = userID,
-                FRIEND_ID = friendID,
+                FRIEND_ID = profileOwnerID,
                 REQUEST ="Y",
                 IsBLOCKED ="N",
                 CREATED_DATE =DateTime.Now
             });
-        }
-        public bool AcceptFriend(int userID, int friendID)
-        {
-            return genericDataAccess.UpdateRow(new PB_FRIENDS
+            if (result)
             {
-                USER_ID = userID,
-                FRIEND_ID = friendID,
-                REQUEST = "N",
-                IsBLOCKED = "N",
-                CREATED_DATE = DateTime.Now
-            });
+                var addFriend = genericDataAccess.GetOneRecord(x => (x.FRIEND_ID == profileOwnerID && x.USER_ID == userID) || (x.FRIEND_ID == userID && x.USER_ID == profileOwnerID), x => x.PB_USER, x => x.PB_USER1);
+                Notification notif = new Notification();
+                notif.AddNotification(new PB_NOTIFICATION
+                {
+                    RECEIVER_ID = addFriend.FRIEND_ID,
+                    NOTIF_TYPE = "F",
+                    SENDER_ID = addFriend.PB_USER.ID,
+                    CREATED_DATE = DateTime.Now,
+                    SEEN ="N"
+                   
+                });
+            }
+            return result;
+        }
+        public bool AcceptFriend(int userID, int profileOwnerID)
+        {
+             var result =genericDataAccess.GetOneRecord(x => (x.FRIEND_ID == profileOwnerID && x.USER_ID == userID) || (x.FRIEND_ID == userID && x.USER_ID == profileOwnerID), x => x.PB_USER, x => x.PB_USER1);
+             result.REQUEST = "N";
+            return genericDataAccess.UpdateRow(result);
+        }
+        public bool RejectFriend(int userID, int profileOwnerID)
+        {
+            var result = genericDataAccess.RemoveRow(x => (x.FRIEND_ID == profileOwnerID && x.USER_ID == userID) || (x.FRIEND_ID == userID && x.USER_ID == profileOwnerID));
+            return result;
         }
     }
 }

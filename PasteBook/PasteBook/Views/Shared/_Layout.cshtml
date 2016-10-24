@@ -28,20 +28,33 @@
                 }
             }
             <div class="navbar-collapse collapse">
-                <div class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right">
                     @{ if (@Session["User"] != null)
                         {
-                            <button id="notificationBtn" class="homeNavbarRight btn btn-default"><span class="glyphicon glyphicon-globe icon"></span></button>
-                            <button id="friendRequestBtn" class="homeNavbarRight btn btn-default"><span class="glyphicon glyphicon-user icon"></span></button>
-                            @Html.ActionLink("Home", "Home", "Home", null, new { @class = "homeNavbarRight" })
-                            @Html.ActionLink("Timeline", "Timeline", "Home", new {id=Session["User"]}, new { @class = "homeNavbarRight" })
+                            <li id="notificationContainer">
+                                    <div class="dropdown">
+                                        <span class="dropdown-toggle homeNavbarRight" type="button" id="menu1" data-toggle="dropdown">
+                                            <span id="notifTitle">Notification</span><span class="badge badge-important" id="notifCount"></span>
+                                            <span class="caret"></span>
+                                        </span>
+
+                                        <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="menu1" id="notifDropdown">
+                                            @{Html.RenderAction("NotificationView"); }
+                                        </ul>
+                                    </div>
+                 
+
+                            </li>
+
+                        <li> @Html.ActionLink("Home", "Home", "Home", null, new { @class = "homeNavbarRight" })</li>
+                        <li> @Html.ActionLink("Timeline", "Timeline", "Home", new { id = Session["User"] }, new { @class = "homeNavbarRight" })</li>
                         }
                         else
                         {
                             @RenderSection("navbarRight", required: false)
                         }
                     }
-                </div>
+                </ul>
 
             </div>
         </div>
@@ -53,9 +66,9 @@
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
             </footer>*@
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

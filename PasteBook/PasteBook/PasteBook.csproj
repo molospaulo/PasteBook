@@ -163,7 +163,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\PasteBook\Home.js" />
+    <Content Include="Scripts\PasteBook\NotificationScript.js" />
     <Content Include="Scripts\PasteBook\Profile.js" />
     <Content Include="Scripts\PasteBook\SignUpAndLoginScripts.js" />
     <Content Include="Scripts\respond.js" />
@@ -188,6 +193,9 @@
     <Content Include="Views\Home\Timeline.cshtml" />
     <Content Include="Views\Home\Friends.cshtml" />
     <Content Include="Views\Home\PartialViewFriendRequest.cshtml" />
+    <Content Include="Views\Home\PartialViewNotification.cshtml" />
+    <Content Include="Views\Home\PartialViewProfilePicture.cshtml" />
+    <Content Include="Views\Home\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,3 @@
-C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\obj\Debug\PasteBook.csprojResolveAssemblyReference.cache
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\roslyn\csc.exe
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -46,5 +45,6 @@ C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\System.Web.WebP
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\Antlr3.Runtime.pdb
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\Newtonsoft.Json.xml
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\bin\PasteBookDataAccess.pdb
+C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\obj\Debug\PasteBook.csprojResolveAssemblyReference.cache
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\obj\Debug\PasteBook.dll
 C:\Users\Bootcamp\Source\Repos\PasteBook\PasteBook\PasteBook\obj\Debug\PasteBook.pdb

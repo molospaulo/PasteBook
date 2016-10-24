@@ -1,11 +1,30 @@
 ﻿@model PasteBookModel.PB_USER
 <link rel="stylesheet" type="text/css" href="~/Content/HomePage.css">
-<div class="container">
+<div class="row">
     <div class="row">
         <div class="col-md-3">
             <div class="row">
                 <div id="profilePic" >
-                    <img src="~/Content/Images/MaleDefaultImage.jpg" id="profilePic" class="img-responsive"  />
+                   @{ if (Model.PROFILE_PIC == null)
+                       {
+                           if (Model.GENDER == "M")
+                           {
+                            <img src="~/Content/Images/MaleDefaultImage.jpg" class="img-responsive" id="profilePic" />
+                           }
+                           else if (Model.GENDER == "F")
+                           {
+                            <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive" id="profilePic" />
+                           }
+                           else
+                           {
+                            <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive" id="profilePic" />
+                           }
+                       }
+                       else
+                       {
+                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.PROFILE_PIC)" id="profilePic" />
+                       }
+                }
                 </div>
                 <div id="userFullName">
                     @Model.FIRST_NAME &nbsp; @Model.LAST_NAME
@@ -18,7 +37,6 @@
       
 
         <div class="col-md-7">
-            
             <div class="row" id="AddPostDiv">
                 @Html.Partial("PartialViewAddPost",Model)
             </div>
@@ -28,6 +46,7 @@
                  Html.RenderAction("NewsFeed", new { id = Session["User"] });
                      }
          </div>
+
         </div>
 
         <div class="col-md-2">
@@ -48,4 +67,5 @@
     @Scripts.Render("~/bundles/jqueryval")
 
 <script src="~/Scripts/PasteBook/Home.js" type="text/javascript"></script>
+<script src="~/Scripts/PasteBook/NotificationScript.js" type="text/javascript"></script>
 }

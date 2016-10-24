@@ -39,6 +39,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -60,6 +61,7 @@
     <Compile Include="PasteBookLogic\Friend.cs" />
     <Compile Include="PasteBookLogic\Like.cs" />
     <Compile Include="PasteBookLogic\NewsFeedViewModel.cs" />
+    <Compile Include="PasteBookLogic\Notification.cs" />
     <Compile Include="PasteBookLogic\Post.cs" />
     <Compile Include="PasteBookLogic\User.cs" />
     <Compile Include="PasteBookLogic\SignUpLoginBL.cs" />

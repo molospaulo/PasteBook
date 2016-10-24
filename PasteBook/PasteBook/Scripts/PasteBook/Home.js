@@ -46,9 +46,10 @@ function AddOrDeleteLike(id) {
         })
     }
 
-    function AddComment(postID, posterID,button) {
-       
-
+    function AddComment(postID, posterID, button) {
+        var lol = $("#lol").text()  
+        var result = $('#txtAreaComment_'.concat(button.value)).val();
+        alert(result)
         var data = {
             postID: postID,
             posterID: posterID,
@@ -59,7 +60,7 @@ function AddOrDeleteLike(id) {
             data: data,
             type: 'GET',
             success: function (data) {
-                $("#txtAreaComment_".concat(button.value)).val("")
+                //$("#txtAreaComment_".concat(button.value)).val()
                 RefreshNewsFeed();
             },
             error: function (data) {
@@ -67,7 +68,36 @@ function AddOrDeleteLike(id) {
             }
         });
     }
+
+    function UploadImage() {
+        var filename = $('input[type=file]')[0].files[0].name;
+        var data = { image: filename}
+        $.ajax({
+            url: '/Home/AddPic',
+            data: data,
+            type: 'GET',
+            success: function (data) {
+                $("#imageContent").src("");
+            },
+            error: function (data) {
+                alert("error")
+            }
+
+
+
+        })
+    }
+    $("#btnUpload").click(function () {
+        UploadImage();
+    });
+    
+
     function RefreshNewsFeed() {
-                $("#newsFeed").load(UrlRefreshNewsFeed)
+        $("#newsFeed").load(UrlRefreshNewsFeed)
          
+    }
+    function PreviewImage() {
+        var filename = $('input[type=file]')[0].files[0].name;
+        $("#imageContent").attr("src", filename);
+
     }

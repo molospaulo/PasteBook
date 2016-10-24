@@ -10,12 +10,12 @@ namespace PasteBookBusinessLogic
     //http://www.codeproject.com/Articles/15460/C-Image-to-Byte-Array-and-Byte-Array-to-Image-Conv
     public static class ImageManager
     {
-        public static byte[] imageToBytes(System.Drawing.Image input)
-        {
-            MemoryStream ms = new MemoryStream();
-            input.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
-            return ms.ToArray();
-        }
+        //public static byte[] imageToBytes()
+        //{
+            //MemoryStream ms = new MemoryStream();
+            //input.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            //return ms.ToArray();
+        //}
         public  static Image byteArrayToImage(byte[] input)
         {
             MemoryStream ms = new MemoryStream(input);

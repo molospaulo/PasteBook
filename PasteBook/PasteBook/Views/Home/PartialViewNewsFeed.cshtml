@@ -1,13 +1,32 @@
 ﻿@model IEnumerable<PasteBookModel.PB_POSTS>
 
-
 @foreach (var item in Model)
 {
     <div class="row">
         <div id="contents">
             <div class="row">
                 <div class="col-md-2">
-                    <img src="~/Content/Images/MaleDefaultImage.jpg" id="profilePicPost" class="img-responsive" />
+
+                    @{ if (item.PB_USER1.PROFILE_PIC == null)
+                        {
+                            if (item.PB_USER1.GENDER == "M")
+                            {
+                                <img src="~/Content/Images/MaleDefaultImage.jpg" class="img-responsive" id="profilePicPost" />
+                            }
+                            else if (item.PB_USER1.GENDER == "F")
+                            {
+                                <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive" id="profilePicPost" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive" id="profilePicPost" />
+                            }
+                        }
+                        else
+                        {
+                            <img src="data:image;base64,@System.Convert.ToBase64String(item.PB_USER1.PROFILE_PIC)" id="profilePicPost" />
+                        }
+                    }
                 </div>
                 <div class="col-md-10">
                     <div class="row" id="postHeader">
@@ -89,7 +108,7 @@
                 </div>
                 <div class="row" id="commentBody">
                     <div class="col-md-10" id="txtAreaComment">
-                        <textarea id="txtAreaComment_@(item.ID) " class="form-control txtAreaComment" rows="2" placeholder="Comment"></textarea>
+                        <textarea id="txtAreaComment_@(item.ID)" class="form-control txtAreaComment" rows="2" placeholder="Comment"></textarea>
                     </div>
                     <div class="col-md-2" id="btnSaveComment">
                     <button type="button" class="btn btn-default" id="button_@(item.ID)"  data-toggle="dropdown" value="@(item.ID)" onclick="AddComment(@(item.ID),@Session["User"],this)">Comments</button>

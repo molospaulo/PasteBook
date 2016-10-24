@@ -38,5 +38,12 @@ namespace PasteBookBusinessLogic
            var result = genericDataAccess.GetOneRecord(x => x.EMAIL_ADDRESS == emailAddress);
             return result.ID;
         }
+        public bool UpdateImage(byte[] image, int id)
+        {
+            var user = genericDataAccess.GetOneRecord(x=>x.ID == id);
+            user.PROFILE_PIC = image;
+            var result = genericDataAccess.UpdateRow(user);
+            return result;
+        }
     }
 }
