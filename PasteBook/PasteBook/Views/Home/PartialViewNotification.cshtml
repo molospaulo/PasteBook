@@ -9,6 +9,8 @@
    
 }
 #notifContent{
+    border-bottom-style: solid;
+    border-bottom-color:#E8E9E9;
     border-radius:0px;
     height: 70px;
     padding:5px;
@@ -76,16 +78,17 @@
                             @item.PB_USER1.FIRST_NAME &nbsp; @item.PB_USER1.LAST_NAME
                             @{ if (item.NOTIF_TYPE == "L")
                                 {
-                            <a role="menuitem" stabindex="-1" href="#">likes your post</a>
+                                    <a href="/Home/Posts/@item.PB_POSTS.ID">likes your post</a>
+
                                 }
                                 else if (item.NOTIF_TYPE == "C")
                                 {
-                            <a role="menuitem" stabindex="-1" href="#">commented on your post</a>
-                                }else if(item.NOTIF_TYPE == "F")
+                                    <a href="/Home/Posts/@item.PB_POSTS.ID">commented on your post</a>
+                            
+                                }
+                                else
                                 {
-                                <a role="menuitem" stabindex="-1" href="#">sent you a friend request</a>
-                                <button type="button" class="btn btn-success" id="btnAcceptFriend" onclick="AcceptFriend(@item.SENDER_ID, @item.RECEIVER_ID)"></button>
-                                <button type="button" class="btn btn-danger" id="btnRejectFriend" onclick="RejectFriend(@item.SENDER_ID, @item.RECEIVER_ID)"></button>
+
                                 }
                             }
                         </div>

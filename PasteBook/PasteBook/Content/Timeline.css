@@ -1,12 +1,23 @@
-﻿#divProfileBanner{
+﻿#btnAddProfilePic{
+    position: relative;
+    left: 15px;
+    bottom: 34px;
+}
+#btnAddAboutMe{
+    position: relative;
+    left: 215px;
+    bottom: 65px;
+}
+
+#divProfileBanner{
     background-color:#fff;
     margin-top: 10px;
 }
 #profilePicProfile{
-    margin-left: 30px;
+
 }
 #userFullNameProfile {
-    margin-left: 90px;
+    margin-left: 70px;
     font-size: 20px;
 }
 #btnAddFriend{
@@ -18,7 +29,7 @@
     margin-right: 50px;
     border-radius:0px;
 }
-#profileDetailsDiv{
+.profileDetailsDiv{
     margin-top:20px;
     margin-right:10px;
     padding:20px;

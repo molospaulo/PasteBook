@@ -1,26 +1,69 @@
-﻿$(document).ready(function () {
-    //var date = moment();
-    //var NowMoment = moment(date, "YYYYMMDD").fromNow(); // 5 years ago;
-    //$("#date").text(NowMoment);
-   
-    
-        function GetNotification() {
-            var data = {user : 9}
-            $.ajax({
-                url: '/Home/GetNotifCount',
-                data:data,
-                type: 'GET',
-                success: function (data) {
-                    $("#notifCount").text(data.result);
-                },
-                error: function (data) {
+﻿function showNotifs() {
+    $("#notifDropdown").load('/Home/NotificationView');
+    $.ajax({
+        url: '/Home/SeenNotif',
+        type: 'GET',
+        success: function (data) {
 
-                }
-            });
-
-            $("#notifBox").load('/Home/NotificationView');
-          
+        },
+        error: function (data) {
+            
         }
-        GetNotification();
+
+
+
+    })
+
+       
+    }
+function showFriendNotifs() {
+    $("#frienNotifDropdown").load('/Home/FriendRequestView')
+    $.ajax({
+        url: '/Home/SeenFriendNotif',
+        type: 'GET',
+        success: function (data) {
+
+        },
+        error: function (data) {
+
+        }
+
+
+
+    })
+
+    }
+    
+    function GetNotificationCount() {
+        var data = { user: $("#UserID").val() }
+        $.ajax({
+            url: '/Home/GetNotifCount',
+            data: data,
+            type: 'GET',
+            success: function (data) {
+                $("#notifCount").text(data.result);
+            },
+            error: function (data) {
+
+            }
+        });
+    }
+            function GetFriendRequestCount() {
+                var data = {user : $("#UserID").val()}
+                $.ajax({
+                    url: '/Home/GetFriendRequestCount',
+                    data:data,
+                    type: 'GET',
+                    success: function (data) {
+                        $("#friendRequestCount").text(data.result);
+                    },
+                    error: function (data) {
+
+                    }
+                });
+          
+            }
+         GetFriendRequestCount();
+        GetNotificationCount();
         //var i = setInterval(function () { GetNotification() }, 2000);
-});
+//});

@@ -1,16 +1,27 @@
-﻿#txtAreaPost{
+﻿
+#txtAreaPost{
     resize:none;
    border-radius:0px;
-   margin-top:20px;
+
+}
+#btnAddLikeDiv{
+   padding:0px;
+}
+#btnDropdownLike{
+    float:right;
 }
 #userFullName{
 font-size: 20px;
 margin:20px 0px 0px 45px;
 
 }
+#likeDiv{
+    padding:0px;
+}
 #profilePic{
     height:200px;
-    margin:10px;
+    width: 200px;
+    margin-top:20px;
 }
 #commentPic{
     height: 50px;
@@ -135,4 +146,10 @@ body{
 }
 #profilePicPost{
     height:80px;
+}
+#searchResultsDiv{
+    padding: 20px;
+    border-radius: 0px;
+    background-color: #fff;
+    margin:10px;
 }

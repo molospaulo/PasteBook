@@ -11,7 +11,8 @@ namespace PasteBookModel
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PB_USER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,18 +29,54 @@ namespace PasteBookModel
         }
     
         public int ID { get; set; }
+
+        [Display(Name = "User name")]
+        [Required(ErrorMessage = "User name is required")]
+        [StringLength(50, ErrorMessage = "User name must contain maximum of 50 characters")]
         public string USER_NAME { get; set; }
+
+        [Display(Name = "Password")]
+        [Required(ErrorMessage = "Password is required")]
+        [StringLength(50, ErrorMessage = "Password must contain maximum of 50 characters")]
         public string PASSWORD { get; set; }
         public string SALT { get; set; }
+
+        [Display(Name = "First name")]
+        [Required(ErrorMessage = "First name is required")]
+        [StringLength(50, ErrorMessage = "First name must contain maximum of 50 characters")]
         public string FIRST_NAME { get; set; }
+
+        [Display(Name = "Last name")]
+        [Required(ErrorMessage = "Last name is required")]
+        [StringLength(50, ErrorMessage = "Last name must contain maximum of 50 characters")]
         public string LAST_NAME { get; set; }
+
+        [Display(Name = "Birthdate")]
+        [Required(ErrorMessage = "Birthdate is required")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime BIRTHDATE { get; set; }
+
+        [Display(Name = "Country")]
         public Nullable<int> COUNTRY_ID { get; set; }
+
+
+        [Display(Name = "Mobile number")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Mobile number is not valid")Phone]
         public string MOBILE_NO { get; set; }
+
+        [Display(Name = "Gender")]
         public string GENDER { get; set; }
         public byte[] PROFILE_PIC { get; set; }
+
+
         public System.DateTime DATE_CREATED { get; set; }
         public string ABOUT_ME { get; set; }
+
+        [Display(Name = "E-mail address")]
+        [Required(ErrorMessage = "E-mail address is required")]
+        [StringLength(50, ErrorMessage = "Email Address must contain maximum of 50 characters")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Email Address is not valid")EmailAddress]
         public string EMAIL_ADDRESS { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

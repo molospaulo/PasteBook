@@ -1,4 +1,4 @@
-﻿#divFriendList{
+﻿.divSearchList{
     padding: 20px;
     border-radius: 0px;
     background-color: #fff;
@@ -7,4 +7,8 @@
 }
 #profilePicFriends{
     height:100px;
+}
+#containerFriend{
+    margin: 0px;
+    padding: 0px;
 }

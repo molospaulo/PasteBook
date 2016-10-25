@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="row" id="postFooter">
-                <div class="col-md-4">
+                <div class="col-md-4" id="btnAddLikeDiv">
                     @{
                         var isLiked = false;
 
@@ -70,10 +70,11 @@
                 </div>
                 <div class="col-md-5"></div>
               @{ var count = item.PB_LIKES.Count;
-                  if (count != 0) {
+                  if (count != 0)
+                  {
 
-                        <div class="dropdown col-md-3">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <div class="dropdown col-md-3" id="likeDiv">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="btnDropdownLike">
                                 @(count)
                                 @{if (count == 1)
                                     {
@@ -111,7 +112,7 @@
                         <textarea id="txtAreaComment_@(item.ID)" class="form-control txtAreaComment" rows="2" placeholder="Comment"></textarea>
                     </div>
                     <div class="col-md-2" id="btnSaveComment">
-                    <button type="button" class="btn btn-default" id="button_@(item.ID)"  data-toggle="dropdown" value="@(item.ID)" onclick="AddComment(@(item.ID),@Session["User"],this)">Comments</button>
+                    <button type="button" class="btn btn-default" id="button_@(item.ID)" value="@(item.ID)" onclick="AddComment(@(item.ID),@Session["User"],this)">Comments</button>
                         </div>
                 </div>
 
@@ -137,4 +138,5 @@
     <div class="row">
 
     </div>
-}
+                                }
+                            }

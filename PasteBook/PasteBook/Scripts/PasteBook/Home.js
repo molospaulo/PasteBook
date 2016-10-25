@@ -24,7 +24,7 @@ function AddOrDeleteLike(id) {
             }
 
         })
-    }
+}
     function AddPost(profileID,userID) {
         var data = {
             userId : userID,
@@ -80,13 +80,13 @@ function AddOrDeleteLike(id) {
                 $("#imageContent").src("");
             },
             error: function (data) {
-                alert("error")
             }
 
 
 
         })
     }
+
     $("#btnUpload").click(function () {
         UploadImage();
     });

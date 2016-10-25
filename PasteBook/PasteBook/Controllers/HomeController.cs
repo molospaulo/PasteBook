@@ -20,8 +20,8 @@ namespace PasteBook.Controllers
         Like like = new Like();
         User user = new User();
         Notification notif = new Notification();
-
-
+        SignUpLoginBL manager = new SignUpLoginBL();
+        PasswordManager pManager = new PasswordManager();
         [HttpGet]
         public ActionResult Home()
         {
@@ -131,6 +131,20 @@ namespace PasteBook.Controllers
                 return RedirectToAction("Index", "PasteBook");
             }
         }
+        public ActionResult FriendRequestView()
+        {
+            if (Session["User"] != null)
+            {
+                int user;
+                int.TryParse(Session["User"].ToString(), out user);
+                var result = notif.GetListOfFriendRequestNotifs(user);
+                return PartialView("PartialViewFriendRequestNotif", result);
+            }
+            else
+            {
+                return RedirectToAction("Index", "PasteBook");
+            }
+        }
 
         public ActionResult Friends()
         {
@@ -146,11 +160,59 @@ namespace PasteBook.Controllers
                 return RedirectToAction("Index", "PasteBook");
             }
         }
+        public ActionResult Posts(int id)
+        {
+            var result = post.GetPost(id);
+            return View(result);
+        }
         public ActionResult EditProfile()
         {
-            return View();
+            int user;
+            int.TryParse(Session["User"].ToString(), out user);
+            var result = this.user.GetUser(user);
+            result.PASSWORD = null;
+            ViewBag.Countries = new SelectList(manager.GetCountries(), "ID", "Country");
+            return View(result);
         }
        [HttpPost]
+       public ActionResult SaveProfileDetails(PB_USER model)
+        {
+            int userID;
+            int.TryParse(Session["User"].ToString(), out userID);
+            model.ID = userID;
+            this.user.UpdateProfileDetails(model);
+           
+            return RedirectToAction("EditProfile");
+        }
+        [HttpPost]
+        public ActionResult SaveCredentialDetails(PB_USER model, string confirmPassword,string oldPassword)
+        {
+            int userID;
+            int.TryParse(Session["User"].ToString(), out userID);
+            model.ID = userID;
+            if (model.PASSWORD == confirmPassword)
+            {
+                if (user.CheckPassword(model.ID, oldPassword))
+                {
+                    user.UpdateUserCredential(model);
+                }else
+                {
+                    ModelState.AddModelError("Password", "Old password did not match");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("confirmPassword", "Confirm password did not match with new password");
+            }
+            return RedirectToAction("EditProfile");
+        }
+        
+        public ActionResult Search(string keyword)
+        {
+            var result = user.SearchListOfUsers(keyword);
+            return View(result);
+        }
+        [HttpPost]
         public ActionResult GetPicture(HttpPostedFileBase file)
         {
             int user;
@@ -165,6 +227,13 @@ namespace PasteBook.Controllers
             BinaryReader rdr = new BinaryReader(file.InputStream);
             imgByte = rdr.ReadBytes((int)file.ContentLength);
             return imgByte;
+        }
+        public ActionResult AddAboutMe(string aboutMe)
+        {
+            int user;
+            int.TryParse(Session["User"].ToString(), out user);
+            this.user.UpdateAboutMe(aboutMe, user);
+            return RedirectToAction("Timeline", "Home", new { id = user });
         }
         public JsonResult AddComment(int postID, int posterID,string content)
         {
@@ -188,19 +257,40 @@ namespace PasteBook.Controllers
             var result = friend.AcceptFriend(userID, friendID);
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetNotifCount(int user){
-            var result = notif.GetListOfNotifications(user).Count();
+        public JsonResult GetNotifCount(){
+            int userID;
+            int.TryParse(Session["User"].ToString(), out userID);
+            var result = notif.GetListOfUnSeenNotifications(userID).Count();
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult RejectFriend(int userID, int friendID)
         {
+
             var result = friend.RejectFriend(userID, friendID);
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
-        //public JsonResult AddPic(string image)
-        //{
-        //    var result = ImageManager.byteArrayToImage(image);
-        //    return Json(new { result = result }, JsonRequestBehavior.AllowGet);
-        //}
+        public JsonResult GetFriendRequestCount()
+        {
+            int userID;
+            int.TryParse(Session["User"].ToString(), out userID);
+            var result = notif.GetListOfUnSeenFriendNotifications(userID).Count();
+            return Json(new { result = result }, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult SeenNotif()
+        {
+            int userID;
+            int.TryParse(Session["User"].ToString(), out userID);
+            var notifs = notif.GetListOfNotifications(userID);
+            var result = notif.UpdateNotifications(notifs);
+            return Json(new { result = result }, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult SeenFriendNotif()
+        {
+            int userID;
+            int.TryParse(Session["User"].ToString(), out userID);
+            var notifs = notif.GetListOfFriendRequestNotifs(userID);
+            var result = notif.UpdateNotifications(notifs);
+            return Json(new { result = result }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
