@@ -1,140 +1,140 @@
 ﻿@model PasteBookModel.PB_POSTS
 <link rel="stylesheet" type="text/css" href="~/Content/HomePage.css">
-<div class="row">
-    <div id="contents">
-        <div class="row">
-            <div class="col-md-2">
-
-                @{ if (Model.PB_USER1.PROFILE_PIC == null)
-                    {
-                        if (Model.PB_USER1.GENDER == "M")
-                        {
-                            <img src="~/Content/Images/MaleDefaultImage.jpg" class="img-responsive" id="profilePicPost" />
-                        }
-                        else if (Model.PB_USER1.GENDER == "F")
-                        {
-                            <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive" id="profilePicPost" />
-                        }
-                        else
-                        {
-                            <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive" id="profilePicPost" />
-                        }
-                    }
-                    else
-                    {
-                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.PB_USER1.PROFILE_PIC)" id="profilePicPost" />
-                    }
-                }
-            </div>
-            <div class="col-md-10">
-                <div class="row" id="postHeader">
-                    @Html.DisplayFor(modelItem => Model.PB_USER.FIRST_NAME) &nbsp; @Html.DisplayFor(modelItem => Model.PB_USER.LAST_NAME)
-                </div>
-                <div class="row" id="postBody">
-                    @Html.DisplayFor(modelItem => Model.CONTENT)
-                </div>
-            </div>
-        </div>
-        <div class="row" id="postFooter">
-            <div class="col-md-4" id="btnAddLikeDiv">
-                @{
-                    var isLiked = false;
-
-                    foreach (var likes in Model.PB_LIKES)
-                    {
-
-                        if (likes.LIKED_BY == int.Parse(Session["User"].ToString()))
-                        {
-                            isLiked = true;
-                            break;
-
-                        }
-                    }
-
-                    if (!isLiked)
-                    {
-                        <button type="button" class="btn btn-default" id="likeBtn" onclick="AddOrDeleteLike(@(Model.ID))">
-                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Like
-                        </button>
-                    }
-                    else
-                    {
-                        <button type="button" class="btn btn-default" id="unLikeBtn" onclick="AddOrDeleteLike(@(Model.ID))">
-                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Like
-                        </button>
-                    }
-                }
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Comment</button>
-            </div>
-            <div class="col-md-5"></div>
-            @{ var count = Model.PB_LIKES.Count;
-                if (count != 0)
-                {
-
-                    <div class="dropdown col-md-3" id="likeDiv">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="btnDropdownLike">
-                            @(count)
-                            @{if (count == 1)
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div id="contents" class="col-md-8">
+                <div class="row">
+                    <div class="col-md-2">
+                        @{ if (Model.PB_USER1.PROFILE_PIC == null)
+                            {
+                                if (Model.PB_USER1.GENDER == "M")
                                 {
-                                    <span>Like</span>
+                                    <img src="~/Content/Images/MaleDefaultImage.jpg" class="img-responsive" id="profilePicPost" />
+                                }
+                                else if (Model.PB_USER1.GENDER == "F")
+                                {
+                                    <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive" id="profilePicPost" />
                                 }
                                 else
                                 {
-                                    <span>Likes</span>
+                                    <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive" id="profilePicPost" />
                                 }
-
-
                             }
-                            <span class="caret"></span>
-                        </button>
+                            else
+                            {
+                                <img src="data:image;base64,@System.Convert.ToBase64String(Model.PB_USER1.PROFILE_PIC)" id="profilePicPost" />
+                            }
+                        }
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row" id="postHeader">
+                            @Html.DisplayFor(modelItem => Model.PB_USER.FIRST_NAME) &nbsp; @Html.DisplayFor(modelItem => Model.PB_USER.LAST_NAME)
+                        </div>
+                        <div class="row" id="postBody">
+                            @Html.DisplayFor(modelItem => Model.CONTENT)
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="postFooter">
+                    <div class="col-md-4" id="btnAddLikeDiv">
+                        @{
+                            var isLiked = false;
 
-                        <ul class="dropdown-menu">
-                            @{
-                                foreach (var likes in Model.PB_LIKES)
+                            foreach (var likes in Model.PB_LIKES)
+                            {
+
+                                if (likes.LIKED_BY == int.Parse(Session["User"].ToString()))
                                 {
-                                    <li><a href="/Home/Timeline/@(likes.LIKED_BY)">@(likes.PB_USER.FIRST_NAME) @(likes.PB_USER.LAST_NAME)</a></li>
+                                    isLiked = true;
+                                    break;
+
                                 }
                             }
-                        </ul>
+
+                            if (!isLiked)
+                            {
+                                <button type="button" class="btn btn-default" id="likeBtn" onclick="AddOrDeleteLikePost(@(Model.ID))">
+                                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Like
+                                </button>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-default" id="unLikeBtn" onclick="AddOrDeleteLikePost(@(Model.ID))">
+                                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Like
+                                </button>
+                            }
+                        }
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Comment</button>
                     </div>
-                                }
-            }
+                    <div class="col-md-5"></div>
+                    @{ var count = Model.PB_LIKES.Count;
+                        if (count != 0)
+                        {
 
-        </div>
-        <div id="commentField_@(Model.ID)">
-            <div class="row" id="commentHeader">
+                            <div class="dropdown col-md-3" id="likeDiv">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="btnDropdownLike">
+                                    @(count)
+                                    @{if (count == 1)
+                                        {
+                                            <span>Like</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Likes</span>
+                                        }
 
-            </div>
-            <div class="row" id="commentBody">
-                <div class="col-md-10" id="txtAreaComment">
-                    <textarea id="txtAreaComment_@(Model.ID)" class="form-control txtAreaComment" rows="2" placeholder="Comment"></textarea>
+
+                                    }
+                                    <span class="caret"></span>
+                                </button>
+
+                                <ul class="dropdown-menu">
+                                    @{
+                                        foreach (var likes in Model.PB_LIKES)
+                                        {
+                                            <li><a href="/Home/Timeline/@(likes.LIKED_BY)">@(likes.PB_USER.FIRST_NAME) @(likes.PB_USER.LAST_NAME)</a></li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                                        }
+                    }
+
                 </div>
-                <div class="col-md-2" id="btnSaveComment">
-                    <button type="button" class="btn btn-default" id="button_@(Model.ID)" value="@(Model.ID)" onclick="AddComment(@(Model.ID),@Session["User"],this)">Comments</button>
-                </div>
-            </div>
+                <div id="commentField_@(Model.ID)">
+                    <div class="row" id="commentHeader">
 
-            @foreach (var comment in Model.PB_COMMENTS)
+                    </div>
+                    <div class="row" id="commentBody">
+                        <div class="col-md-10" id="txtAreaComment">
+                            <textarea id="txtAreaComment_@(Model.ID)" class="form-control txtAreaComment" rows="2" placeholder="Comment"></textarea>
+                        </div>
+                        <div class="col-md-2" id="btnSaveComment">
+                            <button type="button" class="btn btn-default" id="button_@(Model.ID)" value="@(Model.ID)" onclick="AddCommentPost(@(Model.ID),@Session["User"],this)">Comments</button>
+                        </div>
+                    </div>
+
+                    @foreach (var comment in Model.PB_COMMENTS)
             {
-                <div class="row" id="commentList">
-                    <div class="commentPicDiv col-md-2">
-                        <img src="~/Content/Images/MaleDefaultImage.jpg" id="commentPic" class="img-responsive" />
-                    </div>
-                    <div class="col-md-9">
-                        <div class="row" id="nameComment">
-                            @Html.DisplayFor(modelItem => comment.PB_USER.FIRST_NAME) &nbsp; @Html.DisplayFor(modelItem => comment.PB_USER.LAST_NAME)
+                        <div class="row" id="commentList">
+                            <div class="commentPicDiv col-md-2">
+                                <img src="~/Content/Images/MaleDefaultImage.jpg" id="commentPic" class="img-responsive" />
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row" id="nameComment">
+                                    @Html.DisplayFor(modelItem => comment.PB_USER.FIRST_NAME) &nbsp; @Html.DisplayFor(modelItem => comment.PB_USER.LAST_NAME)
+                                </div>
+                                <div class="row" id="commentContent">
+                                    @Html.DisplayFor(modelItem => comment.CONTENT)
+                                </div>
+                            </div>
                         </div>
-                        <div class="row" id="commentContent">
-                            @Html.DisplayFor(modelItem => comment.CONTENT)
-                        </div>
-                    </div>
+                    }
                 </div>
-            }
-        </div>
+            </div>
+        <div class="col-md-2"></div>
     </div>
-</div>
-<div class="row">
-
 </div>
 }
 <script>
@@ -148,7 +148,7 @@
 @section Scripts {
 
     @Scripts.Render("~/bundles/jqueryval")
-
+    
     <script src="~/Scripts/PasteBook/Home.js" type="text/javascript"></script>
     <script src="~/Scripts/PasteBook/NotificationScript.js" type="text/javascript"></script>
     <script src="~/Scripts/PasteBook/Profile.js" type="text/javascript"></script>

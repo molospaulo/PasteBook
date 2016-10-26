@@ -199,6 +199,10 @@
     <Content Include="Views\Home\PartialViewFriendRequestNotif.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\Posts.cshtml" />
+    <Content Include="Views\Home\EditPassword.cshtml" />
+    <Content Include="Views\Home\EditEmail.cshtml" />
+    <Content Include="Views\Shared\_LayoutSignUpLogin.cshtml" />
+    <Content Include="Views\Home\Notification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

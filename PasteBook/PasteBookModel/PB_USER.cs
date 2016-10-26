@@ -76,7 +76,7 @@ namespace PasteBookModel
         [Display(Name = "E-mail address")]
         [Required(ErrorMessage = "E-mail address is required")]
         [StringLength(50, ErrorMessage = "Email Address must contain maximum of 50 characters")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Email Address is not valid")EmailAddress]
+        [EmailAddress(ErrorMessage ="Email Address is invalid")]
         public string EMAIL_ADDRESS { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

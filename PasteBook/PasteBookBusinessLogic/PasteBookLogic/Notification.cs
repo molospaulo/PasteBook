@@ -23,7 +23,7 @@ namespace PasteBookBusinessLogic
         }
         public List<PB_NOTIFICATION> GetListOfUnSeenFriendNotifications(int id)
         {
-            var result = genericDataAccess.RetrieveListWithCondition(x => (x.RECEIVER_ID == id && x.SEEN == "N" && x.NOTIF_TYPE == "F"), x => x.PB_USER, x => x.PB_USER1, x => x.PB_COMMENTS, x => x.PB_POSTS).OrderByDescending(x => x.CREATED_DATE).ToList();
+            var result = genericDataAccess.RetrieveListWithCondition(x => ((x.RECEIVER_ID == id && x.SEEN == "N" && x.NOTIF_TYPE == "F")), x => x.PB_USER, x => x.PB_USER1, x => x.PB_COMMENTS, x => x.PB_POSTS).OrderByDescending(x => x.CREATED_DATE).ToList();
             return result;
         }
         public bool AddNotification(PB_NOTIFICATION notif)
@@ -43,10 +43,23 @@ namespace PasteBookBusinessLogic
 
             return returnValue;
         }
+        public bool UpdateNotification(PB_NOTIFICATION notif)
+        {
+            bool returnValue = false;
+                notif.SEEN = "Y";
+                var result = genericDataAccess.UpdateRow(notif);
+                returnValue = result;
+            return returnValue;
+        }
         public List<PB_NOTIFICATION> GetListOfFriendRequestNotifs(int id)
         {
-            var result = genericDataAccess.RetrieveListWithCondition(x => (x.RECEIVER_ID == id && x.NOTIF_TYPE == "F"), x => x.PB_USER, x => x.PB_USER1, x => x.PB_COMMENTS, x => x.PB_POSTS).OrderByDescending(x => x.CREATED_DATE).Take(20).ToList();
+            var result = genericDataAccess.RetrieveListWithCondition(x => (x.RECEIVER_ID == id && x.NOTIF_TYPE == "F" && x.SEEN == "N"), x => x.PB_USER, x => x.PB_USER1, x => x.PB_COMMENTS, x => x.PB_POSTS).OrderByDescending(x => x.CREATED_DATE).Take(20).ToList();
             return result;
         }
+        //public PB_NOTIFICATION GetNotification(int id)
+        //{
+        //    var result = genericDataAccess.GetOneRecord(x => (x.RECEIVER_ID == id && x.NOTIF_TYPE == "F" && x.SEEN == "N"));
+        //    return result;
+        //}
     }
 }

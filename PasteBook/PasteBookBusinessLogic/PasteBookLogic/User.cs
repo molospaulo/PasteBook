@@ -74,6 +74,12 @@ namespace PasteBookBusinessLogic
             var record = genericDataAccess.GetOneRecord(x => x.ID == user.ID);
             record.SALT = salt;
             record.PASSWORD = user.PASSWORD;
+            var result = genericDataAccess.UpdateRow(record);
+            return result;
+        }
+        public bool UpdateUserEmail(PB_USER user)
+        {
+            var record = genericDataAccess.GetOneRecord(x => x.ID == user.ID);
             record.EMAIL_ADDRESS = user.EMAIL_ADDRESS;
             var result = genericDataAccess.UpdateRow(record);
             return result;

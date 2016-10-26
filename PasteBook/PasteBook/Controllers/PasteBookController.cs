@@ -25,11 +25,15 @@ namespace PasteBook.Controllers
         {
             bool result = manager.SaveUser(model);
             ViewBag.Countries = new SelectList(manager.GetCountries(), "ID", "Country");
-            return View();
+            Session["User"] = user;
+            return RedirectToAction("Home","Home",null);
         }
         [HttpPost]
-        public ActionResult Login(PB_USER model)
+        public ActionResult Login(string emailAddress,string password)
         {
+            PB_USER model = new PB_USER();
+            model.EMAIL_ADDRESS = emailAddress;
+            model.PASSWORD = password;
             ViewBag.Countries = new SelectList(manager.GetCountries(), "ID", "Country");
             if (manager.LoginUser(model))
             {
@@ -41,11 +45,10 @@ namespace PasteBook.Controllers
             }
             else
             {
-                ModelState.AddModelError("LoginUser.Password", "Invalid Username or Password");
-                return View("Index");
+                ModelState.AddModelError("errorMessage", "Invalid Username or Password");
+                return RedirectToAction("Index");
             }
         }
-       
 
 
 

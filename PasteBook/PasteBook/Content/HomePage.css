@@ -1,4 +1,30 @@
-﻿
+﻿.editTabs{
+    height: 60px;
+}
+a.editTabs:link{
+    color:black
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: #ffffff;
+    background-color: #3b5998;
+}
+.nav-pills > li > a {
+    border-radius: 0px;
+    padding-top : 20px;
+    color:#000;
+}
+.nav-pills > li > a:hover {
+ background-color:#3b5998;
+ color:#fff;
+}
+#settingsDropdown{
+        width: 50px;
+        margin-top: 50px;
+        height: 100px;
+}
+.settingIcon{
+    margin-left:50px;
+}
 #txtAreaPost{
     resize:none;
    border-radius:0px;
@@ -44,10 +70,14 @@ margin:20px 0px 0px 45px;
 #btnAddPost{
     border-radius: 0px;
     float: right;
-    margin-right: 20px;
-    width: 60px;
+    margin-right: 0px;
     margin-top: 5px;
     margin-bottom:5px;
+    height:40px;
+    width:100px;
+    background-color:#3b5998;
+    color:#fff;
+
 }
 #AddPostDiv{
     padding:10px;
@@ -83,7 +113,7 @@ margin:20px 0px 0px 45px;
 }
 #contents{
    
-    width:100%;
+    /*width:100%;*/
     border-style: solid;
     border-width:1px;
     border-radius:4px;
@@ -119,6 +149,7 @@ body{
 #postHeader{
     padding: 10px;
     font-weight:bold;
+    padding-bottom:10px;
 }
 #postBody{
     padding: 10px;
@@ -152,4 +183,48 @@ body{
     border-radius: 0px;
     background-color: #fff;
     margin:10px;
+}
+#friends{
+    height: 40px;
+    width: 100px;
+    padding-top: 10px;
+    border-radius: 0px;
+    background-color:#3b5998;
+    color:#fff;
+
+}
+#profilePicNotif{
+    height:50px;
+    width:60px;
+}
+.friendNotifRow{
+    margin-left:15px;
+    text-overflow:ellipsis;
+}
+#pDate{
+    font-size: 12px;
+    margin-left: 7px;
+
+}
+#notifPicture{
+    padding:0px;
+    padding-left:5px;
+}
+.rowProfile{
+    padding-left:0px;
+}
+.rowProfile1{
+       padding-right: 0px;
+}
+.editPills{
+    margin-top:50px;
+}
+.btnSaveDetails{
+    width: 100px;
+    float:right;
+    height:50px;
+    border-radius:0px;
+}
+#dateNotifBar{
+    font-size:12px;
 }

@@ -5,11 +5,12 @@ $("#btnRefresh").click(function () {
     RefreshNewsFeed();
 
 })
+var activeTab = $("#activeTab").data("activeTab")
 
 function AddOrDeleteLike(id) {
         var data = {
             postID: id,
-            ID : $("#UserID").val()
+            //ID : $("#UserID").val()
         }
         $.ajax({
             url: UrlAddLike,
@@ -17,6 +18,7 @@ function AddOrDeleteLike(id) {
             type: 'GET',
             success: function (data) {
                 RefreshNewsFeed()
+                RefreshTimeline()
             }
                 ,
             error: function (data) {
@@ -24,6 +26,25 @@ function AddOrDeleteLike(id) {
             }
 
         })
+}
+function AddOrDeleteLikePost(id) {
+    var data = {
+        postID: id,
+        //ID : $("#UserID").val()
+    }
+    $.ajax({
+        url: UrlAddLike,
+        data: data,
+        type: 'GET',
+        success: function (data) {
+            location.reload();
+        }
+            ,
+        error: function (data) {
+            alert(data)
+        }
+
+    })
 }
     function AddPost(profileID,userID) {
         var data = {
@@ -47,9 +68,8 @@ function AddOrDeleteLike(id) {
     }
 
     function AddComment(postID, posterID, button) {
-        var lol = $("#lol").text()  
         var result = $('#txtAreaComment_'.concat(button.value)).val();
-        alert(result)
+        
         var data = {
             postID: postID,
             posterID: posterID,
@@ -60,15 +80,34 @@ function AddOrDeleteLike(id) {
             data: data,
             type: 'GET',
             success: function (data) {
-                //$("#txtAreaComment_".concat(button.value)).val()
                 RefreshNewsFeed();
+                RefreshTimeline();
             },
             error: function (data) {
                 alert('lol')
             }
         });
     }
+    function AddCommentPost(postID, posterID, button) {
+        var result = $('#txtAreaComment_'.concat(button.value)).val();
 
+        var data = {
+            postID: postID,
+            posterID: posterID,
+            content: $("#txtAreaComment_".concat(button.value)).val()
+        }
+        $.ajax({
+            url: UrlAddComment,
+            data: data,
+            type: 'GET',
+            success: function (data) {
+               location.reload()
+            },
+            error: function (data) {
+                alert('lol')
+            }
+        });
+    }
     function UploadImage() {
         var filename = $('input[type=file]')[0].files[0].name;
         var data = { image: filename}
@@ -96,8 +135,15 @@ function AddOrDeleteLike(id) {
         $("#newsFeed").load(UrlRefreshNewsFeed)
          
     }
+    function RefreshTimeline() {
+        $("#timelineFeed").load(UrlRefreshTimeLine)
+
+    }
     function PreviewImage() {
         var filename = $('input[type=file]')[0].files[0].name;
         $("#imageContent").attr("src", filename);
 
+    }
+    function GetValue(a) {
+        var result = a.value
     }

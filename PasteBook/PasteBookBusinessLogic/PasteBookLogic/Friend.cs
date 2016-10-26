@@ -89,7 +89,7 @@ namespace PasteBookBusinessLogic
                 {
                     RECEIVER_ID = addFriend.FRIEND_ID,
                     NOTIF_TYPE = "F",
-                    SENDER_ID = addFriend.PB_USER.ID,
+                    SENDER_ID = addFriend.USER_ID,
                     CREATED_DATE = DateTime.Now,
                     SEEN ="N"
                    
@@ -99,13 +99,29 @@ namespace PasteBookBusinessLogic
         }
         public bool AcceptFriend(int userID, int profileOwnerID)
         {
-             var result =genericDataAccess.GetOneRecord(x => (x.FRIEND_ID == profileOwnerID && x.USER_ID == userID) || (x.FRIEND_ID == userID && x.USER_ID == profileOwnerID), x => x.PB_USER, x => x.PB_USER1);
-             result.REQUEST = "N";
-            return genericDataAccess.UpdateRow(result);
+             var output =genericDataAccess.GetOneRecord(x => (x.FRIEND_ID == profileOwnerID && x.USER_ID == userID) || (x.FRIEND_ID == userID && x.USER_ID == profileOwnerID), x => x.PB_USER, x => x.PB_USER1);
+            var genericDataAccess1 = new GenericDataAccess<PB_NOTIFICATION>();
+            output.REQUEST = "N";
+            var result = genericDataAccess.UpdateRow(output);
+            if (result)
+            {
+                var notif = genericDataAccess1.GetOneRecord(x => (x.SENDER_ID == userID || x.SENDER_ID == profileOwnerID) && (x.RECEIVER_ID == userID || x.RECEIVER_ID == profileOwnerID) && x.NOTIF_TYPE == "F" && x.SEEN == "N");
+                notif.SEEN = "Y";
+                genericDataAccess1.UpdateRow(notif);
+            }
+            return result;
         }
         public bool RejectFriend(int userID, int profileOwnerID)
         {
+            Notification notif = new Notification();
+            var genericDataAccess1 = new GenericDataAccess<PB_NOTIFICATION>();
             var result = genericDataAccess.RemoveRow(x => (x.FRIEND_ID == profileOwnerID && x.USER_ID == userID) || (x.FRIEND_ID == userID && x.USER_ID == profileOwnerID));
+            if (result)
+            {
+                var notification = genericDataAccess1.GetOneRecord(x => (x.SENDER_ID == userID || x.SENDER_ID == profileOwnerID) && (x.RECEIVER_ID == userID || x.RECEIVER_ID == profileOwnerID) && x.NOTIF_TYPE == "F");
+                notification.SEEN = "Y";
+                genericDataAccess1.UpdateRow(notification);
+            }
             return result;
         }
     }

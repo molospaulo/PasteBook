@@ -28,16 +28,21 @@ namespace PasteBookBusinessLogic
                 if (result)
                 {
                     var like = genericDataAccess.GetOneRecord(x => (x.POST_ID == postID && x.LIKED_BY == ID),x => x.PB_POSTS,x=>x.PB_USER);
-                    Notification notif = new Notification();
-                    notif.AddNotification(new PB_NOTIFICATION {
-                        RECEIVER_ID = like.PB_POSTS.PB_USER.ID,
-                        NOTIF_TYPE ="L",
-                        SENDER_ID = like.LIKED_BY,
-                        CREATED_DATE = DateTime.Now,
-                        POST_ID = like.POST_ID,
-                        SEEN ="N"
-                        
-                    });
+                    if (ID != like.LIKED_BY)
+                    {
+                        Notification notif = new Notification();
+
+                        notif.AddNotification(new PB_NOTIFICATION
+                        {
+                            RECEIVER_ID = like.PB_POSTS.PB_USER.ID,
+                            NOTIF_TYPE = "L",
+                            SENDER_ID = like.LIKED_BY,
+                            CREATED_DATE = DateTime.Now,
+                            POST_ID = like.POST_ID,
+                            SEEN = "N"
+
+                        });
+                    }
                 }
                 
                 return result;

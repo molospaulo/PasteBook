@@ -75,20 +75,41 @@
 
 
         <li role="presentation" id="notifBox">
-@{ foreach (var item in Model)
+
+@{ 
+    foreach (var item in Model)
     {
             <div class="row" id="notifContent">
                 <div class="col-md-2" id="notifPicture">
-
+                    @{ if (item.PB_USER1.PROFILE_PIC == null)
+                        {
+                            if (item.PB_USER1.GENDER == "M")
+                            {
+                                <img src="~/Content/Images/MaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicNotif" />
+                            }
+                            else if (item.PB_USER1.GENDER == "F")
+                            {
+                                <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicNotif" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicNotif" />
+                            }
+                        }
+                        else
+                        {
+                            <img src="data:image;base64,@System.Convert.ToBase64String(item.PB_USER1.PROFILE_PIC)"class="img-responsive img-rounded" id="profilePicNotif" />
+                        }
+                    }
                 </div>
                 <div class="col-md-10" id="notif">
                     <div class="row" id="notifTitle">
                         <div class="col-md-12">
-                            <div class="row">
+                            <div class="row friendNotifRow" >
                                 @item.PB_USER1.FIRST_NAME @item.PB_USER1.LAST_NAME
                                sent you a friend request
                             </div>
-                            <div class="row">
+                            <div class="row friendNotifRow">
                                 <button type="button" class="btn btn-success btnFriendRequest" id="btnAcceptFriend" onclick="AcceptFriend(@item.SENDER_ID, @item.RECEIVER_ID)">Accept Friend</button>
                                 <button type="button" class="btn btn-danger btnFriendRequest" id="btnRejectFriend" onclick="RejectFriend(@item.SENDER_ID, @item.RECEIVER_ID)">Reject Friend</button>
                             </div>

@@ -1,20 +1,46 @@
 ﻿
-//$(document).ready(function () {
    
     $('#userNameCheckerFail').hide();
     $('#userNameCheckerSuccess').hide();
     $('#emailCheckerSuccess').hide();
     $('#emailCheckerFail').hide();
-    $('#txtEmailAddress').blur(function () {
 
-        CheckEmail();
+    $('#txtEmailAddress').blur(function () {
+        var result =$("#txtEmailAddress").val()
+        if (result.trim() == "") {
+            $('#emailCheckerSuccess').hide();
+            $('#emailCheckerFail').hide();
+        } else {
+            CheckEmail();
+        }
     })
     $('#txtUserName').blur(function () {
-        CheckUserName();
+        var result =$("#txtUserName").val()
+        if (result.trim() == "") {
+            $('#userNameCheckerFail').hide();
+            $('#userNameCheckerSuccess').hide();
+        } else {
+            CheckUserName();
+        }
+    })
+
+    $('#conPassword').on('blur', function () {
+        var confirmPassword = $('#conPassword').val();
+        var password = $('#txtPassword').val();
+
+        if (password != confirmPassword) {
+            $('#errorConfirmPassword').text('Password did not match');
+        } else {
+            $('#errorConfirmPassword').text('')
+        }
+
+
     })
     $('#SignUpForm').submit(function () {
         ('#SignUpForm')[0].reset();
     })
+
+    
 
 function CheckEmail(){
     
@@ -23,7 +49,7 @@ function CheckEmail(){
         }
 
         $.ajax({
-            url : CheckEmailUrl,
+            url: '/PasteBook/CheckEmail',
             data: data,
             type: 'GET',
             success: function (data) {
@@ -47,7 +73,7 @@ function CheckEmail(){
         }
 
         $.ajax({
-            url: CheckUserNameUrl,
+            url: '/PasteBook/CheckUsername',
             data: data,
             type: 'GET',
             success: function (data) {
@@ -64,6 +90,4 @@ function CheckEmail(){
             }
         })
     }
-
-    //});
 

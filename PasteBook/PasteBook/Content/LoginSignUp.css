@@ -1,16 +1,44 @@
-﻿
+﻿label{
+   margin-bottom:0px;
+}
+#errorConfirmPassword{
+    color:#FF0000;
+}
+#loginTitle{
+    color:#fff;
+    font-size:15px;
+    font-weight:bold;
+}
+#errorMessageLogin{
+    color: #fff;
+}
+.loginCol{
+    padding :0px;
+    margin :0px;
+}
+.loginRow{
+    padding:0px;
+    margin :0px;
+}
+#loginContainer{
+    padding:0px;
+    margin:0px;
+
+}
 #txtloginPassword{
-   margin-left:10px;
+   margin-left:50px;
+   width:200px;
 }
 #txtloginEmailAddress{
-  
+    margin-right:30px;
+  width:200px;
 }
 .loginFields {
     margin-top: 10px;
 }
 
 #btnLogin{
-    margin-left:20px;
+    margin-left:111px;
     margin-top:10px;
 }
 #dateBirthdate{
@@ -48,6 +76,6 @@
 #userNameCheckerFail{
     color:red;
 }
-#userNameCheckerFail{
+#userNameCheckerSuccess{
     color: green;
 }

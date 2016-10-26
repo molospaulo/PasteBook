@@ -43,10 +43,12 @@ namespace PasteBook.Controllers
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult AddOrDeleteLike(int postID, int ID)
+        public JsonResult AddOrDeleteLike(int postID)
         {
             string status = "";
-            var result = like.AddOrDeleteLike(ID, postID, out status);
+            int user;
+            int.TryParse(Session["User"].ToString(), out user);
+            var result = like.AddOrDeleteLike(user, postID, out status);
             return Json(new { result = result, status = status }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult AddPost(int userId, string post, int ProfileOwnerID)
@@ -82,6 +84,12 @@ namespace PasteBook.Controllers
                 return RedirectToAction("Index", "PasteBook");
             }
         }
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "PasteBook");
+        }
+
         public ActionResult UserProfile()
         {
 
@@ -165,6 +173,7 @@ namespace PasteBook.Controllers
             var result = post.GetPost(id);
             return View(result);
         }
+        [HttpGet]
         public ActionResult EditProfile()
         {
             int user;
@@ -174,25 +183,33 @@ namespace PasteBook.Controllers
             ViewBag.Countries = new SelectList(manager.GetCountries(), "ID", "Country");
             return View(result);
         }
-       [HttpPost]
-       public ActionResult SaveProfileDetails(PB_USER model)
+       
+        [HttpPost]
+       public ActionResult EditProfile(PB_USER model)
         {
             int userID;
             int.TryParse(Session["User"].ToString(), out userID);
             model.ID = userID;
             this.user.UpdateProfileDetails(model);
-           
-            return RedirectToAction("EditProfile");
+            ViewBag.Countries = new SelectList(manager.GetCountries(), "ID", "Country");
+            return View();
+        }
+        [HttpGet]
+        public ActionResult EditPassword()
+        {
+
+            return View();
         }
         [HttpPost]
-        public ActionResult SaveCredentialDetails(PB_USER model, string confirmPassword,string oldPassword)
+        public ActionResult EditPassword(PB_USER model, string confirmPassword,string newPassword)
         {
+   
             int userID;
             int.TryParse(Session["User"].ToString(), out userID);
             model.ID = userID;
-            if (model.PASSWORD == confirmPassword)
+            if (newPassword == confirmPassword)
             {
-                if (user.CheckPassword(model.ID, oldPassword))
+                if (user.CheckPassword(model.ID, model.PASSWORD))
                 {
                     user.UpdateUserCredential(model);
                 }else
@@ -202,11 +219,36 @@ namespace PasteBook.Controllers
             }
             else
             {
-                ModelState.AddModelError("confirmPassword", "Confirm password did not match with new password");
+                ModelState.AddModelError("ConfirmPassword", "Confirm password did not match with new password");
             }
-            return RedirectToAction("EditProfile");
+            return View();
         }
-        
+        [HttpGet]
+        public ActionResult EditEmail()
+        {
+            int userID;
+            int.TryParse(Session["User"].ToString(), out userID);
+            var result = this.user.GetUser(userID);
+            result.PASSWORD = null;
+            return View(result);
+        }
+        [HttpPost]
+        public ActionResult EditEmail(PB_USER model)
+        {
+            int userID;
+            int.TryParse(Session["User"].ToString(), out userID);
+            model.ID = userID;
+                if (user.CheckPassword(model.ID,model.PASSWORD))
+                {
+                    user.UpdateUserEmail(model);
+                }
+                else
+                {
+                    ModelState.AddModelError("PASSWORD", "Old password did not match");
+                }
+            
+            return View();
+        }
         public ActionResult Search(string keyword)
         {
             var result = user.SearchListOfUsers(keyword);
@@ -284,13 +326,12 @@ namespace PasteBook.Controllers
             var result = notif.UpdateNotifications(notifs);
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SeenFriendNotif()
+        public ActionResult Notification()
         {
             int userID;
             int.TryParse(Session["User"].ToString(), out userID);
-            var notifs = notif.GetListOfFriendRequestNotifs(userID);
-            var result = notif.UpdateNotifications(notifs);
-            return Json(new { result = result }, JsonRequestBehavior.AllowGet);
+            var notifs = notif.GetListOfNotifications(userID);
+            return View(notifs);
         }
     }
 }

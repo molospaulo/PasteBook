@@ -42,9 +42,12 @@
                                         <span id="notifTitle">Notification</span><span class="badge badge-important" id="notifCount"></span>
                                         <span class="caret"></span>
                                     </span>
-
+                                    
                                     <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="menu1" id="notifDropdown">
-                                        @{Html.RenderAction("NotificationView"); }
+                                      
+                                                @{Html.RenderAction("NotificationView"); }
+                                        
+                                     
                                     </ul>
                                 </div>
                             </li>
@@ -63,7 +66,20 @@
 
                             <li> @Html.ActionLink("Home", "Home", "Home", null, new { @class = "homeNavbarRight" })</li>
                             <li> @Html.ActionLink("Timeline", "Timeline", "Home", new { id = Session["User"] }, new { @class = "homeNavbarRight" })</li>
-                                            }
+                            <li id="settingsContainer">
+                                <div class="dropdown">
+                                    <span class="dropdown-toggle homeNavbarRight" type="button" id="menu1" data-toggle="dropdown">
+                                        <span id="notifTitle">Options</span>
+                                        <span class="caret"></span>
+                                    </span>
+
+                                    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="menu1" id="settingsDropdown">
+                                        <li><a href="@Url.Action("EditProfile", "Home")">Settings<span class="glyphicon glyphicon-wrench settingIcon" ></span></a></li> 
+                                         <li><a href="@Url.Action("Logout", "Home")">Logout<span class="glyphicon glyphicon-log-out settingIcon"></span></a></li>     
+                                    </ul>
+                                </div>
+                            </li>
+                            }
 
 
                     }
@@ -80,6 +96,8 @@
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
             </footer>*@
     </div>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/moment-with-locales.min.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

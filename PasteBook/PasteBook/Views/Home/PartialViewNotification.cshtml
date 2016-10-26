@@ -64,6 +64,11 @@
 #notifBox::-webkit-scrollbar-thumb:window-inactive {
 	background: #fff; 
 }
+#seeAllNotifs{
+    margin-left:110px;
+    font-size:20px;
+}
+
     </style>
 
             @{ foreach (var item in Model)
@@ -71,7 +76,28 @@
             <li role="presentation" id="notifBox">
                 <div class="row" id="notifContent">
                     <div class="col-md-4" id="notifPicture">
-               
+                        <div class="container">
+                            @{ if (item.PB_USER1.PROFILE_PIC == null)
+                                {
+                                    if (item.PB_USER1.GENDER == "M")
+                                    {
+                                        <img src="~/Content/Images/MaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicNotif" />
+                                    }
+                                    else if (item.PB_USER1.GENDER == "F")
+                                    {
+                                        <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicNotif" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicNotif" />
+                                    }
+                                }
+                                else
+                                {
+                                    <img src="data:image;base64,@System.Convert.ToBase64String(item.PB_USER1.PROFILE_PIC)" id="profilePicNotif" class="img-responsive img-rounded"/>
+                                }
+                            }
+                        </div>
                     </div>
                     <div class="col-md-8" id="notif">
                         <div class="row" id="notifTitle">
@@ -93,11 +119,17 @@
                             }
                         </div>
                         <div class="row" id="notifDate">
-                            <p id="date"></p>
+                            <span id="dateNotifBar">
+                                @{ var date = String.Format("{0:f}", item.CREATED_DATE);
+                                    <span class="glyphicon glyphicon-calendar"></span>   @date
+                                }
+                            </span>
                         </div>
                     </div>
                 </div>
             </li>
                     }
                 }
-       
+<span id="seeAllNotifs">
+    <a href="@Url.Action("Notification","Home")">See all notifications</a>
+</span>

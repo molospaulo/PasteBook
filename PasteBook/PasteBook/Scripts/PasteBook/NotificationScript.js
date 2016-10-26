@@ -1,5 +1,17 @@
-﻿function showNotifs() {
+﻿
+ConvertDate();
+function ConvertDate() {
+    $(".date").each(function () {
+        var date = $(this).text();
+        var result = moment(date).format('LLLL');
+
+        $(this).text(result);
+
+    })
+}
+function showNotifs() {
     $("#notifDropdown").load('/Home/NotificationView');
+    ConvertDate();
     $.ajax({
         url: '/Home/SeenNotif',
         type: 'GET',
@@ -9,32 +21,16 @@
         error: function (data) {
             
         }
-
-
-
     })
 
-       
+    
     }
 function showFriendNotifs() {
     $("#frienNotifDropdown").load('/Home/FriendRequestView')
-    $.ajax({
-        url: '/Home/SeenFriendNotif',
-        type: 'GET',
-        success: function (data) {
-
-        },
-        error: function (data) {
-
-        }
-
-
-
-    })
-
     }
     
-    function GetNotificationCount() {
+function GetNotificationCount() {
+
         var data = { user: $("#UserID").val() }
         $.ajax({
             url: '/Home/GetNotifCount',
@@ -48,7 +44,8 @@ function showFriendNotifs() {
             }
         });
     }
-            function GetFriendRequestCount() {
+function GetFriendRequestCount() {
+ 
                 var data = {user : $("#UserID").val()}
                 $.ajax({
                     url: '/Home/GetFriendRequestCount',

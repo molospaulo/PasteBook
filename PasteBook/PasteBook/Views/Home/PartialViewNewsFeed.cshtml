@@ -11,20 +11,20 @@
                         {
                             if (item.PB_USER1.GENDER == "M")
                             {
-                                <img src="~/Content/Images/MaleDefaultImage.jpg" class="img-responsive" id="profilePicPost" />
+                                <img src="~/Content/Images/MaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicPost" />
                             }
                             else if (item.PB_USER1.GENDER == "F")
                             {
-                                <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive" id="profilePicPost" />
+                                <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicPost" />
                             }
                             else
                             {
-                                <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive" id="profilePicPost" />
+                                <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicPost" />
                             }
                         }
                         else
                         {
-                            <img src="data:image;base64,@System.Convert.ToBase64String(item.PB_USER1.PROFILE_PIC)" id="profilePicPost" />
+                            <img src="data:image;base64,@System.Convert.ToBase64String(item.PB_USER1.PROFILE_PIC)" id="profilePicPost" class="img-responsive img-rounded"/>
                         }
                     }
                 </div>
@@ -32,8 +32,19 @@
                     <div class="row" id="postHeader">
                         @Html.DisplayFor(modelItem => item.PB_USER.FIRST_NAME) &nbsp; @Html.DisplayFor(modelItem => item.PB_USER.LAST_NAME)
                     </div>
+                    <div class="row" id="dateDiv">
+                        <p id="pDate">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            <span class="date">
+                                @{ var date = String.Format("{0:f}", item.CREATED_DATE);
+                                    <span class="glyphicon glyphicon-calendar"></span>   @date
+                                }
+                            </span>
+                        </p>
+                    </div>
                     <div class="row" id="postBody">
                         @Html.DisplayFor(modelItem => item.CONTENT)
+                      
                     </div>
                 </div>
             </div>
@@ -112,7 +123,7 @@
                         <textarea id="txtAreaComment_@(item.ID)" class="form-control txtAreaComment" rows="2" placeholder="Comment"></textarea>
                     </div>
                     <div class="col-md-2" id="btnSaveComment">
-                    <button type="button" class="btn btn-default" id="button_@(item.ID)" value="@(item.ID)" onclick="AddComment(@(item.ID),@Session["User"],this)">Comments</button>
+                    <button type="button" class="btn btn-default" id="button_@(item.ID)" value="@(item.ID)" onclick="AddComment(@(item.ID),@Session["User"],this)">Comment</button>
                         </div>
                 </div>
 
@@ -120,7 +131,27 @@
 {
                 <div class="row" id="commentList">
                       <div class="commentPicDiv col-md-2">
-                                <img src="~/Content/Images/MaleDefaultImage.jpg" id="commentPic" class="img-responsive" />
+                          @{ if (comment.PB_USER.PROFILE_PIC == null)
+                              {
+                                  if (comment.PB_USER.GENDER == "M")
+                                  {
+                                      <img src="~/Content/Images/MaleDefaultImage.jpg" class="img-responsive img-rounded" id="commentPic" />
+                                  }
+                                  else if (comment.PB_USER.GENDER == "F")
+                                  {
+                                      <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive img-rounded" id="commentPic" />
+                                  }
+                                  else
+                                  {
+                                      <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive img-rounded" id="commentPic" />
+                                  }
+                              }
+                              else
+                              {
+                                  <img src="data:image;base64,@System.Convert.ToBase64String(comment.PB_USER.PROFILE_PIC)" class="img-responsive img-rounded" id="commentPic" />
+                              }
+                          }
+                                @*<img src="~/Content/Images/MaleDefaultImage.jpg" id="commentPic" class="img-responsive" />*@
                             </div>
                             <div class="col-md-9">
                                 <div class="row" id="nameComment">
@@ -139,4 +170,4 @@
 
     </div>
                                 }
-                            }
+                         
