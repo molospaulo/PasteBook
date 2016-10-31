@@ -54,13 +54,11 @@
     <Compile Include="Class1.cs" />
     <Compile Include="manager\ConversionManager.cs" />
     <Compile Include="manager\HashGenerator.cs" />
-    <Compile Include="manager\ImageManager.cs" />
     <Compile Include="manager\PasswordManager.cs" />
     <Compile Include="manager\SaltGenerator.cs" />
     <Compile Include="PasteBookLogic\Comment.cs" />
     <Compile Include="PasteBookLogic\Friend.cs" />
     <Compile Include="PasteBookLogic\Like.cs" />
-    <Compile Include="PasteBookLogic\NewsFeedViewModel.cs" />
     <Compile Include="PasteBookLogic\Notification.cs" />
     <Compile Include="PasteBookLogic\Post.cs" />
     <Compile Include="PasteBookLogic\User.cs" />

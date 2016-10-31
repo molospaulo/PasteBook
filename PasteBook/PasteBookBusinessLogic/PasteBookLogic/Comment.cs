@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 namespace PasteBookBusinessLogic { 
     public class Comment
     {
-    GenericDataAccess<PB_COMMENTS> genericDataAccess = new GenericDataAccess<PB_COMMENTS>();
+        CommentRepository commentRepo = new CommentRepository();
         public bool AddComment(PB_COMMENTS comment)
         {
-            var result = genericDataAccess.AddRow(comment);
+            var result = commentRepo.AddRow(comment);
             if (result)
             {
-                Notification notif = new Notification();
-                var newComment = genericDataAccess.GetOneRecord(x => x.ID == comment.ID, x => x.PB_USER,x=>x.PB_POSTS);
+                NotificationRepository notifRepo = new NotificationRepository();
+                var newComment = commentRepo.GetOneComment(x => x.ID == comment.ID);
                 if (comment.POSTER_ID != newComment.PB_POSTS.POSTER_ID)
                 {
-                    var notification = notif.AddNotification(new PB_NOTIFICATION
+                    var notification = notifRepo.AddRow(new PB_NOTIFICATION
                     {
                         RECEIVER_ID = newComment.PB_POSTS.POSTER_ID,
                         NOTIF_TYPE = "C",

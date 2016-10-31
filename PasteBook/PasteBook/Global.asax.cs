@@ -17,5 +17,28 @@ namespace PasteBook
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            var ex = Server.GetLastError() as HttpException;
+
+            if (ex != null)
+            {
+                int errorCode = ex.GetHttpCode();
+
+                if (errorCode == 404)
+                {
+                    Response.Redirect("~/Error/Error404");
+                }
+                else
+                {
+                    //Response.Redirect("~/Error/Error500");
+                }
+            }
+
+            else
+            {
+                //Response.Redirect("~/Error/Error500");
+            }
+        }
     }
 }

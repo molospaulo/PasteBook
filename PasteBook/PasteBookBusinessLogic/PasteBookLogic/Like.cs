@@ -12,27 +12,28 @@ namespace PasteBookBusinessLogic
     {
         public bool AddOrDeleteLike(int ID, int postID, out string status)
         {
-            var genericDataAccess = new GenericDataAccess<PB_LIKES>();
-            if ( genericDataAccess.CheckIfExist(x => x.POST_ID == postID && x.LIKED_BY == ID)) { 
+            LikeRepository likeRepo = new LikeRepository();
+            if ( likeRepo.CheckIfExist(x => x.POST_ID == postID && x.LIKED_BY == ID)) { 
                 status = "deletelike";
-                return genericDataAccess.RemoveRow(x => x.POST_ID == postID && x.LIKED_BY == ID);
+                var like = likeRepo.GetOneLike(x => (x.POST_ID == postID && x.LIKED_BY == ID));
+                return likeRepo.RemoveRow(like);
             }
             else
             {
                 status = "addlike";
-                    var result = genericDataAccess.AddRow(new PB_LIKES
+                    var result = likeRepo.AddRow(new PB_LIKES
                     {
                         POST_ID = postID,
                         LIKED_BY = ID,
                     });
                 if (result)
                 {
-                    var like = genericDataAccess.GetOneRecord(x => (x.POST_ID == postID && x.LIKED_BY == ID),x => x.PB_POSTS,x=>x.PB_USER);
-                    if (ID != like.LIKED_BY)
+                    var like = likeRepo.GetOneLike(x => (x.POST_ID == postID && x.LIKED_BY == ID));
+                    if (like.PB_POSTS.PB_USER.ID!= like.LIKED_BY)
                     {
-                        Notification notif = new Notification();
+                        NotificationRepository notif = new NotificationRepository();
 
-                        notif.AddNotification(new PB_NOTIFICATION
+                        notif.AddRow(new PB_NOTIFICATION
                         {
                             RECEIVER_ID = like.PB_POSTS.PB_USER.ID,
                             NOTIF_TYPE = "L",

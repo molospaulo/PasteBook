@@ -1,0 +1,40 @@
+﻿<style>
+#mainError {
+    font-size: 150px;
+    font-weight: 600;
+}
+
+#secondaryError {
+    font-size: 40px;
+}
+
+#search {
+    color: #f00;
+    font-size: 400px;
+}
+
+#warning {
+    font-size: 400px;
+    color: #FFA500;
+}
+
+.navbar{
+    display:none;
+}
+</style>
+<div class="container">
+    <div class="row jumbotron">
+        <div class="col-md-6">
+            <p id="mainError">Oops! </p>
+            <p id="secondaryError">
+                We can't seem to find the<br />
+                page you're looking for.
+            </p>
+            <p>Error Code: 404</p>
+            <p><a href='@Url.Action("Index","PasteBook")'>Go to home page</a></p>
+        </div>
+        <div class="col-md-6">
+            <p id="search"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span></p>
+        </div>
+    </div>
+</div>

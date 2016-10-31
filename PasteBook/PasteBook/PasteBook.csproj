@@ -128,15 +128,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FriendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PasteBookController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Manager\ImageManager.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
-    <Compile Include="Models\NewsFeedViewModel.cs" />
-    <Compile Include="Models\UserDetailsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +149,7 @@
     <Content Include="Content\HomePage.css" />
     <Content Include="Content\Images\femaleDefaultImage.jpg" />
     <Content Include="Content\Images\MaleDefaultImage.jpg" />
+    <Content Include="Content\Images\pasteBooklogo.jpg" />
     <Content Include="Content\LoginSignUp.css" />
     <Content Include="Content\Timeline.css" />
     <Content Include="favicon.ico" />
@@ -154,6 +158,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\PasteBook.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -185,27 +190,29 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\PasteBook\Index.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Home\PartialViewNewsFeed.cshtml" />
-    <Content Include="Views\Home\UserProfile.cshtml" />
     <Content Include="Views\Home\PartialViewAddPost.cshtml" />
     <Content Include="Views\Home\Timeline.cshtml" />
     <Content Include="Views\Home\Friends.cshtml" />
     <Content Include="Views\Home\PartialViewFriendRequest.cshtml" />
     <Content Include="Views\Home\PartialViewNotification.cshtml" />
     <Content Include="Views\Home\PartialViewProfilePicture.cshtml" />
-    <Content Include="Views\Home\EditProfile.cshtml" />
-    <Content Include="Views\Home\PartialViewFriendRequestNotif.cshtml" />
+    <Content Include="Views\Profile\EditProfile.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
-    <Content Include="Views\Home\Posts.cshtml" />
-    <Content Include="Views\Home\EditPassword.cshtml" />
-    <Content Include="Views\Home\EditEmail.cshtml" />
+    <Content Include="Views\Post\Posts.cshtml" />
+    <Content Include="Views\Profile\EditPassword.cshtml" />
+    <Content Include="Views\Profile\EditEmail.cshtml" />
     <Content Include="Views\Shared\_LayoutSignUpLogin.cshtml" />
-    <Content Include="Views\Home\Notification.cshtml" />
+    <Content Include="Views\Notification\Notification.cshtml" />
+    <Content Include="Views\Error\Error404.cshtml" />
+    <Content Include="Views\Error\Error500.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Friends\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -219,6 +226,10 @@
     <ProjectReference Include="..\PasteBookBusinessLogic\PasteBookBusinessLogic.csproj">
       <Project>{6326991c-651f-4478-a45e-f04928b006a7}</Project>
       <Name>PasteBookBusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PasteBookDataAccess\PasteBookDataAccess.csproj">
+      <Project>{51924D38-E736-45C9-A90A-E7FD9BA80502}</Project>
+      <Name>PasteBookDataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\PasteBookModel\PasteBookEF.csproj">
       <Project>{3824a428-073f-4569-ae06-7e947de91373}</Project>

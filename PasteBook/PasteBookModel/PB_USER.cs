@@ -33,6 +33,7 @@ namespace PasteBookModel
         [Display(Name = "User name")]
         [Required(ErrorMessage = "User name is required")]
         [StringLength(50, ErrorMessage = "User name must contain maximum of 50 characters")]
+        [RegularExpression("^((\\s*([_.]?)\\s*[a-zA-Z0-9]+)+([_.]?)\\s*)$", ErrorMessage = "First name must contain only alphanumeric and not repeating symbols (-.') ")]
         public string USER_NAME { get; set; }
 
         [Display(Name = "Password")]
@@ -44,11 +45,13 @@ namespace PasteBookModel
         [Display(Name = "First name")]
         [Required(ErrorMessage = "First name is required")]
         [StringLength(50, ErrorMessage = "First name must contain maximum of 50 characters")]
+        [RegularExpression("^((\\s*[ '.-]?\\s*[a-zA-Z\\d]+)+[ '.-]?\\s*)$",ErrorMessage ="First name must contain only alphanumeric and not repeating symbols (-.') ")]
         public string FIRST_NAME { get; set; }
 
         [Display(Name = "Last name")]
         [Required(ErrorMessage = "Last name is required")]
         [StringLength(50, ErrorMessage = "Last name must contain maximum of 50 characters")]
+        [RegularExpression("^((\\s*[ '.-]?\\s*[a-zA-Z\\d]+)+[ '.-]?\\s*)$", ErrorMessage = "First name must contain only alphanumeric and not repeating symbols (-.') ")]
         public string LAST_NAME { get; set; }
 
         [Display(Name = "Birthdate")]
@@ -62,7 +65,8 @@ namespace PasteBookModel
 
 
         [Display(Name = "Mobile number")]
-        [DataType(DataType.PhoneNumber, ErrorMessage = "Mobile number is not valid")Phone]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Mobile number is not valid")]
+        [Phone]
         public string MOBILE_NO { get; set; }
 
         [Display(Name = "Gender")]

@@ -19,14 +19,9 @@ namespace PasteBookBusinessLogic
         public bool IsPasswordMatch(string password, string salt, string hash)
         {
             string newPassword = password + salt;
-            return hash == hashGenerator.GetPasswordHash(newPassword);
-        }
-
-
-
-
-
-        
+            var hashg = hashGenerator.GetPasswordHash(newPassword);
+            return hash == hashg;
+        }       
     }
 
 

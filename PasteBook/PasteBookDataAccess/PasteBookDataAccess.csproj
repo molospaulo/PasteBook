@@ -51,15 +51,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Entities\Country.cs" />
-    <Compile Include="Entities\Post.cs" />
-    <Compile Include="Entities\PB_Post.cs" />
-    <Compile Include="Entities\UserCredentials.cs" />
-    <Compile Include="Entities\UserDetails.cs" />
-    <Compile Include="Entities\UserPartialDetails.cs" />
-    <Compile Include="Entities\UserProfileDetails.cs" />
-    <Compile Include="Manager\GenericDataAccess.cs" />
-    <Compile Include="Manager\PostDataAccess.cs" />
+    <Compile Include="Manager\CommentRepository.cs" />
+    <Compile Include="Manager\CountryRepository.cs" />
+    <Compile Include="Manager\FriendRepository.cs" />
+    <Compile Include="Manager\Repository.cs" />
+    <Compile Include="Manager\LikeRepository.cs" />
+    <Compile Include="Manager\NotificationRepository.cs" />
+    <Compile Include="Manager\PostRepository.cs" />
+    <Compile Include="Manager\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
