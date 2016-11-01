@@ -1,5 +1,6 @@
 ﻿@model PasteBookModel.PB_USER
 <link rel="stylesheet" type="text/css" href="~/Content/HomePage.css">
+
 <div class="container">
     <div class="row">
         <div class="col-md-3 editPills">
@@ -13,21 +14,20 @@
             <div id="changePassTab">
                 @using (Html.BeginForm("EditEmail", "Profile", FormMethod.Post))
                 {
-                    <h3>Credential Details</h3>
-                    <hr />
-                        <div class="container" id="changePasswordDiv">
+
+                        <div class="container editTab" id="changePasswordDiv">
                             <div class="row">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-6">
                                     <div class="row">
                                         <label for="EmailAddress" class="control-label">Email Address</label>
-                                        @Html.EditorFor(model => model.EMAIL_ADDRESS, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email address", @id = "txtEmailAddressEdit" } })
+                                        @Html.EditorFor(model => model.EMAIL_ADDRESS, new { htmlAttributes = new { @class = "form-control editForms", @id = "txtEmailAddressEdit" } })
                                         @Html.ValidationMessageFor(model => model.EMAIL_ADDRESS, "", new { @class = "text-danger" ,id= "errorMessEmail" })
                                   
                                     </div>
                                     <div class="form-group row">
                                         <label for="Password" class="control-label">Password</label>
-                                        <input type="password" class="form-control" id="txtOldPassword" placeholder="Password" name="Password" />
+                                        <input type="password" class="form-control editForms" id="txtOldPassword" name="Password" />
                                         @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
 
                                     </div>

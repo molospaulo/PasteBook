@@ -15,7 +15,9 @@
     }
     else if (ViewBag.isFriend == "accept")
     {
-        <button type="button" class="btn btn-info timelineFriendBtn" id="btnfriendRequest" onclick="AcceptFriend(@Session["ID"],@(id))"><span class="glyphicon glyphicon-plus-sign"></span> Accept Friend Request</button>
-        <button type="button" class="btn btn-danger timelineFriendBtn" id="btnfriendRequest" onclick="RejectFriend(@Session["ID"],@(id))"><span class="glyphicon glyphicon-minus-sign"></span> Reject Friend Request</button>
+        <div class="container" id="btnAcceptAndReject">
+            <button type="button" class="btn btn-info " id="btnfriendRequest" onclick="AcceptFriend(@Session["ID"],@(id))"><span class="glyphicon glyphicon-plus-sign"></span> Accept Friend Request</button>
+            <button type="button" class="btn btn-danger " id="btnfriendRequest" onclick="RejectFriend(@Session["ID"],@(id))"><span class="glyphicon glyphicon-minus-sign"></span> Reject Friend Request</button>
+        </div>
     }
 }

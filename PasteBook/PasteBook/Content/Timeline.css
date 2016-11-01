@@ -19,14 +19,10 @@
  
 }
 #profilePicProfile{
-
 }
 #userFullNameProfile {
-    margin-left: 65px;
+text-align:center;
     font-size: 20px;
-}
-#btnAddFriend{
-
 }
 .timelineFriendBtn{
     float:right;
@@ -51,9 +47,6 @@
     background-color:#3b5998;
     color:#fff;
 }
-#txtAreaAboutMe{
-  
-}
 #modalTitle{
     font-size:20px;
 }
@@ -71,8 +64,6 @@
 }
 #myFile{
     margin-left: 140px;
-     background-color:#3b5998;
-    color:#fff;
 
 }
 #imageContainer{
@@ -82,4 +73,20 @@
 #imagePreview{
     height: 150px;
     width: 150px;
+}
+.center{
+    text-align:center;
+}
+#profilePicTimeline{
+    height: 200px;
+    width: 200px;
+    margin-top: 20px;
+
+}
+#btnAcceptAndReject{
+    width: 500px;
+    float: right;
+    position: relative;
+    top: 220px;
+    left: 100px;
 }

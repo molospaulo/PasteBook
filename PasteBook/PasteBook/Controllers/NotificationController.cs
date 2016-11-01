@@ -1,4 +1,5 @@
-﻿using PasteBookBusinessLogic;
+﻿using PasteBook.Manager;
+using PasteBookBusinessLogic;
 using PasteBookDataAccess;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace PasteBook.Controllers
 
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
+        [CustomAuthorization]
         public ActionResult Notification()
         {
             int userID;

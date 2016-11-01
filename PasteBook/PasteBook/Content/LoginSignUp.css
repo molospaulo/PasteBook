@@ -6,7 +6,13 @@
     padding-top:40px;
       height:300px;
 }
-
+#btnCreate{
+ margin-top:20px;
+    background-color:#3b5998;
+    color:#fff;
+    height:45px;
+    padding-top:12px;
+}
 #loginPanel{
     border-radius:0px;
     width:500px;
@@ -48,13 +54,18 @@ label{
 .loginCol{
     padding :0px;
     margin :0px;
+     
+}
+.center{
+       text-align:center;
 }
 .loginRow{
     padding:0px;
     margin :0px;
+
 }
 #loginContainer{
-   margin-top:50px;
+   margin-top:20px;
 
 }
 .signUpforms{
@@ -86,8 +97,6 @@ label{
     background-color:#3b5998;
     color:#fff;
     height:45px;
-    width:80px;
-      margin-left:50px;
 }
 #logoHeight{
     height:80px;
@@ -98,11 +107,9 @@ label{
     color:#fff;
     height:45px;
     width:80px;
-      margin-left:180px;
+
 }
-#dateBirthdate{
-    /*width:200px;*/
-}
+
 .form-group{
     margin-bottom: 5px;
     padding-left:40px;
@@ -120,7 +127,11 @@ label{
     border-color: #3b5998;
 }
 #signUpTitle{
-    font-size:40px;
+      color:#fff;
+    font-size:20px;
+    font-weight:bold;
+    margin-left:30px;
+    margin-top:10px;
 }
 #signUpTitleDiv{
     padding :10px;
@@ -136,4 +147,8 @@ label{
 }
 #userNameCheckerSuccess{
     color: green;
+}
+#orLogin{
+    font-weight:bold;
+    
 }

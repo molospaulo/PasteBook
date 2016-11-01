@@ -1,4 +1,4 @@
-﻿
+﻿$('#btnUploadImage').prop('disabled', true);
 function AddFriend(userID, friendID) {
 var data = {
         userID: userID,
@@ -57,16 +57,27 @@ function RejectFriend(userID, friendID) {
 
 }
 $('#myFile').bind('change', function () {
-    alert(this.files[0].size);
-    var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
-    if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
-        alert("Only formats are allowed : " + fileExtension.join(', '));
-    } else {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#imagePreview').attr('src', e.target.result);
+    if (this.files[0].size <= 2097152) {
+        var fileExtension = ['jpeg', 'jpg', 'png'];
+        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+            $('#errorUploadImage').text('File extension is invalid, it only accept jpeg,jpg and png extensions')
+            $('#btnUploadImage').prop('disabled', true);
+        } else {
+            $('#btnUploadImage').prop('disabled', false);
+            $('#errorUploadImage').text('')
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL($(this)[0].files[0]);
         }
-        reader.readAsDataURL($(this)[0].files[0]);
+    } else {
+        $('#errorUploadImage').text('File size is too large, maximum size is 2 Mb')
     }
 
+});
+$('#btnAddProfilePic').click(function () {
+    $('#modalUploadPic').modal('show');
+    $('#myFile').val("");
+    $('#imagePreview').attr('src', '#');
 });

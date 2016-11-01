@@ -79,13 +79,13 @@
                                         {
 
                                             <p>
-                                                <span class="glyphicon glyphicon-thumbs-up" id="iconLiked"></span>  @item.PB_USER1.FIRST_NAME @item.PB_USER1.LAST_NAME <a href="@Url.Action("Posts","Home", new { id = item.PB_POSTS.ID })">likes your post</a>
+                                                <span class="glyphicon glyphicon-thumbs-up" id="iconLiked"></span>  @item.PB_USER1.FIRST_NAME @item.PB_USER1.LAST_NAME <a href="@Url.Action("Posts","Post", new { id = item.PB_POSTS.ID })">likes your post</a>
                                             </p>
                                         }
                                         else if (item.NOTIF_TYPE == "C")
                                         {
                                             <p>
-                                                <span class="glyphicon glyphicon-comment" id="iconCommented"> </span>   @item.PB_USER1.FIRST_NAME @item.PB_USER1.LAST_NAME <a href="@Url.Action("Posts","Home", new { id = item.PB_POSTS.ID })">commented on your post</a>
+                                                <span class="glyphicon glyphicon-comment" id="iconCommented"> </span>   @item.PB_USER1.FIRST_NAME @item.PB_USER1.LAST_NAME <a href="@Url.Action("Posts","Post", new { id = item.PB_POSTS.ID })">commented on your post</a>
                                             </p>
                                         }
                                         else

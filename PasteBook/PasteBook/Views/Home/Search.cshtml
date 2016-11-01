@@ -17,7 +17,26 @@
                 <div class="container">
                     <div class="col-md-6">
                         <div class="divProfilePic">
-                            <img src="~/Content/Images/MaleDefaultImage.jpg" id="profilePicFriends" class="img-responsive" />
+                            @{ if (item.PROFILE_PIC == null)
+                                {
+                                    if (item.GENDER == "M")
+                                    {
+                                        <img src="~/Content/Images/MaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicFriends" />
+                                    }
+                                    else if (item.GENDER == "F")
+                                    {
+                                        <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicFriends" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicFriends" />
+                                    }
+                                }
+                                else
+                                {
+                                    <img src="data:image;base64,@System.Convert.ToBase64String(item.PROFILE_PIC)" id="profilePicFriends" class="img-responsive img-rounded" />
+                                }
+                            }
                         </div>
                     </div>
                     <div class="col-md-6" id="divFriendName">
@@ -36,7 +55,7 @@
        
     }
 
-                </div>
+ </div>
 <script>
     var UrlGetNotificationCount = '@Url.Action("GetNotifCount", "Notification")'
     var UrlNotificationView = '@Url.Action("NotificationView", "Home")'

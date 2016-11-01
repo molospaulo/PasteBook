@@ -19,7 +19,6 @@ a.editTabs:link{
 }
 #settingsDropdown{
         width: 50px;
-        margin-top: 50px;
         height: 100px;
 }
 .settingIcon{
@@ -36,11 +35,12 @@ a.editTabs:link{
 #btnDropdownLike{
     float:right;
     background-color:#3b5998;
-    bor
 }
 #userFullName{
 font-size: 20px;
-margin:20px 0px 0px 45px;
+margin-top: 20px;
+text-align:center;
+word-wrap:break-word;
 
 }
 #likeDiv{
@@ -50,6 +50,7 @@ margin:20px 0px 0px 45px;
     height:200px;
     width: 200px;
     margin-top:20px;
+    margin-left:25px;
 }
 #commentPic{
     height: 50px;
@@ -70,8 +71,25 @@ margin:20px 0px 0px 45px;
     padding:0px;
   
 }
+a {
+    color: #000;
+}
+a:link{
+    text-decoration : none;
+}
+a:hover{
+      color:#3b5998;
+}
+.commentBtn{
+
+    height:40px;
+    width:100px;
+    background-color:#3b5998;
+    color:#fff;
+    margin-left:9px;
+   
+}
 #btnAddPost{
-    border-radius: 0px;
     float: right;
     margin-right: 0px;
     margin-top: 5px;
@@ -114,9 +132,7 @@ margin:20px 0px 0px 45px;
 .icon{
     height: 60px;
 }
-#contents{
-   
-    /*width:100%;*/
+.postContents{
     border-style: solid;
     border-width:1px;
     border-radius:4px;
@@ -126,6 +142,9 @@ margin:20px 0px 0px 45px;
     box-sizing:border-box;
     margin-bottom:10px;
    
+}
+#postContent{
+    margin-top:30px;
 }
 body{
     background-color:#E8E9E9;
@@ -146,9 +165,7 @@ body{
     border-radius:0px;
     margin-left:1px;
 }
-#commentBtn{
-    border-radius:0px;
-}
+
 #postHeader{
     padding: 10px;
     font-weight:bold;
@@ -234,4 +251,22 @@ body{
     font-size:20px;
     margin-top:30px;
     margin-left:100px;
+}
+#postContent{
+    margin-top: 20px;
+}
+.editForms{
+    height: 50px;
+}
+.editTab{
+    margin-top: 50px;
+}
+#userNameInLayout{
+    text-overflow:ellipsis;
+}
+#btnSettings {
+    margin-top: 15px;
+}
+#settingsTitle{
+    width: 100px;
 }

@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2"></div>
-        <div id="contents" class="col-md-8">
+        <div id="postContent" class="col-md-8 postContents">
                 <div class="row">
                     <div class="col-md-2">
 
@@ -30,10 +30,10 @@
                     </div>
                     <div class="col-md-10">
                         <div class="row" id="postHeader">
-                            @Html.DisplayFor(modelItem => Model.PB_USER.FIRST_NAME) &nbsp; @Html.DisplayFor(modelItem => Model.PB_USER.LAST_NAME)
+                               <a href="@Url.Action("Timeline","Home", new { username = Model.PB_USER.USER_NAME })">@Html.DisplayFor(modelItem => Model.PB_USER.FIRST_NAME) &nbsp; @Html.DisplayFor(modelItem => Model.PB_USER.LAST_NAME)</a>
                             @{if (Model.PB_USER.ID != Model.PB_USER1.ID)
                                 {
-                                    <span>>></span> @Html.DisplayFor(modelItem => Model.PB_USER1.FIRST_NAME) @Html.DisplayFor(modelItem => Model.PB_USER1.LAST_NAME)
+                                    <span>>></span><a href="@Url.Action("Timeline","Home", new { username = Model.PB_USER1.USER_NAME })">@Html.DisplayFor(modelItem => Model.PB_USER1.FIRST_NAME) @Html.DisplayFor(modelItem => Model.PB_USER1.LAST_NAME)</a>
                                 }
                             }
                         </div>

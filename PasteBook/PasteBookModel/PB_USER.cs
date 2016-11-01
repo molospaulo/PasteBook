@@ -66,7 +66,7 @@ namespace PasteBookModel
 
         [Display(Name = "Mobile number")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "Mobile number is not valid")]
-        [Phone]
+        [Phone(ErrorMessage = "Mobile number is not valid")]
         public string MOBILE_NO { get; set; }
 
         [Display(Name = "Gender")]

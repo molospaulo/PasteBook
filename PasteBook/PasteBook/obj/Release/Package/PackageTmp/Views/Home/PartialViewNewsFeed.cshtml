@@ -3,7 +3,7 @@
 @foreach (var item in Model)
 {
     <div class="row">
-        <div id="contents">
+        <div class="postContents">
             <div class="row">
                 <div class="col-md-2">
 
@@ -30,10 +30,10 @@
                 </div>
                 <div class="col-md-10">
                     <div class="row" id="postHeader">
-                        @Html.DisplayFor(modelItem => item.PB_USER.FIRST_NAME) @Html.DisplayFor(modelItem => item.PB_USER.LAST_NAME) 
+                        <a href="@Url.Action("Timeline","Home", new { username = item.PB_USER.USER_NAME })">@Html.DisplayFor(modelItem => item.PB_USER.FIRST_NAME) @Html.DisplayFor(modelItem => item.PB_USER.LAST_NAME) </a>
                         @{if (item.PB_USER.ID != item.PB_USER1.ID)
                             {
-                               <span>>></span> @Html.DisplayFor(modelItem => item.PB_USER1.FIRST_NAME) @Html.DisplayFor(modelItem => item.PB_USER1.LAST_NAME)
+                               <span>>></span> <a href="@Url.Action("Timeline","Home", new { username = item.PB_USER1.USER_NAME })">@Html.DisplayFor(modelItem => item.PB_USER1.FIRST_NAME) @Html.DisplayFor(modelItem => item.PB_USER1.LAST_NAME)</a>
                             }
                         }
                     </div>
@@ -78,11 +78,10 @@
                         else
                         {
                             <button type="button" class="btn btn-default" id="unLikeBtn" onclick="AddOrDeleteLike(@(item.ID))">
-                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Like
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Liked
                             </button>
+                            }
                         }
-                    }
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Comment</button>
                 </div>
                 <div class="col-md-5"></div>
               @{ var count = item.PB_LIKES.Count;
@@ -152,8 +151,8 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="row" id="nameComment">
-                                  @Html.DisplayFor(modelItem => comment.PB_USER.FIRST_NAME) &nbsp; @Html.DisplayFor(modelItem => comment.PB_USER.LAST_NAME)
-                                </div>
+                                    <a href="@Url.Action("Timeline","Home", new { username = comment.PB_USER.USER_NAME })"> @Html.DisplayFor(modelItem => comment.PB_USER.FIRST_NAME) &nbsp; @Html.DisplayFor(modelItem => comment.PB_USER.LAST_NAME)</a>
+</div>
                                 <div class="row" id ="commentContent">
                                     @Html.DisplayFor(modelItem => comment.CONTENT)
                                 </div>
@@ -165,7 +164,7 @@
                         <textarea id="txtAreaComment_@(item.ID)" class="form-control txtAreaComment" rows="2" placeholder="Comment"></textarea>
                     </div>
                     <div class="col-md-2" id="btnSaveComment">
-                        <button type="button" class="btn btn-default" id="button_@(item.ID)" value="@(item.ID)" onclick="AddComment(@(item.ID),@Session["ID"],this)">Comment</button>
+                        <button type="button" class="btn btn-default commentBtn" id="button_@(item.ID)" value="@(item.ID)" onclick="AddComment(@(item.ID),@Session["ID"],this)">Comment</button>
                     </div>
                 </div>
             </div>

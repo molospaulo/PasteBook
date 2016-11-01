@@ -138,7 +138,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Manager\CustomAuthorization.cs" />
     <Compile Include="Manager\ImageManager.cs" />
+    <Compile Include="Manager\FilterManager.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

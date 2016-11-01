@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using PasteBookModel;
 using PasteBookDataAccess;
+using PasteBook.Manager;
 
 namespace PasteBook.Controllers
 {
@@ -26,6 +27,7 @@ namespace PasteBook.Controllers
 
         [HttpGet]
         [Route("PasteBook/Home")]
+        [CustomAuthorization]
         public ActionResult Home()
         {
             if (Session["User"] != null)
@@ -39,6 +41,7 @@ namespace PasteBook.Controllers
             }
         }
         [Route("{username}")]
+        [CustomAuthorization]
         public ActionResult Timeline(string username)
         {
             if (Session["User"] != null)
@@ -80,6 +83,7 @@ namespace PasteBook.Controllers
                 return RedirectToAction("Index", "PasteBook");
             }
         }
+        [CustomAuthorization]
         public ActionResult Search(string keyword)
         {
             var result = user.SearchListOfUsers(keyword);
@@ -87,6 +91,7 @@ namespace PasteBook.Controllers
         }
 
         [Route("Friends")]
+        [CustomAuthorization]
         public ActionResult Friends()
         {
             if (Session["User"] != null)

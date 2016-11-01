@@ -51,13 +51,18 @@
                             </li>
 
                             <li> @Html.ActionLink("Home", "Home", "Home", null, new { @class = "homeNavbarRight" })</li>
-                            <li> @Html.ActionLink("Timeline", "Timeline", "Home", new { username = Session["User"] }, new { @class = "homeNavbarRight" })</li>
+                        @{ 
+                            var name = Session["FirstName"].ToString()   +" "+ Session["LastName"].ToString();
+                        }
+                            <li> <a href="@Url.Action("Timeline","Home",new { username = Session["User"]})" class = "homeNavbarRight" id="userNameInLayout">Timeline</a></li>
                             <li id="settingsContainer">
                                 <div class="dropdown">
-                                    <span class="dropdown-toggle homeNavbarRight" type="button" id="menu1" data-toggle="dropdown">
-                                        <span id="notifTitle">Options</span>
+                                    <button class="dropdown-toggle btn btn-info container" type="button" id="btnSettings" data-toggle="dropdown">
+                                        <div id="settingsTitle">
+                                            @name
                                         <span class="caret"></span>
-                                    </span>
+                                    </div>
+                                    </button>
 
                                     <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="menu1" id="settingsDropdown">
                                         <li><a href="@Url.Action("EditProfile", "Profile")">Settings<span class="glyphicon glyphicon-wrench settingIcon" ></span></a></li> 

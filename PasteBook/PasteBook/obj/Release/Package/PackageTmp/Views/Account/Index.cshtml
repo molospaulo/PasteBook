@@ -22,12 +22,13 @@
                         <div class="input-group"> @Html.EditorFor(modelItem => Model.EMAIL_ADDRESS, new { htmlAttributes = new { @class = "loginFields form-control", @id = "txtloginEmailAddress", @placeholder = "E-mail Address" } })<span class="glyphicon glyphicon-user" aria-hidden="true" id="emailIcon"></span></div>
                         @Html.ValidationMessageFor(modelItem => Model.EMAIL_ADDRESS, "", new { @class = "text-danger", @id = "errorMessageLogin" })
                     </div>
+
                     <div class="row loginCol">
                         <div class="input-group"> @Html.EditorFor(modelItem => Model.PASSWORD, new { htmlAttributes = new { @class = "loginFields form-control", @id = "txtloginPassword", @placeholder = "Password", @type = "password" } })<span class="glyphicon glyphicon-lock" aria-hidden="true" id="passwordIcon"></span></div>
                        @Html.ValidationMessageFor(modelItem => Model.PASSWORD, "", new { @class = "text-danger", @id = "errorMessageLogin" })
                     </div>
-                    <div class="row loginCol">
-                        <div><input type="submit" value="Sign in" class="btn btn-default" id="btnLogin" /><a href="@Url.Action("SignUp","Account")">Sign Up</a></div>
+                        <div class="row loginCol center" >
+                        <div><input type="submit" value="Sign in" class="btn btn-default" id="btnLogin" /><a href="@Url.Action("SignUp","Account")" class="btn btn-default" id="btnCreate">Create an account</a></div>
                     </div>
                 </div>
             </div>

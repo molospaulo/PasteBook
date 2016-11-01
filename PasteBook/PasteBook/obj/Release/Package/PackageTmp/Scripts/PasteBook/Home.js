@@ -52,13 +52,13 @@ function AddOrDeleteLikePost(id) {
     })
 }
 function AddPost(profileID, userID) {
-
-    if ($("#txtAreaPost").val().trim() == "") {
+    var post = $("#txtAreaPost").val().trim();
+    if (post == "") {
         $("#txtAreaPost").css('border-color', 'red');
     } else {
         var data = {
             userId: userID,
-            post: $("#txtAreaPost").val(),
+            post: post,
             ProfileOwnerID: profileID,
         }
 
@@ -95,7 +95,7 @@ function AddPost(profileID, userID) {
                 type: 'GET',
                 success: function (data) {
                     RefreshNewsFeed();
-                    //RefreshTimeline();
+                    RefreshTimeline();
                 },
                 error: function (data) {
                 
@@ -128,31 +128,14 @@ function AddPost(profileID, userID) {
             $('#txtAreaComment_'.concat(button.value)).css('border-color', 'red');
         }
     }
-    function UploadImage() {
-        var filename = $('input[type=file]')[0].files[0].name;
-        var data = { image: filename}
-        $.ajax({
-            url: '/Home/AddPic',
-            data: data,
-            type: 'GET',
-            success: function (data) {
-                $("#imageContent").src("");
-            },
-            error: function (data) {
-            }
 
-
-
-        })
-    }
-
-    $("#btnUpload").click(function () {
-        UploadImage();
-    });
     
 
     function RefreshNewsFeed() {
         $("#newsFeed").load(UrlRefreshNewsFeed)
          
     }
- 
+    function RefreshTimeline() {
+        $("#timelineFeed").load(UrlRefreshTimeline)
+
+    }

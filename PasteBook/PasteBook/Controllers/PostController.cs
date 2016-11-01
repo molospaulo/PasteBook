@@ -1,4 +1,5 @@
-﻿using PasteBookBusinessLogic;
+﻿using PasteBook.Manager;
+using PasteBookBusinessLogic;
 using PasteBookDataAccess;
 using PasteBookModel;
 using System;
@@ -18,13 +19,15 @@ namespace PasteBook.Controllers
         PostRepository postRepo = new PostRepository();
         CommentRepository commentRepo = new CommentRepository();
         LikeRepository likeRepo = new LikeRepository();
+        FilterManager filter = new FilterManager();
         public ActionResult Index()
         {
             return View();
         }
         public JsonResult AddPost(int userId, string post, int ProfileOwnerID)
         {
-            var result = this.post.AddPost(userId, post, ProfileOwnerID);
+
+            var result = this.post.AddPost(userId, filter.trimOneString(post), ProfileOwnerID);
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult AddOrDeleteLike(int postID)
@@ -36,6 +39,7 @@ namespace PasteBook.Controllers
             return Json(new { result = result, status = status }, JsonRequestBehavior.AllowGet);
         }
         [Route("posts/{id}")]
+        [CustomAuthorization]
         public ActionResult Posts(int id)
         {
             var result = postRepo.GetPost(id);

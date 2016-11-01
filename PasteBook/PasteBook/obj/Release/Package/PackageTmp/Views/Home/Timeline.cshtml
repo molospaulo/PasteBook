@@ -11,20 +11,20 @@
                       {
                           if (Model.GENDER == "M")
                           {
-                              <img src="~/Content/Images/MaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePic" />
+                              <img src="~/Content/Images/MaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicTimeline" />
                           }
                           else if (Model.GENDER == "F")
                           {
-                              <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePic" />
+                              <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicTimeline" />
                           }
                           else
                           {
-                              <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePic" />
+                              <img src="~/Content/Images/femaleDefaultImage.jpg" class="img-responsive img-rounded" id="profilePicTimeline" />
                           }
                       }
                       else
                       {
-                          <img src="data:image;base64,@System.Convert.ToBase64String(Model.PROFILE_PIC)"  id="profilePic" class="img-responsive img-rounded" />
+                          <img src="data:image;base64,@System.Convert.ToBase64String(Model.PROFILE_PIC)"  id="profilePicTimeline" class="img-responsive img-rounded" />
                       }
                   }
               </div>
@@ -141,7 +141,7 @@
         </div>
         <div class="col-md-7">
             <div class="row" id="txtAreaProfilePost">
-                @{ if (ViewBag.friend != "notfriend") {
+                @{ if (ViewBag.friend != "notfriend" && ViewBag.friend != "request") {
                 @Html.Partial("PartialViewAddPost", Model)
                     }else
                     {
@@ -150,7 +150,7 @@
                     }
             </div>
             <div id="timelineFeed">
-            @{if (ViewBag.friend != "notfriend" || ViewBag.friend != "request")
+            @{if (ViewBag.friend != "notfriend" && ViewBag.friend != "request")
                 {
                     Html.RenderAction("TimelineFeed", "Home", new { id = Model.ID });
                 }
@@ -168,7 +168,7 @@
 <script>
     var UrlAddFriend = '@Url.Action("AddFriend", "Friend")'
     var UrlRefreshRequest = '@Url.Action("AddFriendView", "Home", new {id = Model.ID})'
-    var UrlRefreshTimeLine = '@Url.Action("TimelineFeed","Home", new { id = Model.ID })'
+    var UrlRefreshTimeline = '@Url.Action("TimelineFeed","Home", new { id = Model.ID })'
     var UrlAddLike = '@Url.Action("AddOrDeleteLike","Post")'
     var UrlAddPost = '@Url.Action("AddPost","Post")'
     var UrlAcceptFriend = '@Url.Action("AcceptFriend", "Friend")'
@@ -178,6 +178,7 @@
     var UrlRefreshNewsFeed = '@Url.Action("NewsFeed", "Home")'
     var UrlRejectFriend = '@Url.Action("RejectFriend", "Friend")'
     var UrlNotificationView = '@Url.Action("NotificationView", "Home")'
+    var UrlRefreshNewsFeed = '@Url.Action("NewsFeed", "Home")'
 </script>
 @section Scripts {
 

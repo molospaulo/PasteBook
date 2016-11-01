@@ -19,7 +19,7 @@ namespace PasteBook
                 defaults: new { controller = "Account", action = "Index", id = UrlParameter.Optional }
 
             );
-      
+
         }
     }
 }

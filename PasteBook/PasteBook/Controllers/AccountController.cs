@@ -13,6 +13,7 @@ namespace PasteBook.Controllers
     {
         SignUpLoginBL manager = new SignUpLoginBL();
         UserRepository userRepo = new UserRepository();
+        FilterManager filter = new FilterManager();
 
         // GET: PasteBook
         [HttpGet]
@@ -24,9 +25,26 @@ namespace PasteBook.Controllers
         [HttpPost]
         public ActionResult SignUp(PB_USER model)
         {
-            bool result = manager.SaveUser(model);
-            Session["User"] = model.USER_NAME;
-            Session["ID"] = model.ID;
+            if(userRepo.CheckIfExist(x => x.USER_NAME == model.USER_NAME))
+            {
+                ModelState.AddModelError("USER_NAME", "Username is already taken");
+            }
+            if(userRepo.CheckIfExist(x => x.EMAIL_ADDRESS == model.EMAIL_ADDRESS))
+            {
+                ModelState.AddModelError("EMAIL_ADDRESS", "Email address is already taken");
+            }
+            if (ModelState.IsValid)
+            {
+                bool result = manager.SaveUser(model);
+                Session["User"] = model.USER_NAME;
+                Session["ID"] = model.ID;
+                Session["FirstName"] = model.FIRST_NAME;
+                Session["LastName"] = model.LAST_NAME;
+            }else
+            {
+                ViewBag.Countries = new SelectList(manager.GetCountries(), "ID", "Country");
+                return View();
+            }
             ViewBag.Countries = new SelectList(manager.GetCountries(), "ID", "Country");
             return RedirectToAction("Home","Home");
         }
@@ -46,6 +64,8 @@ namespace PasteBook.Controllers
 
                     Session["User"] = entry.USER_NAME;
                     Session["ID"] = entry.ID;
+                    Session["FirstName"] = entry.FIRST_NAME;
+                    Session["LastName"] = entry.LAST_NAME;
                     return RedirectToAction("Home", "Home", null);
                 }
                 else

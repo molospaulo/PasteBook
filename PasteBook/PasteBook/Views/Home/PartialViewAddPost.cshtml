@@ -3,4 +3,5 @@
     <label for="txtAreaPost"></label>
     <textarea id="txtAreaPost" class="form-control" rows="5" placeholder="What is on you mind?"></textarea>
     <button type="button" class="btn btn-default" onclick="AddPost(@(Model.ID),@Session["ID"])" id="btnAddPost">Post</button>
+    <span id="errorMessagePost" class="text-danger"></span>
 </div>

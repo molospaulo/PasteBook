@@ -1,4 +1,5 @@
-﻿using PasteBookBusinessLogic;
+﻿using PasteBook.Manager;
+using PasteBookBusinessLogic;
 using PasteBookDataAccess;
 using PasteBookModel;
 using System;
@@ -16,6 +17,8 @@ namespace PasteBook.Controllers
         User user = new User();
         SignUpLoginBL manager = new SignUpLoginBL();
         PasswordManager pManager = new PasswordManager();
+        FilterManager filter = new FilterManager();
+   
 
 
         [HttpPost]
@@ -27,18 +30,24 @@ namespace PasteBook.Controllers
             if (mgr.IsImageValid(file))
             {
                 this.user.UpdateImage(result, username);
-            }// todo error message
+            }
             return RedirectToAction("Timeline", "Home", new { username = username });
         }
 
         public ActionResult AddAboutMe(string aboutMe)
         {
-            var username = Session["User"].ToString();
-            this.user.UpdateAboutMe(aboutMe, username);
+            string username = Session["User"].ToString();
+            string trimAboutMe = filter.trimOneString(aboutMe);
+            if (filter.checkAboutMe(trimAboutMe))
+            {
+                this.user.UpdateAboutMe(trimAboutMe, username);
+               
+            }
             return RedirectToAction("Timeline", "Home", new { username = username });
         }
 
         [HttpGet]
+        [CustomAuthorization]
         public ActionResult EditProfile()
         {
 
@@ -76,6 +85,7 @@ namespace PasteBook.Controllers
             return View(model);
         }
         [HttpGet]
+        [CustomAuthorization]
         public ActionResult EditPassword()
         {
 
@@ -107,6 +117,7 @@ namespace PasteBook.Controllers
             return View();
         }
         [HttpGet]
+        [CustomAuthorization]
         public ActionResult EditEmail()
         {
 
