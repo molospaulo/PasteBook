@@ -162,6 +162,7 @@
                 <div class="row" id="commentBody">
                     <div class="col-md-10" id="txtAreaComment">
                         <textarea id="txtAreaComment_@(item.ID)" class="form-control txtAreaComment" rows="2" placeholder="Comment"></textarea>
+                        <span id="errorMessageComment_@(item.ID)" class="text-danger"></span>
                     </div>
                     <div class="col-md-2" id="btnSaveComment">
                         <button type="button" class="btn btn-default commentBtn" id="button_@(item.ID)" value="@(item.ID)" onclick="AddComment(@(item.ID),@Session["ID"],this)">Comment</button>

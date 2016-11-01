@@ -81,3 +81,14 @@ $('#btnAddProfilePic').click(function () {
     $('#myFile').val("");
     $('#imagePreview').attr('src', '#');
 });
+$('#txtAreaAboutMe').keyup(function () {
+    var aboutMe = ($('#txtAreaAboutMe').val()).length
+    if (aboutMe > 2000) {
+        $("#errorMessageAboutMe").text("You cannot add about me more than 2000 characters text")
+        $("#btnSaveAboutMe").prop('disabled', true);
+    } else {
+        $("#btnSaveAboutMe").prop('disabled', false);
+        $("#errorMessageAboutMe").text("")
+    }
+   
+})

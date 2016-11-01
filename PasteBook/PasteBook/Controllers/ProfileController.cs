@@ -65,6 +65,8 @@ namespace PasteBook.Controllers
                 int.TryParse(Session["ID"].ToString(), out userID);
                 model.ID = userID;
                 this.user.UpdateProfileDetails(model);
+                Session["FirstName"] = model.FIRST_NAME;
+                Session["LastName"] = model.LAST_NAME;
 
             }
             else

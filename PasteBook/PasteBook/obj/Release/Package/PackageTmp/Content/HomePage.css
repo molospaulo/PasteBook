@@ -241,8 +241,11 @@ body{
 .btnSaveDetails{
     width: 100px;
     float:right;
-    height:50px;
+    height:50px;    
     border-radius:0px;
+    background-color:#3b5998;
+    color:#fff;
+    
 }
 #dateNotifBar {
     font-size: 12px;

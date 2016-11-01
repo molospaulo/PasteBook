@@ -29,7 +29,7 @@ function AddOrDeleteLike(id) {
             }
                 ,
             error: function (data) {
-                alert(data)
+       
             }
 
         })
@@ -48,7 +48,6 @@ function AddOrDeleteLikePost(id) {
         }
             ,
         error: function (data) {
-            alert(data)
         }
 
     })

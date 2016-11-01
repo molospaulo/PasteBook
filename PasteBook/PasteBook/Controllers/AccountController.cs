@@ -19,13 +19,21 @@ namespace PasteBook.Controllers
         [HttpGet]
         public ActionResult SignUp()
         {
+            List<SelectListItem> listOfGender = new List<SelectListItem>();
+            listOfGender.Add(new SelectListItem { Value = "F", Text = "Female" });
+            listOfGender.Add(new SelectListItem { Value = "M", Text = "Male" });
+
+            ViewBag.Gender = listOfGender;
             ViewBag.Countries =new SelectList(manager.GetCountries(), "ID" , "Country");
             return View();
         }
         [HttpPost]
         public ActionResult SignUp(PB_USER model)
         {
-            if(userRepo.CheckIfExist(x => x.USER_NAME == model.USER_NAME))
+            List<SelectListItem> listOfGender = new List<SelectListItem>();
+            listOfGender.Add(new SelectListItem { Value = "F", Text = "Female" });
+            listOfGender.Add(new SelectListItem { Value = "M", Text = "Male" });
+            if (userRepo.CheckIfExist(x => x.USER_NAME == model.USER_NAME))
             {
                 ModelState.AddModelError("USER_NAME", "Username is already taken");
             }
@@ -42,10 +50,13 @@ namespace PasteBook.Controllers
                 Session["LastName"] = model.LAST_NAME;
             }else
             {
+
                 ViewBag.Countries = new SelectList(manager.GetCountries(), "ID", "Country");
+                ViewBag.Gender = listOfGender;
                 return View();
             }
             ViewBag.Countries = new SelectList(manager.GetCountries(), "ID", "Country");
+            ViewBag.Gender = listOfGender;
             return RedirectToAction("Home","Home");
         }
         [HttpGet]

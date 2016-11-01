@@ -77,16 +77,9 @@
 
                         </div>
                         <div class="form-group col-md-6">
-
+                           
                             @Html.LabelFor(model => model.GENDER, htmlAttributes: new { @class = "control-label" })
-                            @Html.DropDownListFor(x => x.GENDER, new SelectList(
-                               new List<Object>{
-                                           new { value = "M" , text = "Male"  },
-                                           new { value = "F" , text = "Female" }
-                                      },
-                               "value",
-                               "text",
-                               2), "Select Gender", new { @id = "selectGender", @class = "form-control signUpforms" })
+                            @Html.DropDownListFor(model => model.GENDER, ViewBag.Gender as SelectList, "Select Gender", new { @class = "form-control signUpforms", @id = "selectGender" })
 
 
                         </div>

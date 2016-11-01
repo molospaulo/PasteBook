@@ -141,7 +141,6 @@
     <Compile Include="Manager\CustomAuthorization.cs" />
     <Compile Include="Manager\ImageManager.cs" />
     <Compile Include="Manager\FilterManager.cs" />
-    <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +213,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
     <Folder Include="Views\Friends\" />
   </ItemGroup>
   <ItemGroup>

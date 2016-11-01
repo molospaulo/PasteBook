@@ -28,13 +28,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/03/2014 20:33:56</publishTime>
     </File>
     <File Include="bin/PasteBook.dll">
-      <publishTime>11/01/2016 18:54:53</publishTime>
+      <publishTime>11/01/2016 23:32:07</publishTime>
     </File>
     <File Include="bin/PasteBookBusinessLogic.dll">
-      <publishTime>11/01/2016 18:19:28</publishTime>
+      <publishTime>11/01/2016 23:32:05</publishTime>
     </File>
     <File Include="bin/PasteBookDataAccess.dll">
-      <publishTime>11/01/2016 18:19:28</publishTime>
+      <publishTime>11/01/2016 23:32:04</publishTime>
     </File>
     <File Include="bin/PasteBookModel.dll">
       <publishTime>11/01/2016 18:19:27</publishTime>
@@ -109,7 +109,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/27/2016 19:10:10</publishTime>
     </File>
     <File Include="Content/HomePage.css">
-      <publishTime>11/01/2016 17:14:15</publishTime>
+      <publishTime>11/01/2016 21:42:19</publishTime>
     </File>
     <File Include="Content/Images/femaleDefaultImage.jpg">
       <publishTime>09/26/2016 11:11:24</publishTime>
@@ -121,13 +121,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/30/2016 15:30:21</publishTime>
     </File>
     <File Include="Content/LoginSignUp.css">
-      <publishTime>11/01/2016 16:12:19</publishTime>
+      <publishTime>11/01/2016 22:18:21</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>11/01/2016 14:38:21</publishTime>
+      <publishTime>11/01/2016 23:15:50</publishTime>
     </File>
     <File Include="Content/Timeline.css">
-      <publishTime>11/01/2016 17:36:40</publishTime>
+      <publishTime>11/01/2016 23:24:59</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>10/14/2016 13:43:08</publishTime>
@@ -193,16 +193,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/24/2016 10:33:54</publishTime>
     </File>
     <File Include="Scripts/PasteBook/Home.js">
-      <publishTime>11/01/2016 18:28:06</publishTime>
+      <publishTime>11/01/2016 23:05:15</publishTime>
     </File>
     <File Include="Scripts/PasteBook/NotificationScript.js">
-      <publishTime>10/31/2016 22:07:29</publishTime>
+      <publishTime>11/01/2016 23:05:25</publishTime>
     </File>
     <File Include="Scripts/PasteBook/Profile.js">
-      <publishTime>11/01/2016 14:29:58</publishTime>
+      <publishTime>11/01/2016 23:05:41</publishTime>
     </File>
     <File Include="Scripts/PasteBook/SignUpAndLoginScripts.js">
-      <publishTime>10/27/2016 22:03:44</publishTime>
+      <publishTime>11/01/2016 23:05:51</publishTime>
     </File>
     <File Include="Scripts/respond.js">
       <publishTime>10/14/2016 13:43:36</publishTime>
@@ -217,13 +217,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2016 11:17:25</publishTime>
     </File>
     <File Include="Views/Account/SignUp.cshtml">
-      <publishTime>11/01/2016 13:28:10</publishTime>
+      <publishTime>11/01/2016 22:58:31</publishTime>
     </File>
     <File Include="Views/Error/Error404.cshtml">
-      <publishTime>10/31/2016 22:36:19</publishTime>
+      <publishTime>11/01/2016 22:23:31</publishTime>
     </File>
     <File Include="Views/Error/Error500.cshtml">
-      <publishTime>10/27/2016 19:57:00</publishTime>
+      <publishTime>11/01/2016 22:23:12</publishTime>
     </File>
     <File Include="Views/Home/EditEmail.cshtml">
       <publishTime>10/27/2016 21:08:12</publishTime>
@@ -244,7 +244,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/30/2016 11:14:31</publishTime>
     </File>
     <File Include="Views/Home/PartialViewAddPost.cshtml">
-      <publishTime>10/27/2016 10:34:46</publishTime>
+      <publishTime>11/01/2016 19:20:01</publishTime>
     </File>
     <File Include="Views/Home/PartialViewFriendRequest.cshtml">
       <publishTime>11/01/2016 17:32:24</publishTime>
@@ -253,7 +253,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/27/2016 17:39:50</publishTime>
     </File>
     <File Include="Views/Home/PartialViewNewsFeed.cshtml">
-      <publishTime>11/01/2016 15:02:28</publishTime>
+      <publishTime>11/01/2016 19:38:06</publishTime>
     </File>
     <File Include="Views/Home/PartialViewNotification.cshtml">
       <publishTime>11/01/2016 14:46:06</publishTime>
@@ -268,7 +268,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2016 14:33:33</publishTime>
     </File>
     <File Include="Views/Home/Timeline.cshtml">
-      <publishTime>11/01/2016 18:28:58</publishTime>
+      <publishTime>11/01/2016 23:26:43</publishTime>
     </File>
     <File Include="Views/Home/UserProfile.cshtml">
       <publishTime>10/19/2016 19:47:34</publishTime>
@@ -283,7 +283,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/30/2016 16:57:18</publishTime>
     </File>
     <File Include="Views/Post/Posts.cshtml">
-      <publishTime>11/01/2016 15:02:21</publishTime>
+      <publishTime>11/01/2016 19:59:07</publishTime>
     </File>
     <File Include="Views/Profile/EditEmail.cshtml">
       <publishTime>11/01/2016 15:37:38</publishTime>
@@ -298,10 +298,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/14/2016 13:43:08</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>11/01/2016 17:13:07</publishTime>
+      <publishTime>11/01/2016 22:15:51</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutSignUpLogin.cshtml">
-      <publishTime>10/31/2016 10:19:09</publishTime>
+      <publishTime>11/01/2016 22:16:06</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>10/14/2016 13:43:08</publishTime>
@@ -310,7 +310,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/14/2016 13:43:08</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/01/2016 18:54:53</publishTime>
+      <publishTime>11/01/2016 22:24:07</publishTime>
     </File>
   </ItemGroup>
 </Project>

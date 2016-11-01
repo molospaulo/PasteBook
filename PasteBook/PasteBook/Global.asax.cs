@@ -31,13 +31,13 @@ namespace PasteBook
                 }
                 else
                 {
-                    //Response.Redirect("~/Error/Error500");
+                    Response.Redirect("~/Error/Error500");
                 }
             }
 
             else
             {
-                //Response.Redirect("~/Error/Error500");
+                Response.Redirect("~/Error/Error500");
             }
         }
     }

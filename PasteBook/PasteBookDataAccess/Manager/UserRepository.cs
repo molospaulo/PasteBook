@@ -11,8 +11,6 @@ namespace PasteBookDataAccess
     {
         public PB_USER GetUserDetailWithCountry(Func<PB_USER,bool> condition)
         {
-            try
-            {
                 using (var context = new PasteBookEntities())
                 {
                     var result = context.PB_USER
@@ -22,10 +20,6 @@ namespace PasteBookDataAccess
                         .Single();
                     return result;
                 }
-            }catch(Exception e)
-            {
-                return null;
-            }
         }
     }
 }

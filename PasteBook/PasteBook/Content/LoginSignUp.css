@@ -152,3 +152,9 @@ label{
     font-weight:bold;
     
 }
+#btnGoToLogin{
+    margin-top:20px;
+    color:#fff;
+    height:45px;
+    width:130px;
+}

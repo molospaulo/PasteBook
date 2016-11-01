@@ -62,7 +62,7 @@
                                     }<div id="aboutMeContentDiv">
                                     @Html.DisplayFor(model => model.ABOUT_ME, new { htmlAttributes = new { @class = "form-control" } })
                                 </div>
-                                @using (Html.BeginForm("AddAboutMe", "Home", FormMethod.Post))
+                                @using (Html.BeginForm("AddAboutMe", "Profile", FormMethod.Post))
                                 {
 
 
@@ -78,7 +78,8 @@
                                                         <form>
                                                             <div class="container" id="txtAreaAboutDiv">
                                                                 <textarea id="txtAreaAboutMe" class="form-control" rows="5" placeholder="About me." name="aboutMe">@Model.ABOUT_ME</textarea>
-                                                            </div>
+                                                                <span id="errorMessageAboutMe" class="text-danger"></span>
+                                                             </div>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -95,6 +96,14 @@
                 </div>
                </div>
                 <div class="row profileDetailsDiv" >
+                    <div class="row">
+                        <div class="col-md-6 profileDetailsRow">
+                            <p id="infoIcon"><span class="glyphicon glyphicon-info-sign"></span> <label class="control-label">Info</label></p> 
+                        </div>
+                        <div class="col-md-6 profileDetailsRow">
+                       
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6 profileDetailsRow">
                             @Html.Label("User name ", htmlAttributes: new { @class = "control-label " })

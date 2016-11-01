@@ -32,15 +32,5 @@ namespace PasteBookBusinessLogic
                 returnValue = result;
             return returnValue;
         }
-        //public List<PB_NOTIFICATION> GetListOfFriendRequestNotifs(int id)
-        //{
-        //    var result = genericDataAccess.RetrieveListWithCondition(x => (x.RECEIVER_ID == id && x.NOTIF_TYPE == "F" && x.SEEN == "N"), x => x.PB_USER, x => x.PB_USER1, x => x.PB_COMMENTS, x => x.PB_POSTS).OrderByDescending(x => x.CREATED_DATE).Take(20).ToList();
-        //    return result;
-        //}
-        //public PB_NOTIFICATION GetNotification(int id)
-        //{
-        //    var result = genericDataAccess.GetOneRecord(x => (x.RECEIVER_ID == id && x.NOTIF_TYPE == "F" && x.SEEN == "N"));
-        //    return result;
-        //}
     }
 }
